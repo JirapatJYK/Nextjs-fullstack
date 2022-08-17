@@ -1,0 +1,98 @@
+[
+    {
+        "name": "nextjs-fullstack",
+        "description": "Fullstack with nextjs",
+        "external_url": "http://localhost:3000/",
+        "type": "image",
+        "media": "/vercel.svg",
+        "background": "#FFD700"
+    },
+    {
+        "name": "nextjs-fullstack",
+        "description": "Fullstack with nextjs",
+        "external_url": "http://localhost:3000/",
+        "type": "image",
+        "media": "/vercel.svg",
+        "background": "#9400D3"
+    },
+    {
+        "name": "nextjs-fullstack",
+        "description": "Fullstack with nextjs",
+        "external_url": "http://localhost:3000/",
+        "type": "image",
+        "media": "/vercel.svg",
+        "background": "#228B22"
+    },
+    {
+        "name": "Test-Audio",
+        "description": "Fullstack with nextjs Audio card",
+        "external_url": "http://localhost:3000/",
+        "type": "audio",
+        "media": "/fistMusic.mp3",
+        "background": "url(/favicon.ico)"
+    },
+    {
+        "name": "nextjs-fullstack",
+        "description": "Fullstack with nextjs",
+        "external_url": "http://localhost:3000/",
+        "type": "image",
+        "media": "/vercel.svg",
+        "background": "#FFD700"
+    },
+    {
+        "name": "nextjs-fullstack",
+        "description": "Fullstack with nextjs",
+        "external_url": "http://localhost:3000/",
+        "type": "image",
+        "media": "/vercel.svg",
+        "background": "#9400D3"
+    },
+    {
+        "name": "nextjs-fullstack",
+        "description": "Fullstack with nextjs",
+        "external_url": "http://localhost:3000/",
+        "type": "image",
+        "media": "/vercel.svg",
+        "background": "#228B22"
+    },
+    {
+        "name": "Test-Audio",
+        "description": "Fullstack with nextjs Audio card",
+        "external_url": "http://localhost:3000/",
+        "type": "audio",
+        "media": "/fistMusic.mp3",
+        "background": "url(/favicon.ico)"
+    },
+    {
+        "name": "nextjs-fullstack",
+        "description": "Fullstack with nextjs",
+        "external_url": "http://localhost:3000/",
+        "type": "image",
+        "media": "/vercel.svg",
+        "background": "#FFD700"
+    },
+    {
+        "name": "nextjs-fullstack",
+        "description": "Fullstack with nextjs",
+        "external_url": "http://localhost:3000/",
+        "type": "image",
+        "media": "/vercel.svg",
+        "background": "#9400D3"
+    },
+    {
+        "name": "nextjs-fullstack",
+        "description": "Fullstack with nextjs",
+        "external_url": "http://localhost:3000/",
+        "type": "image",
+        "media": "/vercel.svg",
+        "background": "#228B22"
+    },
+    {
+        "name": "Test-Audio",
+        "description": "Fullstack with nextjs Audio card",
+        "external_url": "http://localhost:3000/",
+        "type": "audio",
+        "media": "/fistMusic.mp3",
+        "background": "url(/favicon.ico)"
+    }
+]

@@ -3,14 +3,15 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../../lib/mongodb";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse){
-    const { apiID } = req.query;
-    const { database } = await connectToDatabase();
-    var collection = database.collection(process.env.COLLECTION_ACCOUNTS);
-    let results
+    const { apiID } = await req.query;
+    const { database }: {database: any} = await connectToDatabase()?? {database: null}; //กำหนด ค่าเริ่มต้น
+    var collection = await database.collection(process.env.COLLECTION_ACCOUNTS);
+    let results:any = [];
     if (apiID === 'get-accounts-all'){
-        results = await collection.find({}).toArray();
-
-    } else if (apiID === 'create-account'){
+        results = await collection.find({}).toArray()?? {results: []};
+    } 
+    
+    else if (apiID === 'create-account'){
         let accountData = await  req.body.params;
         Object.assign(accountData, {_id: ObjectId});
         try {

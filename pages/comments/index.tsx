@@ -24,14 +24,14 @@ export default function ComponentPage(){
 
     return (
         <>
-            <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}></input>
+            <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
             <button onClick={submitComment}>Submit Comment</button>
             <button onClick={fetchComments}>Load Comments</button>
             <a>.env variables : {process.env.MONGODB_URI}</a>
             {comments.map(comment => {
                 return (
-                    <div key={comment.id}>
-                        {comment.id} {comment.text}
+                    <div key={comment['id']}>
+                        {comment['id']} {comment['text']}
                     </div>
                 )
             })}

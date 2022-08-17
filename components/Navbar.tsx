@@ -1,49 +1,98 @@
+import { getCookie, setCookie } from 'cookies-next';
 import Link from "next/link";
-import { useEffect } from "react";
+import Router from 'next/router';
+import { useEffect, useState } from "react";
+
 
 const Navbar =()=>{
-    function SetTheme(){
-        let theme = document.cookie.split(";").find((item) => item.trim().startsWith("theme="));
-        if(theme == "theme=light"){
-            
+    function SetTheme() {
+        const themeSwitch :any = document.getElementById('theme-switch');
+        if(themeSwitch.checked){ 
+            document.body.setAttribute('theme', "dark");
+            setCookie("theme", "dark")
+        }else { 
+            document.body.setAttribute('theme', "light");
+            setCookie("theme", "light")
         }
-        if(document.documentElement.getAttribute("theme") == "dark"){
-            document.documentElement.setAttribute('theme', 'light')
-            document.cookie = `theme = light`
-        }else{
-            document.documentElement.setAttribute('theme', 'dark')
-            document.cookie = `theme = dark`
-        }
-        console.log(document.cookie);
-        console.log("theme :"+theme)
-        console.log(document.documentElement.getAttribute('theme'))
-
     }
+    const[userName, setUserName] = useState("Signin");
+
+    function account(){
+        if(userName == "Signin"){
+            Router.push('/signup');
+        }
+    }
+
     useEffect(()=>{
+        if(!document.body.getAttribute('theme')){
+            document.body.setAttribute('theme', "light");
+        }
+        const theme = getCookie("theme",{});
+        document.body.setAttribute('theme', String(theme));
+        const themeSwitch :any = document.getElementById('theme-switch');
+        if(document.body.getAttribute('theme')=="dark")
+        themeSwitch.checked = true;
 
     });
     return(
         <nav>
             <ul>
                 
-                <Link href="#home">
-                    <li>
-                        LOG_NAME
-                    </li>
-                </Link>
-                <Link href="#01">
-                    <li>home</li>
-                </Link>    
-                <Link href="#02">    
-                    <li>home</li>
-                </Link>
+                <li>
+                    <Link href="/">
+                        <b>LOGO_NAME</b>
+                    </Link>
+                </li>
 
             </ul>
-            <ul>
-                <li><input type="checkbox" onClick={(e)=>{ SetTheme();}}/></li>
-                <li>home</li>
-                <li>home</li>
 
+            <ul>
+                <div className='search-box'>
+                    <input type="search"  placeholder="search..."/>
+                    <button type="button">seach</button>
+                </div>
+            </ul>
+            
+            
+            <ul>
+                <li>
+                    <Link href="/explore">
+                        Explore
+                    </Link>
+                </li>    
+                <li>
+                    <Link href="/create">
+                        Create
+                    </Link>
+                </li>
+                <li className="dropdown dropdown-hover">
+                    <a onClick={(e)=> account()}>{userName}</a>
+                    <ul className="dropdown-menu">
+                        <li>
+                            <Link href="#profile">
+                                Profile   
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="#wallet">
+                                Wallet
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="#favorite">
+                                Favoites
+                                </Link>
+                        </li>
+                        <li>
+                            <div className="switch">
+                                <input id="theme-switch" type="checkbox" onChange={()=>{ SetTheme();}}></input>
+                                <label className="slider round" htmlFor="theme-switch"></label>
+                            </div>
+                            Night Mode
+                        </li>
+                    </ul>
+                    
+                </li>
             </ul>
         </nav>
     )

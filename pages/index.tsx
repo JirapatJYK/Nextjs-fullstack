@@ -37,7 +37,6 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        <button onClick={()=>{console.log(document.cookie.toString())}}></button>
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
@@ -54,23 +53,26 @@ const Home: NextPage = () => {
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+          <div className="card">
+            <div className='card-content'>
+              <video width="320" height="240" controls src='/WIN_20211107_05_15_48_Pro.mp4'/>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+            </div>
+            <div className='card-info'>
+              <h4>Name: sdsdsd</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, cumque fugit modi minus dolor, numquam fuga, sequi recusandae eaque deleniti non maiores aspernatur quisquam eos perferendis quam autem similique quod!</p>
+            </div>
+          </div>
+
+          <div className="card">
+            <div className='card-content'>
+              <Image src="/vercel.svg" width="320px" height="320px"></Image>
+            </div>
+            <div className='card-info'>
+              <h4>Name: sdsdsd</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, cumque fugit modi minus dolor, numquam fuga, sequi recusandae eaque deleniti non maiores aspernatur quisquam eos perferendis quam autem similique quod!</p>
+            </div>
+          </div>
         </div>
 </div>
        </main>

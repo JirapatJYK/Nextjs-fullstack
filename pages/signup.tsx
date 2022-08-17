@@ -1,9 +1,10 @@
 // import { ObjectId } from "mongodb";
 import { NextPage } from "next";
+import Router from "next/router";
 import { useEffect, useState } from "react";
 import Loader from "../components/Loader";
 
-const signup: NextPage = () => {
+const Signup: NextPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -30,6 +31,7 @@ const signup: NextPage = () => {
             },
             
         }).then((response)=>{
+            Router.push('/api/account/get-accounts-all')
             console.log(response.json());
             document.cookie = `name=${response}`;
         }).catch((error)=>{
@@ -46,31 +48,27 @@ const signup: NextPage = () => {
                     <form className="">
                         <div>
                             <label>Username<span id="nameValidation" style={{color: 'red'}}>*</span></label>
-                            <input type="text" placeholder="Enter your name" value={name} onChange={(e)=>{setName(e.target.value)}} required></input>
+                            <input name="name" type="text" placeholder="Enter your name" value={name} onChange={(e)=>{setName(e.target.value)}} required></input>
                             <span id="nameValidation" style={{color: 'red'}}></span>
                         </div>
                         <div>
                             <label>Email</label>
-                            <input type="email" placeholder="Enter your email address" value={email} onChange={(e)=>{setEmail(e.target.value)}} required></input>
+                            <input name="email" type="email" placeholder="Enter your email address" value={email} onChange={(e)=>{setEmail(e.target.value)}} required></input>
                         </div>
                         <div>
                             <label>Password</label>
-                            <input type="password" placeholder="Enter your password" value={password} onChange={(e)=>{setPassword(e.target.value)}} pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></input>
+                            <input name="password" type="password" placeholder="Enter your password" value={password} onChange={(e)=>{setPassword(e.target.value)}} pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></input>
                         </div>
                         <div>
                             <input type="checkbox"/><span>I agree to the Terms of Service and Privacy Policy.</span>
                         </div>
-                        <button type="submit" onClick={(e)=> signup()}>SIGN UP</button>
 
                         {/* <button type="secondary" onClick={(e)=> signup()}>SIGN UP</button>
                         <button type="tertiary" onClick={(e)=> signup()}>SIGN UP</button> */}
 
                     </form>
+                    <button onClick={(e)=> signup()}>SIGN UP</button>
 
-                    <button onClick={(e)=>{
-                        setIsLoading(true);
-                        console.log(document.cookie)}}>
-                    </button>
                     </div>
                 </div>
             </div>
@@ -78,4 +76,4 @@ const signup: NextPage = () => {
     )
 }
 
-export default signup;
+export default Signup;
