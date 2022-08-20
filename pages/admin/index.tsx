@@ -7,6 +7,21 @@ export default function AccountData(){
     const [tableField, setTableField] = useState(["_id", "name", "email", "password"]);
 
     const getUserData = async() => {
+        // try {
+        //     const response = await fetch('/api/account/get-accounts-all');
+        //     const data = await response.json()
+        //     await setAccountData(data);
+        //     await console.log("response");
+        //     await console.log(response);
+        //     await console.log("data");
+        //     await console.log(data);
+
+        // } catch (error) {
+        //     console.log("error");
+        //     console.log(error);
+        //     console.log("error");
+
+        // }
         await fetch('/api/accounts/get-accounts-all')
         .then(async (response) => {
             const data = await response.json();
@@ -32,7 +47,6 @@ export default function AccountData(){
             <Navbar/>
             <div className="container">
                 <DataTable  tableHead={tableField} tableBody={accountData} />
-                <button onClick={(e)=>{fetch('/api/accounts/delete-accounts-all')}}>delete-accounts-all</button>
             </div>
         </div>
     )

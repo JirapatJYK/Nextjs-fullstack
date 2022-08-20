@@ -2,7 +2,7 @@
 import { NextPage } from "next";
 import Router from "next/router";
 import { useEffect, useState } from "react";
-import Loader from "../components/Loader";
+import Loader from "../../components/Loader";
 
 const Signup: NextPage = () => {
     const [name, setName] = useState("");
@@ -23,7 +23,7 @@ const Signup: NextPage = () => {
             email: email,
             password: password,
         }
-        const response = await fetch('/api/account/create-account', {
+        const response = await fetch('/api/accounts/create-account', {
             method: 'POST',
             body: JSON.stringify({params}),
             headers: {
@@ -31,7 +31,7 @@ const Signup: NextPage = () => {
             },
             
         }).then((response)=>{
-            Router.push('/api/account/get-accounts-all')
+            Router.push('/api/accounts/get-accounts-all')
             console.log(response.json());
             document.cookie = `name=${response}`;
         }).catch((error)=>{

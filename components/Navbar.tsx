@@ -19,7 +19,7 @@ const Navbar =()=>{
 
     function account(){
         if(userName == "Signin"){
-            Router.push('/signup');
+            Router.push('/user/signup');
         }
     }
 
