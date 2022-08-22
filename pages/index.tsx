@@ -32,50 +32,96 @@ const Home: NextPage = () => {
       </Head>
       <Loader isLoading = {isLoading} />
       <Navbar />
-      <main className={styles.main}>
-<div className="bg-glass">
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
+      <main className='container'>
+        <section className='' style={{backgroundColor: "red"}}>
+          <div className="main">
+            <h1 className={styles.title}>
+              Welcome to <a href="https://nextjs.org">Next.js!</a>
+            </h1>
+            <p className={styles.description}>
+              Get started by editing{' '}
+              <code className={styles.code}>pages/index.tsx</code>
+            </p>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+            <div className={styles.grid}>
+              <a href="https://nextjs.org/docs" className={styles.card}>
+                <h2>Documentation &rarr;</h2>
+                <p>Find in-depth information about Next.js features and API.</p>
+              </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+              <a href="https://nextjs.org/learn" className={styles.card}>
+                <h2>Learn &rarr;</h2>
+                <p>Learn about Next.js in an interactive course with quizzes!</p>
+              </a>
 
-          <div className="card">
-            <div className='card-content'>
-              <video width="320" height="240" controls src='/WIN_20211107_05_15_48_Pro.mp4'/>
+              <div className="card">
+                <div className='card-content'>
+                  <video width="320" height="240" controls src='/WIN_20211107_05_15_48_Pro.mp4'/>
 
-            </div>
-            <div className='card-info'>
-              <h4>Name: sdsdsd</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, cumque fugit modi minus dolor, numquam fuga, sequi recusandae eaque deleniti non maiores aspernatur quisquam eos perferendis quam autem similique quod!</p>
+                </div>
+                <div className='card-info'>
+                  <h4>Name: sdsdsd</h4>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, cumque fugit modi minus dolor, numquam fuga, sequi recusandae eaque deleniti non maiores aspernatur quisquam eos perferendis quam autem similique quod!</p>
+                </div>
+              </div>
+
+              <div className="card">
+                <div className='card-content'>
+                  <Image src="/vercel.svg" width="320px" height="320px"></Image>
+                </div>
+                <div className='card-info'>
+                  <h4>Name: sdsdsd</h4>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, cumque fugit modi minus dolor, numquam fuga, sequi recusandae eaque deleniti non maiores aspernatur quisquam eos perferendis quam autem similique quod!</p>
+                </div>
+              </div>
             </div>
           </div>
+        </section>
+        <section className='' style={{backgroundColor: ""}}>
+          <div className="main">
+            <h1 className={styles.title}>
+              Welcome to <a href="https://nextjs.org">Next.js!</a>
+            </h1>
+            <p className={styles.description}>
+              Get started by editing{' '}
+              <code className={styles.code}>pages/index.tsx</code>
+            </p>
 
-          <div className="card">
-            <div className='card-content'>
-              <Image src="/vercel.svg" width="320px" height="320px"></Image>
-            </div>
-            <div className='card-info'>
-              <h4>Name: sdsdsd</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, cumque fugit modi minus dolor, numquam fuga, sequi recusandae eaque deleniti non maiores aspernatur quisquam eos perferendis quam autem similique quod!</p>
+            <div className={styles.grid}>
+              <a href="https://nextjs.org/docs" className={styles.card}>
+                <h2>Documentation &rarr;</h2>
+                <p>Find in-depth information about Next.js features and API.</p>
+              </a>
+
+              <a href="https://nextjs.org/learn" className={styles.card}>
+                <h2>Learn &rarr;</h2>
+                <p>Learn about Next.js in an interactive course with quizzes!</p>
+              </a>
+
+              <div className="card">
+                <div className='card-content'>
+                  <video width="320" height="240" controls src='/WIN_20211107_05_15_48_Pro.mp4'/>
+
+                </div>
+                <div className='card-info'>
+                  <h4>Name: sdsdsd</h4>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, cumque fugit modi minus dolor, numquam fuga, sequi recusandae eaque deleniti non maiores aspernatur quisquam eos perferendis quam autem similique quod!</p>
+                </div>
+              </div>
+
+              <div className="card">
+                <div className='card-content'>
+                  <Image src="/vercel.svg" width="320px" height="320px"></Image>
+                </div>
+                <div className='card-info'>
+                  <h4>Name: sdsdsd</h4>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, cumque fugit modi minus dolor, numquam fuga, sequi recusandae eaque deleniti non maiores aspernatur quisquam eos perferendis quam autem similique quod!</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-</div>
-       </main>
+        </section>
+      </main>
      
 
       <footer className={styles.footer}>

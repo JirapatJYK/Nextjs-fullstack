@@ -171,15 +171,25 @@ button[type="tertiary"]{
 }
 
 .container {
-  padding-top: 72px;
   /* background-color: var(--background-secondary); */
-  max-width: 1444px;
   position: relative;
-  margin: auto;
+  margin:  72px auto;
   min-height: 100vh;
   text-align: center;
+  /* padding: 10px; */
   /* display: flex;
   flex-direction: column; */
+}
+.main {
+  max-width: 1204px;
+  margin: auto;
+  min-height: 100vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .form{
