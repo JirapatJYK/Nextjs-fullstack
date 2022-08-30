@@ -79,7 +79,7 @@ const Create:NextPage =()=>{
             },
         })
         .then((response) => {
-            console.log(response);
+            console.log(response.json());
         })
         .catch((error) => {
             console.log(error)

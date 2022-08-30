@@ -1,5 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
-//import contract
+import { Network, Alchemy } from "alchemy-sdk";
+
+const settings = {
+    apiKey: process.env.API_URL, // Replace with your Alchemy API Key.
+    network: Network.MATIC_MUMBAI, // Replace with your network.
+};
+const alchemy = new Alchemy(settings);
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse){
     const {apiID} = await req.query;
@@ -29,6 +36,7 @@ async function mint(params:any,){
         console.log(err);
     }
 }
+
 
 async function burn(){
     try{

@@ -173,7 +173,7 @@ button[type="tertiary"]{
 .container {
   /* background-color: var(--background-secondary); */
   position: relative;
-  margin:  72px auto;
+  padding-top:  72px;
   min-height: 100vh;
   text-align: center;
   /* padding: 10px; */
@@ -321,6 +321,7 @@ nav ul li:hover{
  margin: auto;
  border-radius: 20px;
  width: 320px;
+ 
  /* max-height: 440px; */
  transition: .4s;
 }
@@ -432,7 +433,7 @@ input:checked + .slider:before {
 }
 .grid-container{
   /* position: relative; */
-  margin-top: 72px;
+  padding-top: 72px;
   display: grid;
   grid-template-columns: 1fr;
   /* gap: 20px; */
@@ -442,8 +443,8 @@ input:checked + .slider:before {
 aside {
   grid-column-end: -2;
   color: var(--text-secondary);
-  padding: 50px;
-  width: 200px;
+  
+  max-width: 300px;
   position: relative;
   /* background-color: var(--background-primary); */
   height: 100vh;
@@ -451,7 +452,7 @@ aside {
 aside> ul{
   /* background-color: #0000ff; */
   list-style: none;
-  position: sticky;
+  
 
 }
 aside> ul>li{
@@ -554,4 +555,20 @@ th {
   text-align: left;
   background-color: #04AA6D;
   color: white;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;            /* Footer height */
+}
+
+.main-content::-webkit-scrollbar{
+  width: 20px
+}
+.main-content::-webkit-scrollbar-track{
+  border: 3px solid #ffffff;
+}
+.main-content::-webkit-scrollbar-thumb{
+  background-color: deepskyblue;
 }
