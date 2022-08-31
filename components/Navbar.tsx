@@ -22,6 +22,17 @@ const Navbar =()=>{
             Router.push('/user/signup');
         }
     }
+    function collapse(){
+        var x = document.getElementById("myTopnav");
+        if(x){
+            if (x.className === "") {
+                x.className += " responsive";
+            } else {
+                x.className = "";
+            }
+        }
+        
+    }
 
     useEffect(()=>{
         if(!document.body.getAttribute('theme')){
@@ -35,7 +46,7 @@ const Navbar =()=>{
 
     });
     return(
-        <nav>
+        <nav id='myTopnav'>
             <ul>
                 
                 <li>
@@ -94,6 +105,7 @@ const Navbar =()=>{
                     
                 </li>
             </ul>
+            <i className='icon' onClick={()=>{collapse()}}>AAA</i>
         </nav>
     )
 }
