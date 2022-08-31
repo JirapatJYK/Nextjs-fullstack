@@ -135,34 +135,40 @@ const Create:NextPage =()=>{
         <>
             <Navbar/>
             <div className="container">
-                <div className="form">
-                    <h1>Create New Item</h1>
-                    <div>
-                        {/* previewer */}
-                    </div>
-                    <div>
-                        <div className="form-control">
-                            <form>
-                                <input type="file" onChange={(e)=>setFile(e)} />
-                                <div>{audioBackground()}</div>
-                                <input type="text" placeholder="Name" name="name" onChange={(e)=>setName(e.target.value)}></input>
-                                <input type="text" placeholder="description" name="description" onChange={(e)=>setDescription(e.target.value)}></input>
-                                <input type="text" placeholder="External Link" name="external" onChange={(e)=>setExternal(e.target.value)}></input>
-                                <input type="color" placeholder="Background" name="background" onChange={(e)=>{ setBgtype("background");setBackground(e.target.value)}}></input>
-                            </form>
-                            <button onClick={(e)=>{creatItem()}}>Create Item</button>
+                <h1>Create New Item</h1>
+                <div className="row" style={{margin: "auto", maxWidth: "1024px"}}>
+                    <div className="col-5">
+                        <div className="form">
+                            
+                            <div>
+                                <div className="form-control">
+                                    <form>
+                                        <input type="file" onChange={(e)=>setFile(e)} />
+                                        <div>{audioBackground()}</div>
+                                        <input type="text" placeholder="Name" name="name" onChange={(e)=>setName(e.target.value)}></input>
+                                        <input type="text" placeholder="description" name="description" onChange={(e)=>setDescription(e.target.value)}></input>
+                                        <input type="text" placeholder="External Link" name="external" onChange={(e)=>setExternal(e.target.value)}></input>
+                                        <input type="color" placeholder="Background" name="background" onChange={(e)=>{ setBgtype("background");setBackground(e.target.value)}}></input>
+                                    </form>
+                                    <button onClick={(e)=>{creatItem()}}>Create Item</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div className="col-5">
+                        <div>
+                            {previewRender()}
+                        </div>
+                        <div>
+                            {name}
+                            {description}
+                            {external}
+                            {media}
+                        </div>
+                    </div>
+                    
                 </div>
-                <div>
-                    {previewRender()}
-                </div>
-                <div>
-                    {name}
-                    {description}
-                    {external}
-                    {media}
-                </div>
+                
             </div>
         </>
     )

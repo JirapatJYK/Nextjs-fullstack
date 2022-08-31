@@ -563,12 +563,42 @@ th {
   height: 2.5rem;            /* Footer height */
 }
 
-.main-content::-webkit-scrollbar{
+body::-webkit-scrollbar{
   width: 20px
 }
-.main-content::-webkit-scrollbar-track{
+body::-webkit-scrollbar-track{
   border: 3px solid #ffffff;
 }
-.main-content::-webkit-scrollbar-thumb{
+body::-webkit-scrollbar-thumb{
   background-color: deepskyblue;
+}
+body::-webkit-scrollbar{
+  width: 20px
+}
+body::-webkit-scrollbar-track{
+  border: 3px solid #ffffff;
+}
+body::-webkit-scrollbar-thumb{
+  background-color: deepskyblue;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.col-5 {
+  float: left;
+  width: 50%;
+}
+.col-6 {
+  float: left;
+  width: 60%;
+}
+@media screen and (max-width: 768px){
+  .col-5 {
+    float: left;
+    width: 100%;
+  }
 }

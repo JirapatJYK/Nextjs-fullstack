@@ -54,17 +54,8 @@ const Home: NextPage = () => {
                 <p>Learn about Next.js in an interactive course with quizzes!</p>
               </a>
 
-              <div className="card">
-                <div className='card-content'>
-                  <video width="320" height="240" controls src='/WIN_20211107_05_15_48_Pro.mp4'/>
-
-                </div>
-                <div className='card-info'>
-                  <h4>Name: sdsdsd</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, cumque fugit modi minus dolor, numquam fuga, sequi recusandae eaque deleniti non maiores aspernatur quisquam eos perferendis quam autem similique quod!</p>
-                </div>
-              </div>
-
+              <iframe width="853" height="480" src="https://www.youtube.com/embed/OBqw818mQ1E" title="SiM – The Rumbling (OFFICIAL VIDEO)"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+              
               <div className="card">
                 <div className='card-content'>
                   <Image src="/vercel.svg" width="320px" height="320px"></Image>
