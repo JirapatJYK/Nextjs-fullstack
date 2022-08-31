@@ -248,7 +248,7 @@ nav ul{
   color: var(--text-secondary);
   display: inherit;
   /* max-width: 1024px; */
-  margin: auto;
+  margin: auto 0;
 }
 nav ul li{
   list-style: none;
