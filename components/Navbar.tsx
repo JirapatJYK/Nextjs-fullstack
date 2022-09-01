@@ -47,65 +47,72 @@ const Navbar =()=>{
     });
     return(
         <nav id='myTopnav'>
-            <ul>
-                
-                <li>
-                    <Link href="/">
-                        <b>LOGO_NAME</b>
-                    </Link>
-                </li>
-
-            </ul>
-
-            <ul>
-                <div className='search-box'>
-                    <input type="search"  placeholder="search..."/>
-                    <button type="button">seach</button>
-                </div>
-            </ul>
-            
-            
-            <ul>
-                <li>
-                    <Link href="/explore">
-                        Explore
-                    </Link>
-                </li>    
-                <li>
-                    <Link href="/create">
-                        Create
-                    </Link>
-                </li>
-                <li className="dropdown dropdown-hover">
-                    <a onClick={(e)=> account()}>{userName}</a>
-                    <ul className="dropdown-menu">
-                        <li>
-                            <Link href="#profile">
-                                Profile   
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="#wallet">
-                                Wallet
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="#favorite">
-                                Favoites
-                                </Link>
-                        </li>
-                        <li>
-                            <div className="switch">
-                                <input id="theme-switch" type="checkbox" onChange={()=>{ SetTheme();}}></input>
-                                <label className="slider round" htmlFor="theme-switch"></label>
-                            </div>
-                            Night Mode
-                        </li>
-                    </ul>
+                <ul>
                     
-                </li>
-            </ul>
-            <i className='icon' onClick={()=>{collapse()}}>AAA</i>
+                    <li className="nav-item">
+                        <Link href="/">
+                            <b>LOGO_NAME</b>
+                        </Link>
+                    </li>
+
+                </ul>
+
+                <ul>
+                    <li className="nav-item">
+                        <div className='search-box'>
+                            <input type="search"  placeholder="search..."/>
+                            <button type="button">seach</button>
+                        </div>
+                    </li>
+                </ul>
+                
+                
+                <ul>
+                    <li className="nav-item">
+                        <Link href="/explore">
+                            Explore
+                        </Link>
+                    </li>    
+                    <li className="nav-item">
+                        <Link href="/create">
+                            Create
+                        </Link>
+                    </li >
+                    <li className="nav-item dropdown dropdown-hover">
+                        <a onClick={(e)=> account()}>{userName}</a>
+                        <ul className="dropdown-menu dropdown-left">
+                            <li>
+                                <Link href="#profile">
+                                    Profile   
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="#wallet">
+                                    Wallet
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="#favorite">
+                                    Favoites
+                                    </Link>
+                            </li>
+                            <li>
+                                <div className="switch">
+                                    <input id="theme-switch" type="checkbox" onChange={()=>{ SetTheme();}}></input>
+                                    <label className="slider round" htmlFor="theme-switch"></label>
+                                </div>
+                                Night Mode
+                            </li>
+                        </ul>
+                        
+                    </li>
+                </ul>
+            
+            <i className='icon' onClick={()=>{collapse()}}>
+                <div className="bar1"></div>
+                <div className="bar2"></div>
+                <div className="bar3"></div>
+            </i>
         </nav>
     )
 }
