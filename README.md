@@ -2,6 +2,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 Download [Node.js](https://nodejs.org/en/download/)
+```bash 
+node -v
+
+```
 First, run the development server:
 
 ```bash
