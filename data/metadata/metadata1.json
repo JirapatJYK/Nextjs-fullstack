@@ -3,6 +3,6 @@
     "description": "Fullstack with nextjs Video card",
     "external_url": "http://localhost:3000/",
     "type": "video",
-    "media": "/WIN_20211107_05_15_48_Pro.mp4",
+    "media": "video0.mp4",
     "background_color": "#000000"
 }

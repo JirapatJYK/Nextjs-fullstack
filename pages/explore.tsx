@@ -199,7 +199,7 @@ const Explore: NextPage =()=>{
                         sdsdsdd
                     </SidebarFooter>
                 </Sidebar>
-                <div className="main-content " style={{backgroundColor: 'black'}}>
+                <div className="main-content " >
                     <div className="scroll-view">
 
                         <MediaCard metadata={metadata} />

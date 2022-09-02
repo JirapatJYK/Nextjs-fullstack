@@ -524,6 +524,7 @@ aside .inputprice{
 }
 
 .main-content{
+  background-color: var(--background-secondary);
   position: relative;
   margin: 0;
   overflow: scroll;
@@ -624,7 +625,7 @@ th {
 }
 
 .main-content::-webkit-scrollbar{
-  width: 20px;
+  width: 10px;
   background-color: var(--background-primary);
 }
 .main-content::-webkit-scrollbar-track{
@@ -634,7 +635,7 @@ th {
   background-color: deepskyblue;
 }
 body::-webkit-scrollbar{
-  width: 20px
+  width: 15px
 }
 body::-webkit-scrollbar-track{
   border: 3px solid #ffffff;
@@ -662,4 +663,17 @@ body::-webkit-scrollbar-thumb{
     float: left;
     width: 100%;
   }
+  .video{
+  width:480px; 
+  height:360px;
+}
+}
+
+.video{
+    width:853px; 
+    height:480px;
+  }
+
+@media screen and (min-width: 1024px){
+  
 }

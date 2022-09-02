@@ -53,8 +53,9 @@ const Home: NextPage = () => {
                 <h2>Learn &rarr;</h2>
                 <p>Learn about Next.js in an interactive course with quizzes!</p>
               </a>
-
-              <iframe width="853" height="480" src="https://www.youtube.com/embed/OBqw818mQ1E" title="SiM – The Rumbling (OFFICIAL VIDEO)"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+              <div className='video'>
+              <iframe width={853} height={480} src="https://www.youtube.com/embed/OBqw818mQ1E" title="SiM – The Rumbling (OFFICIAL VIDEO)"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+              </div>
               
               <div className="card">
                 <div className='card-content'>
@@ -88,10 +89,11 @@ const Home: NextPage = () => {
                 <h2>Learn &rarr;</h2>
                 <p>Learn about Next.js in an interactive course with quizzes!</p>
               </a>
+              <video width="850" height="480" controls src='/video0.mp4'/>
 
               <div className="card">
                 <div className='card-content'>
-                  <video width="320" height="240" controls src='/WIN_20211107_05_15_48_Pro.mp4'/>
+                  <video width="320" height="240" controls src='/video0.mp4'/>
 
                 </div>
                 <div className='card-info'>
