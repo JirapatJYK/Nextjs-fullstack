@@ -9,7 +9,7 @@ import data from "../data//metadata/database.json";
 
 
 import Navbar from "../components/Navbar";
-import {Sidebar, SidebarContent, SidebarFooter, SidebarHeader} from "../components/Sidebar";
+import Pagination from "../components/Pagination";
 const sideMenu = [
     {   
         groupName: "Group1", 
@@ -68,12 +68,13 @@ const Explore: NextPage =()=>{
         <>
             <Loader  isLoading = {isLoading} />
             <Navbar/>
-            <div className="grid-container">
-                {/* <aside>
-                    <ul>
+            <div className="container flex" style={{height: '100vh'}}>
+                <aside >
+                    <h1 style={{backgroundColor: 'blue'}}>Sidebar</h1>
+                    <ul style={{maxHeight: '90vh'}} className="scroll-view">
                         <li className="dropdown" >
                             <span className="btn" onClick={() => collapse("status")}>
-                                <h1 >Status</h1> 
+                                <h2 >Status</h2> 
                             </span>
                             <ul id="status" className="dropdown-menu">
                                 <li></li>
@@ -81,7 +82,7 @@ const Explore: NextPage =()=>{
                         </li>
                         <li className="dropdown" >
                             <span className="btn" onClick={() => collapse("price")}>
-                                <h1>Price</h1>
+                                <h2>Price</h2>
                             </span>
                             <ul id="price" className="dropdown-menu">
                                 <li>
@@ -92,7 +93,7 @@ const Explore: NextPage =()=>{
                         </li>
                         <li className="dropdown">
                             <span className="btn" onClick={() => collapse("quantity")}>
-                                <h1>Quantity</h1>
+                                <h2>Quantity</h2>
                             </span>
                             <ul id="quantity" className="dropdown-menu">
                                 <li>1</li>
@@ -106,7 +107,7 @@ const Explore: NextPage =()=>{
                         </li>
                         <li className="dropdown">
                             <span className="btn" onClick={() => collapse("collections")}>
-                                <h1>Collections</h1>
+                                <h2>Collections</h2>
                             </span>
                             <ul id="collections" className="dropdown-menu">
                                 <li></li>
@@ -119,7 +120,7 @@ const Explore: NextPage =()=>{
                             </ul>
                         </li>
                         <li className="dropdown">
-                            <h1>Category</h1>
+                            <h2>Category</h2>
                             <ul className="dropdown-menu">
                                 <li>Images</li>
                                 <li>Audio</li>
@@ -128,8 +129,8 @@ const Explore: NextPage =()=>{
                             </ul>
                         </li>
                     </ul>
-                </aside> */}
-                <Sidebar  >
+                </aside>
+                {/* <Sidebar  >
                     <SidebarHeader>
                         <h1>Categories</h1>
                     </SidebarHeader>
@@ -198,9 +199,9 @@ const Explore: NextPage =()=>{
                     <SidebarFooter>
                         sdsdsdd
                     </SidebarFooter>
-                </Sidebar>
-                <div className="main-content " >
-                    <div className="scroll-view">
+                </Sidebar> */}
+                <div className="main-content " style={{border: "2px solid black"}}>
+                    <div className="explore scroll-view">
 
                         <MediaCard metadata={metadata} />
                         <MediaCard metadata={metadata1} />
@@ -213,8 +214,7 @@ const Explore: NextPage =()=>{
                         } )}
                         
                     </div>
-
-                        
+                    <Pagination />
                 </div>
             </div>
 

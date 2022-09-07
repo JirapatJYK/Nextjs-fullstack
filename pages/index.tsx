@@ -33,7 +33,7 @@ const Home: NextPage = () => {
       <Loader isLoading = {isLoading} />
       <Navbar />
       <main className='container'>
-        <section className='' style={{backgroundColor: "red"}}>
+        <section className='' style={{backgroundColor: " "}}>
           <div className="main">
             <h1 className={styles.title}>
               Welcome to <a href="https://nextjs.org">Next.js!</a>
@@ -54,7 +54,8 @@ const Home: NextPage = () => {
                 <p>Learn about Next.js in an interactive course with quizzes!</p>
               </a>
               <div className='video'>
-              <iframe width={853} height={480} src="https://www.youtube.com/embed/OBqw818mQ1E" title="SiM – The Rumbling (OFFICIAL VIDEO)"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+              {/* <iframe width={853} height={480} src="https://www.youtube.com/embed/OBqw818mQ1E" title="SiM – The Rumbling (OFFICIAL VIDEO)"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> */}
+              <iframe width="853" height="480" src="https://www.youtube.com/embed/veBu03A6ptw" title="1. How to develop an NFT Smart Contract (ERC721) with Alchemy - Beginner | Road to Web3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
               </div>
               
               <div className="card">

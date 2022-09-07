@@ -23,15 +23,6 @@ body[theme = "light"]{
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 }
-body{
-  --text-primary: #000000;
-  --text-secondary: #5e5e5e;
-  --background-primary: #ffffff;
-  --background-secondary: #eeeeee;
-  --background-tertiary: #dddddd;
-
-  --box-shadow: ;
-}
 body {
 	
 	height: 100vh;
@@ -101,7 +92,6 @@ input{
   padding: 10px;
   /* border-radius: 10px; */
   color: var(--text-secondary);
-
 }
 .btn-primary{
   border: none;
@@ -132,9 +122,7 @@ input[type="text"], input[type="password"], input[type="email"] {
   height: 100%;
   width: 100%;
 }
-input[type="text"]:hover, input[type="password"]:hover{
-  border: 2px solid var(--text-primary);
-}
+
 input:invalid {
   border: red solid 3px;
 }
@@ -203,14 +191,7 @@ button[type="tertiary"]{
   text-align: start;
   width: 80%;
 }
-.form-control input{
-  /* background-color: rgb(76, 80, 92); */
-  margin:  20px 0;
-  height: 72px;
-  width: 100%;
-  border-radius: 10px;
 
-}
 .form-control div{
   position: relative;
 }
@@ -375,6 +356,39 @@ nav .icon{
   border: none;
 }
 
+
+
+.input-container{
+  position: relative;
+  margin-bottom:72px;
+}
+.input-container label{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: all 0.5s ease-in-out;
+  font-size:24px;
+}
+.input-container input{
+  font-size:20px;
+  border: 0;
+  border-bottom: 5px solid #555;
+  background: transparent;
+  width: 100%;
+}
+.input-container input:focus{
+  border: none;
+  outline: none;
+  border-bottom: 5px solid #00bfff;
+}
+.input-container input:focus ~ label,
+.input-container input:valid ~ label{
+	top:-18px;
+	font-size:18px;
+}
+.input-container input:invalid{
+  border-bottom:2px solid #e74c3c;
+}
 .card {
  overflow: hidden;
  position: relative;
@@ -491,26 +505,24 @@ input:checked + .slider:before {
   justify-content: space-between;
   padding: 0 50px;
 }
-.grid-container{
-  /* position: relative; */
-  padding-top: 72px;
-  display: grid;
-  grid-template-columns: 1fr;
-  /* gap: 20px; */
+.flex{
+  display: flex;
   overflow: hidden;
-  height: 100vh;
 }
+
 aside {
-  grid-column-end: -2;
+  float: left;
   color: var(--text-secondary);
-  
-  max-width: 300px;
+  text-align: start;
+  width: 200px;
   position: relative;
   /* background-color: var(--background-primary); */
   height: 100vh;
+  
 }
 aside> ul{
   /* background-color: #0000ff; */
+  padding: 20px;
   list-style: none;
   
 
@@ -524,17 +536,19 @@ aside .inputprice{
 }
 
 .main-content{
-  background-color: var(--background-secondary);
+  float: right;
+  width: 1620px;
+  /* background-color: var(--background-secondary); */
   position: relative;
   margin: 0;
-  overflow: scroll;
-  overflow-x: hidden;
-  height: 80vh;
+  height: 100%;
 }
-.scroll-view {
+
+
+.explore {
   width: 100%;
   position: absolute;
-  min-height: 80vh;
+  height: 90vh;
   /* background-color: var(--background-primary); */
   display: grid;
   padding: 0;
@@ -551,26 +565,21 @@ aside .inputprice{
     margin: 0;
     padding: 5px;
   }
-  .scroll-view {
-  /* grid-template-columns: 252px 252px 252px ; */
-
-  }
 }
 @media screen and (max-width: 1024px){
   .main-content{
     margin: 0;
     padding: 5px;
   }
-  .scroll-view {
+  .explore {
     grid-template-columns: auto auto auto auto;
     }
   .card{
-    /* transform-origin: left; */
     transform: scale(0.5);
   }
 }
 @media screen and (min-width: 1440px){
-  .scroll-view {
+  .explore {
   /* gap: 20px; */
     grid-template-columns: auto auto auto auto;
     margin: auto;
@@ -583,9 +592,7 @@ aside .inputprice{
     width: 400px;
   }
 }
-.pageinations{
 
-}
 
 table, th, td {
   /* border: 1px solid black; */
@@ -624,25 +631,34 @@ th {
   height: 2.5rem;            /* Footer height */
 }
 
-.main-content::-webkit-scrollbar{
+
+.scroll-view{
+  position: relative;
+  margin: 0;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.scroll-view::-webkit-scrollbar{
   width: 10px;
   background-color: var(--background-primary);
 }
-.main-content::-webkit-scrollbar-track{
-  border: 3px solid var(--background-primary);
+.scroll-view::-webkit-scrollbar-track{
+  border: 3px solid var(--text-secondary);
 }
-.main-content::-webkit-scrollbar-thumb{
+.scroll-view::-webkit-scrollbar-thumb{
   background-color: deepskyblue;
 }
 body::-webkit-scrollbar{
   width: 15px
 }
 body::-webkit-scrollbar-track{
-  border: 3px solid #ffffff;
+  border: 3px solid var(--text-secondary);
 }
 body::-webkit-scrollbar-thumb{
-  background-color: deepskyblue;
+  background-color: #00bfff;
 }
+
+
 
 .row:after {
   content: "";

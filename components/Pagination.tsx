@@ -3,17 +3,17 @@ import { useState } from "react";
 const Pagination=()=>{
     const[numberOfPages, setNumberOfPages] = useState(10);
     return (
-        <div style={{backgroundColor: 'white'}}>
-            <span>
-                <div>
+        <div style={{backgroundColor: 'white', position: 'fixed', bottom: 0, height: '60px', width: 'inherit'}}>
+            <span >
+                <div style={{margin: 'auto 0'}}>
                     index in All
                 </div>
                 <div style={{width: '200px', }}>
                     <ul style={{display: 'flex', justifyContent: 'space-between'}}>
                         <li>
-                            <a> &lt; </a>
+                            <button> &lt; </button>
                         </li>
-                        <li>
+                        <li >
                             <a>1</a>
                             <a>2</a>
                             <a>3</a>
@@ -21,10 +21,10 @@ const Pagination=()=>{
                             <a>5</a>
                         </li>
                         <li>
-                            <a> &gt; </a>
+                            <button> &gt; </button>
                         </li>
                         <li>
-                            <input type="number" min="0"  max={numberOfPages}/>
+                            <input type="number" min="0"  max={numberOfPages} style={{backgroundColor: 'var(--text-secondary)'}}/>
                         </li>
                     </ul>
                 </div>
