@@ -3,7 +3,7 @@ body[theme = "dark"]{
   --text-primary: #fff;
   --text-secondary: #cdcdcd;
   --background-primary: #000000;
-  --background-primary-glass: rgba(0,0,0,0.6);
+  --background-primary-glass: rgba(0,0,0,0.9);
   --background-secondary: #151515;
   --background-tertiary: #5e5e5e;
 
@@ -14,7 +14,7 @@ body[theme = "light"]{
   --text-primary: #000000;
   --text-secondary: #5e5e5e;
   --background-primary: #ffffff;
-  --background-primary-glass: rgba(255,255,255,0.6);
+  --background-primary-glass: rgba(255,255,255,0.9);
   --background-secondary: #eeeeee;
   --background-tertiary: #dddddd;
 
@@ -389,19 +389,17 @@ nav .icon{
 .input-container input:invalid{
   border-bottom:2px solid #e74c3c;
 }
-.card {
+/* .card {
  overflow: hidden;
  position: relative;
  margin: auto;
  border-radius: 20px;
  width: 320px;
  
- /* max-height: 440px; */
  transition: .4s;
 }
 .card-info{
   overflow: hidden;
-  /* position: relative; */
   background-color: var(--background-secondary);
   color: var(--text-secondary);
   transform: translateY(-60px);
@@ -414,14 +412,11 @@ nav .icon{
 }
 .card-content{
   cursor: pointer;
-  /* position: relative; */
-  /* background-color: #ccc; */
   transition: 0.4s;
   transform: translateY(60px);
 
 }
 .card:hover {
-  /* cursor: pointer; */
   z-index: 2;
   box-shadow: 0 0 10px var(--text-secondary);
 }
@@ -431,8 +426,85 @@ nav .icon{
 .card:hover > .card-info {
   opacity: 1;
   transform: translateY(0px);
+} */
+.card-container{
+  width: 320px;
+  height: 440px;
+  position: relative;
+  cursor: pointer; 
 }
+.card{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  overflow: hidden;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: var(--background-primary-glass);
+}
+/* .card-content::before{
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  transition: 1s;
+}
+.card-content::after{
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  right: 0;
+  z-index: -1;
+  transition: 1s;
+} */
+.z-index{
+  z-index: 1;
+}
+.center{
+  position: absolute;
+  top: 0%;
+  right: 50%;
+  height: 100%;
+  transform: translateY(-50%);
+  transform: translateX(50%);
+}
+.card-info{
+  opacity: 0;
+  overflow: hidden;
+  background-color: var(--background-primary-glass);
+  color: var(--text-primary);
+  transition: 1s;
+  width: 0%;
+}
+.card-info >div{
+  overflow: hidden;
+  opacity: 0;
+  max-height: 200px;
+  width: 100%;
+  margin-top: 30px;
+}
+.card-info > button{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transform: translateX(-50%);
 
+  background-color: #04AA6D;
+}
+.w-100{
+  width: 100%;
+}
+.card:hover .card-info{
+  opacity: 1;
+  width: 100%;
+}
+.card:hover .card-info>div{
+  opacity: 1;
+  transition: 5s;
+
+}
+/* .card:hover .card-content::before{
+  transform: translateX(-16px);
+} */
 .switch{
   width: 200px;
   position: relative;

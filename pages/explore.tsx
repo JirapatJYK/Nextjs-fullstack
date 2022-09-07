@@ -203,8 +203,8 @@ const Explore: NextPage =()=>{
                 <div className="main-content " style={{border: "2px solid black"}}>
                     <div className="explore scroll-view">
 
-                        <MediaCard metadata={metadata} />
-                        <MediaCard metadata={metadata1} />
+                        {/* <MediaCard metadata={metadata} />
+                        <MediaCard metadata={metadata1} /> */}
                         {data.map(data =>{
                             return( 
                                 <div key={data.name} >
