@@ -17,6 +17,7 @@ const Navbar =()=>{
         }
     }
     const[userName, setUserName] = useState("Signin");
+    const[blnDarkMode, setBlndarkMode] = useState(false);
 
     function account(){
         if(userName == "Signin"){
@@ -35,17 +36,12 @@ const Navbar =()=>{
         
     }
 
-    // useEffect(()=>{
-    //     if(!document.body.getAttribute('theme')){
-    //         document.body.setAttribute('theme', "light");
-    //     }
-    //     const theme = getCookie("theme",{});
-    //     document.body.setAttribute('theme', String(theme));
-    //     const themeSwitch :any = document.getElementById('theme-switch');
-    //     if(document.body.getAttribute('theme')=="dark")
-    //     themeSwitch.checked = true;
+    useEffect(()=>{
+        if(document.body.getAttribute('theme') == 'dark'){
+            setBlndarkMode(true);
+        }else setBlndarkMode(false);
 
-    // });
+    });
     return(
         <nav id='myTopnav'>
                 <ul>
@@ -104,10 +100,10 @@ const Navbar =()=>{
                             </li>
                             <li>
                                 <div className="switch">
-                                    <input id="theme-switch" type="checkbox" onChange={()=>{ SetTheme();}}></input>
+                                    <input id="theme-switch" type="checkbox" onChange={()=>{ SetTheme();}} checked={blnDarkMode}></input>
                                     <label className="slider round" htmlFor="theme-switch"></label>
                                 </div>
-                                Night Mode
+                                Dark Mode
                             </li>
                         </ul>
                         

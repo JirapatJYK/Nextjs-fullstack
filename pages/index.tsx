@@ -57,16 +57,6 @@ const Home: NextPage = () => {
               {/* <iframe width={853} height={480} src="https://www.youtube.com/embed/OBqw818mQ1E" title="SiM – The Rumbling (OFFICIAL VIDEO)"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> */}
               <iframe width="853" height="480" src="https://www.youtube.com/embed/veBu03A6ptw" title="1. How to develop an NFT Smart Contract (ERC721) with Alchemy - Beginner | Road to Web3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
               </div>
-              
-              <div className="card">
-                <div className='card-content'>
-                  <Image src="/vercel.svg" width="320px" height="320px"></Image>
-                </div>
-                <div className='card-info'>
-                  <h4>Name: sdsdsd</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, cumque fugit modi minus dolor, numquam fuga, sequi recusandae eaque deleniti non maiores aspernatur quisquam eos perferendis quam autem similique quod!</p>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -91,27 +81,6 @@ const Home: NextPage = () => {
                 <p>Learn about Next.js in an interactive course with quizzes!</p>
               </a>
               <video width="850" height="480" controls src='/video0.mp4'/>
-
-              <div className="card">
-                <div className='card-content'>
-                  <video width="320" height="240" controls src='/video0.mp4'/>
-
-                </div>
-                <div className='card-info'>
-                  <h4>Name: sdsdsd</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, cumque fugit modi minus dolor, numquam fuga, sequi recusandae eaque deleniti non maiores aspernatur quisquam eos perferendis quam autem similique quod!</p>
-                </div>
-              </div>
-
-              <div className="card">
-                <div className='card-content'>
-                  <Image src="/vercel.svg" width="320px" height="320px"></Image>
-                </div>
-                <div className='card-info'>
-                  <h4>Name: sdsdsd</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, cumque fugit modi minus dolor, numquam fuga, sequi recusandae eaque deleniti non maiores aspernatur quisquam eos perferendis quam autem similique quod!</p>
-                </div>
-              </div>
             </div>
           </div>
         </section>
