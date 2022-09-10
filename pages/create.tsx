@@ -6,9 +6,11 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 
 const Create:NextPage =()=>{
-    const [media, setMedia] = useState(null);
+    const [media, setMedia] = useState('');
     const [mediaUrl, setMediaUrl] = useState('');
     const[name, setName] = useState('');
+    const[creater, setCreater] = useState('Creater');
+
     const[description, setDescription] = useState('');
     const[external, setExternal] = useState('');
     const[type, setType] = useState('');
@@ -35,32 +37,24 @@ const Create:NextPage =()=>{
         }else console.log("file not found");
     }
     function creatItem(){
+        uploadFile();
+
+    }
+    function uploadFile(){
         const formData = new FormData();
         formData.append("file", media)
-        console.log(formData.get("file"));
-        // const params = media
-        // console.log(params);
+        formData.append("creater", creater)
+        formData.append("fileName", name)
+        formData.append("description", description)
 
         fetch('/api/upload ', {
             method: 'POST',
             body: formData,
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            }
         })
         .then((response) => {
-            // response.json().then((data) => {
-            //     console.log(data);
-            // })
-            console.log("SUCCESS");
-            // response.json()
+           console.log("SUCCESS");
         })
         .then((result) => {
-            // result = (result.url);
-            // if(bgType == "backgroundImage"){
-                
-            // }
-            // mint(result.url)
         })
         .catch((error) => {
             console.log(error);

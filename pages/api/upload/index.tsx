@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
-import formidable from "formidable";
-
+import formidable from 'formidable-serverless';
+import { create } from "domain";
 // type Data = {
 //     data: string;
 //     url: string
@@ -17,24 +17,29 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       ? console.log("GET")
       : res.status(404).send("");
   };
-  const post = async (req: NextApiRequest, res: NextApiResponse) => {
+  const post = async (req: any, res: any) => {
     const form = new formidable.IncomingForm();
+    // form.uploadDir = "../../../uploads"
     form.parse(req, function (err:any, fields:any, files:any) {
-        console.log(files);
-        // await saveFile(files.file);
-      return res.status(201).send("");
+        console.log(fields.creater);
+        saveFile(files.file, fields.creater);
+    //   return res.status(201).send(files.file);
     });
+    // console.log(req.body);
+    return res.status(201).send(req.body);
+
   };
-const saveFile = async (file: any) => {
-    const data = fs.readFileSync(file);
-    fs.writeFileSync(`./public/${file.name}`, data);
+export const saveFile = async (file: any, creater: string) => {
+    // console.log(file);
+    const data = await fs.readFileSync(file.path);
+    await console.log(data);
+    await fs.writeFileSync(`./uploads/${creater}-${Date.now()}-${file.name}`, data);
     await fs.unlinkSync(file.path);
     return;
 };
+
 export const config = {
     api: {
-        bodyParser: {
-            sizeLimit: "6mb"
-        }
+        bodyParser: false
     }
 }
