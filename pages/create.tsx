@@ -1,13 +1,16 @@
 
+import { request } from "http";
 import { NextPage } from "next";
 import Image from "next/image";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 
 const Create:NextPage =()=>{
-    const [media, setMedia] = useState();
+    const [media, setMedia] = useState('');
     const [mediaUrl, setMediaUrl] = useState('');
     const[name, setName] = useState('');
+    const[creater, setCreater] = useState('Creater');
+
     const[description, setDescription] = useState('');
     const[external, setExternal] = useState('');
     const[type, setType] = useState('');
@@ -28,32 +31,30 @@ const Create:NextPage =()=>{
         const file = e.target.files[0];
         if(file != null){
             setSrc(URL.createObjectURL(file))
-            setMedia(file[0]);
-            console.log(file);
+            setMedia(file);
+            console.log("have file" , media);  
             setType(file.type.split("/")[0]);
-        }
+        }else console.log("file not found");
     }
     function creatItem(){
-        // const formData = new FormData();
-        // formData.append("file", media)
-        // console.log(formData.get("file"));
-        const params = media
-        console.log(params);
+        uploadFile();
+
+    }
+    function uploadFile(){
+        const formData = new FormData();
+        formData.append("file", media)
+        formData.append("creater", creater)
+        formData.append("fileName", name)
+        formData.append("description", description)
 
         fetch('/api/upload ', {
             method: 'POST',
-            body: JSON.stringify({params}),
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+            body: formData,
         })
-        .then((response) => response.json())
+        .then((response) => {
+           console.log("SUCCESS");
+        })
         .then((result) => {
-            // result = (result.url);
-            if(bgType == "backgroundImage"){
-                
-            }
-            mint(result.url)
         })
         .catch((error) => {
             console.log(error);
@@ -163,7 +164,6 @@ const Create:NextPage =()=>{
                             {name}
                             {description}
                             {external}
-                            {media}
                         </div>
                     </div>
                     

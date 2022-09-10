@@ -2,6 +2,7 @@
 import { NextPage } from "next";
 import Router from "next/router";
 import { useEffect, useState } from "react";
+import InputText from "../../components/InputText";
 import Loader from "../../components/Loader";
 
 const Signup: NextPage = () => {
@@ -15,7 +16,6 @@ const Signup: NextPage = () => {
             setIsLoading(false);
         },2500)
     })
-    
     async function signup(){
         setIsLoading(true);
         const params = await{
@@ -46,19 +46,23 @@ const Signup: NextPage = () => {
                     <h1>Sign up</h1>
                     <div className="form-control">
                     <form className="">
-                        <div>
-                            <label>Username<span id="nameValidation" style={{color: 'red'}}>*</span></label>
-                            <input name="name" type="text" placeholder="Enter your name" value={name} onChange={(e)=>{setName(e.target.value)}} required></input>
-                            <span id="nameValidation" style={{color: 'red'}}></span>
+                        <div className="input-container" >
+                            <input id="name" type="text" value={name} onChange={(e)=>{setName(e.target.value)}} required></input>
+                            <label>User Name</label>                        
                         </div>
-                        <div>
+                        <div className="input-container" >
+                            <input id="email" type="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} required></input>
                             <label>Email</label>
-                            <input name="email" type="email" placeholder="Enter your email address" value={email} onChange={(e)=>{setEmail(e.target.value)}} required></input>
                         </div>
-                        <div>
-                            <label>Password</label>
-                            <input name="password" type="password" placeholder="Enter your password" value={password} onChange={(e)=>{setPassword(e.target.value)}} pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></input>
+                        <div className="input-container">
+                            <input id="password" type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></input>
+                            <label>Password</label>  
                         </div>
+                        <InputText
+                            lableName="Password" 
+                            request={true} 
+                            type={"password"}
+                        />
                         <div>
                             <input type="checkbox"/><span>I agree to the Terms of Service and Privacy Policy.</span>
                         </div>

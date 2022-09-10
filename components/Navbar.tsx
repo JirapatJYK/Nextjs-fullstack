@@ -1,4 +1,5 @@
 import { getCookie, setCookie } from 'cookies-next';
+import Image from 'next/image';
 import Link from "next/link";
 import Router from 'next/router';
 import { useEffect, useState } from "react";
@@ -16,6 +17,7 @@ const Navbar =()=>{
         }
     }
     const[userName, setUserName] = useState("Signin");
+    const[blnDarkMode, setBlndarkMode] = useState(false);
 
     function account(){
         if(userName == "Signin"){
@@ -35,14 +37,9 @@ const Navbar =()=>{
     }
 
     useEffect(()=>{
-        if(!document.body.getAttribute('theme')){
-            document.body.setAttribute('theme', "light");
-        }
-        const theme = getCookie("theme",{});
-        document.body.setAttribute('theme', String(theme));
-        const themeSwitch :any = document.getElementById('theme-switch');
-        if(document.body.getAttribute('theme')=="dark")
-        themeSwitch.checked = true;
+        if(document.body.getAttribute('theme') == 'dark'){
+            setBlndarkMode(true);
+        }else setBlndarkMode(false);
 
     });
     return(
@@ -51,7 +48,7 @@ const Navbar =()=>{
                     
                     <li className="nav-item">
                         <Link href="/">
-                            <b>LOGO_NAME</b>
+                            <Image src="/favicon.ico" width="70" height="70" />
                         </Link>
                     </li>
 
@@ -79,12 +76,17 @@ const Navbar =()=>{
                         </Link>
                     </li >
                     <li className="nav-item dropdown dropdown-hover">
-                        <a onClick={(e)=> account()}>{userName}</a>
+                        <a>{userName}</a>
                         <ul className="dropdown-menu dropdown-left">
                             <li>
-                                <Link href="#profile">
-                                    Profile   
-                                </Link>
+                                <div style={{textAlign: "center"}}>
+                                    <Image src="/favicon.ico" width="100" height="100" onClick={e=>{account()}}/>
+                                    <br/>
+                                    <Link href="#profile">
+                                          <a>{userName}</a>
+                                    </Link>
+                                </div>
+                                
                             </li>
                             <li>
                                 <Link href="#wallet">
@@ -98,10 +100,10 @@ const Navbar =()=>{
                             </li>
                             <li>
                                 <div className="switch">
-                                    <input id="theme-switch" type="checkbox" onChange={()=>{ SetTheme();}}></input>
+                                    <input id="theme-switch" type="checkbox" onChange={()=>{ SetTheme();}} checked={blnDarkMode}></input>
                                     <label className="slider round" htmlFor="theme-switch"></label>
                                 </div>
-                                Night Mode
+                                Dark Mode
                             </li>
                         </ul>
                         

@@ -1,7 +1,7 @@
 [
     {
         "name": "nextjs-fullstack",
-        "description": "Fullstack with nextjs",
+        "description": "Fullstack with nextjs Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui rerum laudantium tenetur, eius impedit aut quam inventore ducimus accusantium nihil cumque corrupti, fuga ratione! Fuga beatae illum incidunt recusandae porro.Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui rerum laudantium tenetur, eius impedit aut quam inventore ducimus accusantium nihil cumque corrupti, fuga ratione! Fuga beatae illum incidunt recusandae porro.Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui rerum laudantium tenetur, eius impedit aut quam inventore ducimus accusantium nihil cumque corrupti, fuga ratione! Fuga beatae illum incidunt recusandae porro.",
         "external_url": "http://localhost:3000/",
         "type": "image",
         "media": "/vercel.svg",
