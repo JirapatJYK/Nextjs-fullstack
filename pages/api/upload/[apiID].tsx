@@ -51,11 +51,13 @@ const post = async (req: any, res: any, collection: any) => {
 };
 const saveFile = async (file: any, params: any) => {
     // console.log(file);
-    const path = `./uploads/${params.creater}-${Date.now()}-${file.name}`
+    const timstamp = Date.now()
+    let path = `./public/uploads/${params.creater}-${timstamp}-${file.name}`
     const data = await fs.readFileSync(file.path);
     await console.log(data);
     await fs.writeFileSync( path, data);
     await fs.unlinkSync(file.path);
+    path = await `/uploads/${params.creater}-${timstamp}-${file.name}`
     return path;
 };
 const updateDb =(params: any, collection: any) => {
@@ -85,11 +87,11 @@ const deleteFile = (collection: any, res: NextApiResponse) => {
     collection.deleteMany({})
 }
 const deleteAll = (collection: any, res: NextApiResponse) => {
-    fs.readdir('uploads', (err, files) => {
+    fs.readdir('./public/uploads', (err, files) => {
         if (err) throw err;
 
         for (const file of files) {
-            fs.unlink(path.join('uploads', file), err => {
+            fs.unlink(path.join('./public/uploads', file), err => {
                 if (err) throw err;
             })
         }
@@ -99,7 +101,7 @@ const deleteAll = (collection: any, res: NextApiResponse) => {
 const getFilesAll = async (collection: any, res: NextApiResponse) => {
     let results: any = []
     results = await collection.find({}).toArray()?? {results: []};
-    await console.log(results);
+    // await console.log(results);
     await res.status(200).json(results);
 }
 export const config = {

@@ -44,8 +44,8 @@ const sideMenu = [
     }
 ]
 const Explore: NextPage =()=>{
-  const [isLoading, setIsloading] = useState(true);
-    
+    const [isLoading, setIsloading] = useState(true);
+    const [uploadData, setUploadData] = useState([]);
   function collapse(id: string){
     const dropdown = document.getElementById(id) ;
     if(dropdown){
@@ -58,12 +58,27 @@ const Explore: NextPage =()=>{
     // dropdown.styles
     console.log(id);
   }
+    function getFilesAll(){
+        fetch('/api/upload/get-upload-files-all', {
+            method: 'GET',
+        })
+        .then((response) => {
+            response.json().then((data) => {
+                console.log(data);
+                setUploadData(data);
+            });
+            // console.log(data);
+        }).catch((error) => {
+            console.log(uploadData);
+        })
+    }
   useEffect(()=> {
     console.log('Home Component')
     const timeout = setTimeout(()=> {
       setIsloading(false);
     },2500)
-  })
+    getFilesAll()
+  }, [])
     return(
         <>
             <Loader  isLoading = {isLoading} />
@@ -205,9 +220,9 @@ const Explore: NextPage =()=>{
 
                         {/* <MediaCard metadata={metadata} />
                         <MediaCard metadata={metadata1} /> */}
-                        {data.map(data =>{
+                        {uploadData.map(data =>{
                             return( 
-                                <div key={data.name} >
+                                <div key={data.name} > 
                                     <MediaCard metadata={data}/>
                                 </div>
                             )

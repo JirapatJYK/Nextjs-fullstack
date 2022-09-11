@@ -3,6 +3,7 @@ import { request } from "http";
 import { NextPage } from "next";
 import Image from "next/image";
 import { useState } from "react";
+import InputText from "../components/InputText";
 import Navbar from "../components/Navbar";
 
 const Create:NextPage =()=>{
@@ -164,9 +165,17 @@ const Create:NextPage =()=>{
                             
                             <div>
                                 <div className="form-control">
-                                    <form>
-                                        <input type="file" onChange={(e)=>setFile(e)} />
+                                    <form style={{backgroundColor: "var(--background-primary)", padding: "20px", width: "500px", borderRadius: "10px"}}>
+                                        <input type="file" onChange={(e)=>setFile(e)} style={{marginBottom: "20px",}}/>
                                         <div>{audioBackground()}</div>
+                                        {/* <InputText 
+                                            lableName={"Name"} 
+                                            request={true} 
+                                            type={"text"}
+                                        />
+                                        <InputText lableName={"Description"} request={true} type={"text"}/>
+                                        <InputText lableName={"External URL"} request={true} type={"email"}/> */}
+                                        
                                         <input type="text" placeholder="Name" name="name" onChange={(e)=>setName(e.target.value)}></input>
                                         <input type="text" placeholder="description" name="description" onChange={(e)=>setDescription(e.target.value)}></input>
                                         <input type="text" placeholder="External Link" name="external" onChange={(e)=>setExternal(e.target.value)}></input>

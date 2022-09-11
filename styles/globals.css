@@ -372,23 +372,29 @@ nav .icon{
 .input-container input{
   font-size:20px;
   border: 0;
-  border-bottom: 5px solid #555;
+  border-bottom: 3px solid #555;
   background: transparent;
   width: 100%;
 }
 .input-container input:focus{
   border: none;
   outline: none;
-  border-bottom: 5px solid #00bfff;
+  border-bottom: 3px solid #00bfff;
 }
-.input-container input:focus ~ label,
-.input-container input:valid ~ label{
+.input-container input:focus ~ label
+,.input-container input:valid ~ label
+{
 	top:-18px;
 	font-size:18px;
 }
 .input-container input:invalid{
-  border-bottom:2px solid #e74c3c;
+  border-bottom: 3px solid #e74c3c;
 }
+/* .input-container input:invalid ~ label
+{
+	top:-18px;
+	font-size:18px;
+} */
 /* .card {
  overflow: hidden;
  position: relative;
