@@ -44,10 +44,12 @@ const Create:NextPage =()=>{
         const formData = new FormData();
         formData.append("file", media)
         formData.append("creater", creater)
-        formData.append("fileName", name)
+        formData.append("name", name)
         formData.append("description", description)
+        formData.append("external_link", external)
+        
 
-        fetch('/api/upload ', {
+        fetch('/api/upload/upload-file', {
             method: 'POST',
             body: formData,
         })
@@ -57,6 +59,25 @@ const Create:NextPage =()=>{
         .then((result) => {
         })
         .catch((error) => {
+            console.log(error);
+        })
+    }
+    function deleteAll(){
+        fetch('/api/upload/delete-upload-files-all', {
+            method: 'DELETE',
+        })
+        .then((response) => {console.log("SUCCESS");}).catch((error) => {console.log(error);})
+    }
+    function getFilesAll(){
+        fetch('/api/upload/get-upload-files-all', {
+            method: 'GET',
+        })
+        .then((response) => {
+            response.json().then((data) => {
+                console.log(data);
+            });
+            // console.log(data);
+        }).catch((error) => {
             console.log(error);
         })
     }
@@ -170,6 +191,9 @@ const Create:NextPage =()=>{
                 </div>
                 
             </div>
+            <button onClick={(e)=>{deleteAll()}}>Delete All</button>
+            <button onClick={(e)=>{getFilesAll()}}>Get Files All</button>
+
         </>
     )
 }
