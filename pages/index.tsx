@@ -14,15 +14,8 @@ const Home: NextPage = () => {
     console.log('Home Component')
     const timeout = setTimeout(()=> {
       setIsloading(false);
-    },2500)
+    },1000)
   })
-
-  const Counter = () => {
-    Router.push('/api/hello')
-    setCount((prev) => prev+1);
-    document.getElementsByTagName('h2')[0].innerHTML = `Count ${count}`;
-  }
-  
   return (
     <div className={styles.container}>
       <Head>

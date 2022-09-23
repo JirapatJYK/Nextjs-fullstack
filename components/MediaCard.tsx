@@ -22,7 +22,7 @@ const MediaCard=({metadata}:{metadata: any})=> {
                                 <span><h4>Price</h4> 1000 THB </span>
                                 
                             </div>
-                            <button type="button" className="field-btn btn-primary">Buy now</button>
+                            <button type="button" className="field-btn btn-primary">More info</button>
                         </div>
                     </div>
                 )  

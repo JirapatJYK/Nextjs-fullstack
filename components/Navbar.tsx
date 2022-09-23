@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from "next/link";
 import Router from 'next/router';
 import { useEffect, useState } from "react";
+import SearchBox from './SearchBox';
 
 
 const Navbar =()=>{
@@ -56,10 +57,7 @@ const Navbar =()=>{
 
                 <ul>
                     <li className="nav-item">
-                        <div className='search-box'>
-                            <input type="search"  placeholder="search..."/>
-                            <button type="button">seach</button>
-                        </div>
+                        <SearchBox/>
                     </li>
                 </ul>
                 
@@ -83,7 +81,7 @@ const Navbar =()=>{
                                     <Image src="/favicon.ico" width="100" height="100" onClick={e=>{account()}}/>
                                     <br/>
                                     <Link href="#profile">
-                                          <a>{userName}</a>
+                                          <a id='setting'>{userName}</a>
                                     </Link>
                                 </div>
                                 
