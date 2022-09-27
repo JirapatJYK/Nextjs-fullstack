@@ -44,7 +44,8 @@ const Navbar =()=>{
 
     });
     return(
-        <nav id='myTopnav'>
+        <>
+            <nav id='myTopnav'>
                 <ul>
                     
                     <li className="nav-item">
@@ -81,7 +82,7 @@ const Navbar =()=>{
                                     <Image src="/favicon.ico" width="100" height="100" onClick={e=>{account()}}/>
                                     <br/>
                                     <Link href="#profile">
-                                          <a id='setting'>{userName}</a>
+                                        <a id='setting'>{userName}</a>
                                     </Link>
                                 </div>
                                 
@@ -107,13 +108,21 @@ const Navbar =()=>{
                         
                     </li>
                 </ul>
-            
-            <i className='icon' onClick={()=>{collapse()}}>
-                <div className="bar1"></div>
-                <div className="bar2"></div>
-                <div className="bar3"></div>
-            </i>
-        </nav>
+                
+                <i className='icon' onClick={()=>{collapse()}}>
+                    <div className="bar1"></div>
+                    <div className="bar2"></div>
+                    <div className="bar3"></div>
+                </i>
+            </nav>
+            <ul className='social' >
+                <a href="#jirapat.ja@mail.wu.ac.th" className="fa fa-google"></a>
+                <a href="#" className="fa fa-facebook"></a>
+                <a href="https://www.linkedin.com/in/jirapat-jaiyakwang-1b6202230/" className="fa fa-linkedin"></a>
+                <a href="#" className="fa fa-instagram"></a>
+            </ul>
+        </>
+        
     )
 }
 export default Navbar;
