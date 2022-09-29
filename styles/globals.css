@@ -3,7 +3,7 @@ body[theme = "dark"]{
   --text-primary: #fff;
   --text-secondary: #cdcdcd;
   --background-primary: #000000;
-  --background-primary-glass: rgba(0,0,0,0.9);
+  --background-primary-glass: rgba(0,0,0,0.8);
   --background-secondary: #151515;
   --background-tertiary: #5e5e5e;
 
@@ -14,7 +14,7 @@ body[theme = "light"]{
   --text-primary: #000000;
   --text-secondary: #5e5e5e;
   --background-primary: #ffffff;
-  --background-primary-glass: rgba(255,255,255,0.9);
+  --background-primary-glass: rgba(255,255,255,0.8);
   --background-secondary: #eeeeee;
   --background-tertiary: #dddddd;
 
@@ -65,8 +65,101 @@ body {
   
 } */
 
-
-
+.timeline{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.timeline ul{
+  width: 900px;
+  position: relative;
+}
+.timeline ul li{
+  position: relative;
+  display: flex;
+  margin: 20px 0;
+  /* background-color: var(--background-secondary); */
+}
+.timeline ul li:nth-child(even){
+  justify-content: flex-end;
+}
+.timeline ul::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 5px;
+  height: 100%;
+  transform: translateX(-50%);
+  background-color: white;
+}
+.timeline ul li::after{
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 50%;
+}
+.timeline-content {
+  background-color: var(--background-primary-glass);
+  width: 400px;
+  border-radius: 5px;
+  padding: 10px
+}
+/* .timeline-content::after {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 400px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent var(--background-primary-glass);
+} */
+.timeline-content:hover{
+  cursor: default
+}
+@media screen and (max-width: 900px){
+  .timeline ul{
+    width: 550px;
+  }
+  .timeline ul li{
+    justify-content: flex-end;
+  }
+  .timeline-content{
+    width: 500px;
+  }
+  .timeline ul::after{
+    left: 0;
+  }
+  .timeline ul li::after{
+    left: 0;
+  }
+}
+/* video */
+video{
+  width: 1280px;
+  height: 720px;
+}
+@media screen and (max-width: 768px){
+  video{
+    width: 640px;
+    height: 360px;
+  }
+}
+@media screen and (max-width: 320px){
+  video{
+    width: 240px;
+    height: 144px;
+  }
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -218,7 +311,7 @@ nav {
   top: 0;
   z-index: 4;
   background-color: var(--background-primary);
-  height: 72px;
+  height: 56px;
   width: 100%;
   justify-content: space-between;
   display: flex;
@@ -242,7 +335,7 @@ nav  ul{
 nav ul li{
   list-style: none;
   padding: 0 5px ;
-  line-height: 72px;
+  line-height: 56px;
   cursor: pointer;
 }
 nav ul li:hover{
@@ -787,15 +880,15 @@ body::-webkit-scrollbar-thumb{
   position: fixed;
   top: 50%;
   right: 0;
-  width: 100px;
+  width: 72px;
   height: 280px;
   display: flex;
   flex-direction: column;
-  background-color: var(--background-primary);
+  background-color: var(--background-primary-glass);
   border-radius: 10px 0 0 10px;
-  gap: 16px;
 }
 .social a{
+  transition: .5s;
   margin: auto;
   border-radius: 50%;
   width: 50px;
@@ -823,4 +916,8 @@ body::-webkit-scrollbar-thumb{
 }
 .fa-instagram {
   background: #125688;
+}
+
+select {
+  outline: none;
 }

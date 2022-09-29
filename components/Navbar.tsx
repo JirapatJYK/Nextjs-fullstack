@@ -42,7 +42,7 @@ const Navbar =()=>{
             setBlndarkMode(true);
         }else setBlndarkMode(false);
 
-    });
+    },[]);
     return(
         <>
             <nav id='myTopnav'>
@@ -50,7 +50,7 @@ const Navbar =()=>{
                     
                     <li className="nav-item">
                         <Link href="/">
-                            <Image src="/favicon.ico" width="70" height="70" />
+                            <Image src="/favicon.ico" width="50" height="50" />
                         </Link>
                     </li>
 
@@ -116,7 +116,7 @@ const Navbar =()=>{
                 </i>
             </nav>
             <ul className='social' >
-                <a href="#jirapat.ja@mail.wu.ac.th" className="fa fa-google"></a>
+                <a href="mailto:jirapat.ja@mail.wu.ac.th" className="fa fa-google"></a>
                 <a href="#" className="fa fa-facebook"></a>
                 <a href="https://www.linkedin.com/in/jirapat-jaiyakwang-1b6202230/" className="fa fa-linkedin"></a>
                 <a href="#" className="fa fa-instagram"></a>

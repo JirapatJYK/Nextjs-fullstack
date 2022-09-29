@@ -5,9 +5,22 @@ import Router from 'next/router'
 import { useEffect, useState, useCallback } from 'react'
 import Loader from '../components/Loader'
 import Navbar from '../components/Navbar'
+import SelectDropdown from '../components/SelectDropdown'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
+  const [list, setList] = useState(
+    [
+      {
+        id: 0,
+        value: 'Hello World0'
+      },
+      {
+        id: 1,
+        value: 'Hello World1'
+      }
+    ]
+  )
   const [isLoading, setIsloading] = useState(true);
   const [count, setCount] = useState(0);
   useEffect(()=> {
@@ -46,36 +59,54 @@ const Home: NextPage = () => {
                 <h2>Learn &rarr;</h2>
                 <p>Learn about Next.js in an interactive course with quizzes!</p>
               </a>
-              <div className='video'>
+              {/* <div className='video'> */}
               {/* <iframe width={853} height={480} src="https://www.youtube.com/embed/OBqw818mQ1E" title="SiM – The Rumbling (OFFICIAL VIDEO)"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> */}
-              <iframe width="853" height="480" src="https://www.youtube.com/embed/veBu03A6ptw" title="1. How to develop an NFT Smart Contract (ERC721) with Alchemy - Beginner | Road to Web3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
-              </div>
+              {/* <iframe width="853" height="480" src="https://www.youtube.com/embed/veBu03A6ptw" title="1. How to develop an NFT Smart Contract (ERC721) with Alchemy - Beginner | Road to Web3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe> */}
+              {/* </div> */}
+              <video controls src='/video0.mp4'/>
             </div>
           </div>
         </section>
         <section className='' style={{backgroundColor: ""}}>
-          <div className="main">
-            <h1 className={styles.title}>
-              Welcome to <a href="https://nextjs.org">Next.js!</a>
-            </h1>
-            <p className={styles.description}>
-              Get started by editing{' '}
-              <code className={styles.code}>pages/index.tsx</code>
-            </p>
-
-            <div className={styles.grid}>
-              <a href="https://nextjs.org/docs" className={styles.card}>
-                <h2>Documentation &rarr;</h2>
-                <p>Find in-depth information about Next.js features and API.</p>
-              </a>
-
-              <a href="https://nextjs.org/learn" className={styles.card}>
-                <h2>Learn &rarr;</h2>
-                <p>Learn about Next.js in an interactive course with quizzes!</p>
-              </a>
-              <video width="850" height="480" controls src='/video0.mp4'/>
-            </div>
+          <div className="timeline">
+            <ul>
+              <li>
+                <div className='timeline-content'>
+                  <h2>2022</h2>
+                  <p>
+                    Learn about Next.js in an interactive course with quizzes! 
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div className='timeline-content'>
+                  <h2>2023</h2>
+                  <p>
+                    Learn about Next.js in an interactive course with quizzes! 
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div className='timeline-content'>
+                  <h2>2024</h2>
+                  <p>
+                    Learn about Next.js in an interactive course with quizzes! 
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div className='timeline-content'>
+                  <h2>2025</h2>
+                  <p>
+                    Learn about Next.js in an interactive course with quizzes! 
+                  </p>
+                </div>
+              </li>
+            </ul>
           </div>
+        </section>
+        <section>
+          <SelectDropdown header={"Select 0"} list={list}/>
         </section>
       </main>
      
