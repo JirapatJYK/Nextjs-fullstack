@@ -145,8 +145,8 @@ body {
 }
 /* video */
 video{
-  width: 1280px;
-  height: 720px;
+  width: 853px;
+  height: 480px;
 }
 @media screen and (max-width: 768px){
   video{
@@ -856,16 +856,8 @@ body::-webkit-scrollbar-thumb{
     float: left;
     width: 100%;
   }
-  .video{
-  width:480px; 
-  height:360px;
+  
 }
-}
-
-.video{
-    width:853px; 
-    height:480px;
-  }
 
 @media screen and (min-width: 1024px){
   
@@ -917,7 +909,43 @@ body::-webkit-scrollbar-thumb{
 .fa-instagram {
   background: #125688;
 }
-
+.select-dropdown {
+  width: fit-content;
+  border: 2px solid #fff;
+  padding: 5px;
+  border-radius: 5px;
+  position: relative;
+  background-color: var(--background-primary);
+}
+.select-header{
+  font-size: 24px;
+  /* position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: all 0.5s ease-in-out; */
+}
+.select-dropdown select {
+  display: none;
+}
+/* .select-dropdown select:focus ~ .select-header{
+  top:-18px;
+	font-size: 32px;
+} */
 select {
+  width: 100%;
+  font-size: 24px;
   outline: none;
+  padding: 5px;
+  background: transparent;
+  border: none;
+}
+
+.select-item{
+  /* border-radius: 0px; */
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 5px;
+}
+.select-item{
+  color: var(--text-primary);
 }

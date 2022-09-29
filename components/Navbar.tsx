@@ -116,10 +116,10 @@ const Navbar =()=>{
                 </i>
             </nav>
             <ul className='social' >
-                <a href="mailto:jirapat.ja@mail.wu.ac.th" className="fa fa-google"></a>
-                <a href="#" className="fa fa-facebook"></a>
-                <a href="https://www.linkedin.com/in/jirapat-jaiyakwang-1b6202230/" className="fa fa-linkedin"></a>
-                <a href="#" className="fa fa-instagram"></a>
+                <a href="mailto:jirapat.ja@mail.wu.ac.th" className="fa fa-2x fa-google"></a>
+                <a href="#" className="fa fa-2x fa-facebook"></a>
+                <a href="https://www.linkedin.com/in/jirapat-jaiyakwang-1b6202230/" className="fa fa-2x fa-linkedin"></a>
+                <a href="#" className="fa fa-2x fa-instagram"></a>
             </ul>
         </>
         
