@@ -24,7 +24,7 @@ body[theme = "light"]{
 	animation: gradient 15s ease infinite;
 }
 body {
-	
+	--primary-color: gold;
 	height: 100vh;
 }
 
@@ -53,17 +53,6 @@ body {
   background-color:  var(--background-secondary);
 
 }
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background-color: var(--background-primary);;
-    background-size: cover;
-  }
-  
-} */
 
 .timeline{
   padding: 10px;
@@ -143,6 +132,7 @@ body {
     left: 0;
   }
 }
+
 /* video */
 video{
   width: 853px;
@@ -193,7 +183,7 @@ input{
   background: #0000ff;
 }
 .btn-primary:hover{
-  background: #2196F3;
+  background: #2196f3;
 
 }
 .btn:hover{
@@ -924,15 +914,15 @@ body::-webkit-scrollbar-thumb{
   left: 0px;
   transition: all 0.5s ease-in-out; */
 }
-.select-dropdown select {
+/* .select-dropdown select {
   display: none;
-}
+} */
 /* .select-dropdown select:focus ~ .select-header{
   top:-18px;
 	font-size: 32px;
 } */
 select {
-  width: 100%;
+  /* width: 100%; */
   font-size: 24px;
   outline: none;
   padding: 5px;

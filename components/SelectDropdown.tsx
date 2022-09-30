@@ -12,21 +12,22 @@ export default function SelectDropdown({header, list}:{header: String, list: any
         ]
     )
 
-    function addList(){
-        setSelectList(list)
-        const e = document.getElementsByTagName("select")[0]
-        e.style.display = "block"
-    }
+    // function addList(){
+    //     setSelectList(list)
+    //     const e = document.getElementsByTagName("select")[0]
+    //     e.style.display = "block"
+    // }
     return (
         <>
-        {JSON.stringify(selectList)}
+        {JSON.stringify(list)}
         <div className="select-dropdown">
-            <label className="select-header"  onClick={()=>{addList()}}>
+            <label className="select-header" >
                 {header}
             </label>
             <select>
+                <option disabled selected> -- select an option -- </option>
                 {
-                    selectList.map(item=>{
+                    list.map(item=>{
                         return (
                             <option className="select-item" key={item.id} onClick={()=>{setSelect(item.id)}}>
                                 {item.value}

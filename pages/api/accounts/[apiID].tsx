@@ -16,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       : apiID == 'get-account'
       ? results = getAccountsAll(collection)
       : apiID == 'create-account'
-      ? results = createAccount(collection, req)
+      ? results = await createAccount(collection, req)
       : apiID == 'edit-account'
       ? results = getAccountsAll(collection)
       : res.status(404).send("");
