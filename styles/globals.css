@@ -20,7 +20,7 @@ body[theme = "light"]{
 
   --box-shadow: ;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
+	/* background-size: 400% 400%; */
 	animation: gradient 15s ease infinite;
 }
 body {
@@ -39,6 +39,49 @@ body {
 		background-position: 0% 50%;
 	}
 }
+
+
+/* Text */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.link {
+  color: #0000ff;
+}
+.link:hover {
+  text-decoration: underline;
+  
+}
+label{
+  color: var(--text-secondary);
+}
+h1{
+  color: var(--text-primary);
+}
+.title{
+  font-size: 72px;
+  position: relative;
+}
+.title h1:before {
+  background-color: #c50000;
+  content: '';
+  display: block;
+  height: 14px;
+  width: 300px;
+  margin-bottom: 5px;
+}
+.title h1:after {
+  background-color: #c50000;
+  content: '';
+  display: block;
+  position:absolute; right:0;
+  margin-top: 5px;
+  height: 14px;
+  width: 300px;
+  margin-bottom: 0.25em;
+}
+/* Text */
 
 ul li{
   list-style: none;
@@ -150,23 +193,7 @@ video{
     height: 144px;
   }
 }
-a {
-  color: inherit;
-  text-decoration: none;
-}
-.link {
-  color: #0000ff;
-}
-.link:hover {
-  text-decoration: underline;
-  
-}
-label{
-  color: var(--text-secondary);
-}
-h1{
-  color: var(--text-primary);
-}
+
 
 input{
   background-color: var(--background-secondary);
@@ -245,7 +272,7 @@ button[type="tertiary"]{
 .container {
   /* background-color: var(--background-secondary); */
   position: relative;
-  padding-top:  72px;
+  padding-top:  56px;
   min-height: 100vh;
   text-align: center;
   /* padding: 10px; */
@@ -253,7 +280,8 @@ button[type="tertiary"]{
   flex-direction: column; */
 }
 .main {
-  max-width: 1204px;
+  /* background: var(--background-primary-glass); */
+  max-width: 1440px;
   margin: auto;
   min-height: 100vh;
   padding: 4rem 0;
@@ -261,7 +289,7 @@ button[type="tertiary"]{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .form{
@@ -897,7 +925,7 @@ body::-webkit-scrollbar-thumb{
   background: #3B5998;
 }
 .fa-instagram {
-  background: #125688;
+  background: linear-gradient(45deg, #ee7752, #e73c7e, #8b23d5, #2323d5);
 }
 .select-dropdown {
   width: fit-content;

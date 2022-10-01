@@ -31,7 +31,7 @@ const Signup: NextPage = () => {
             },
             
         }).then((response)=>{
-            Router.push('/api/accounts/get-accounts-all')
+            // Router.push('/api/accounts/get-accounts-all')
             console.log(response.json());
             document.cookie = `name=${response}`;
         }).catch((error)=>{
