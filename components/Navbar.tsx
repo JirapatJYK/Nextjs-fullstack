@@ -20,9 +20,9 @@ const Navbar =()=>{
     const[userName, setUserName] = useState("Signin");
     const[blnDarkMode, setBlndarkMode] = useState(false);
 
-    function account(){
+    function signin(){
         if(userName == "Signin"){
-            Router.push('/user/signup');
+            Router.push('/user/signin');
         }
     }
     function collapse(){
@@ -75,36 +75,46 @@ const Navbar =()=>{
                         </Link>
                     </li >
                     <li className="nav-item dropdown dropdown-hover">
-                        <a>{userName}</a>
-                        <ul className="dropdown-menu dropdown-left">
-                            <li>
-                                <div style={{textAlign: "center"}}>
-                                    <Image src="/favicon.ico" width="100" height="100" onClick={e=>{account()}}/>
-                                    <br/>
-                                    <Link href="#profile">
-                                        <a id='setting'>{userName}</a>
+                        {
+                            userName == "Signin"? <a onClick={(e)=>{signin()}} style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}><a href="#" className="fa fa-1x fa-user-circle"></a>{userName}</a>:
+                            <Image src="/favicon.ico" width="50" height="50" />
+                        }
+                        {
+                            userName == "Signin"? '':
+                            <ul className="dropdown-menu dropdown-left">
+                                <li>
+                                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                                            <div style={{width: '100px', height: '100px'}}>
+                                                <a href="#" className="fa fa-4x fa-user-circle"></a>
+                                            </div>
+                                            <div style={{marginRight: '10px'}}>
+                                                <a href="#" className=""> Name</a><br/>
+                                                <a className='link'>Manage Account</a>
+                                            </div>
+                                        </div>
+                                </li>
+                                <li>
+                                    <Link href="#wallet">
+                                        Wallet
                                     </Link>
-                                </div>
-                                
-                            </li>
-                            <li>
-                                <Link href="#wallet">
-                                    Wallet
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#favorite">
-                                    Favoites
-                                    </Link>
-                            </li>
-                            <li>
-                                <div className="switch">
-                                    <input id="theme-switch" type="checkbox" onChange={()=>{ SetTheme();}} checked={blnDarkMode}></input>
-                                    <label className="slider round" htmlFor="theme-switch"></label>
-                                </div>
-                                Dark Mode
-                            </li>
-                        </ul>
+                                </li>
+                                <li>
+                                    <Link href="#favorite">
+                                        Favoites
+                                        </Link>
+                                </li>
+                                <li>
+                                    <div className="switch">
+                                        <input id="theme-switch" type="checkbox" onChange={()=>{ SetTheme();}} checked={blnDarkMode}></input>
+                                        <label className="slider round" htmlFor="theme-switch"></label>
+                                    </div>
+                                    Dark Mode
+                                </li>
+                                <li>
+                                    <button>Sign out</button>
+                                </li>
+                            </ul>
+                        }
                         
                     </li>
                 </ul>
