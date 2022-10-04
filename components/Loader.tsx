@@ -5,7 +5,7 @@ const Loader = ({isLoading}:{isLoading: boolean}) => {
     console.log(isLoading)
     return (
         <>
-            {isLoading ? <div id="loader-bg">
+            {isLoading ? <div className="loader-bg">
                 <div id="loader"></div>
             </div> : ""}
             

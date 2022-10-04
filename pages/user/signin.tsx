@@ -6,6 +6,7 @@ import Router from "next/router";
 import { useEffect, useState } from "react";
 import InputText from "../../components/InputText";
 import Loader from "../../components/Loader";
+import Popup from '../../components/Popup';
 
 const Signin: NextPage = () => {
     const [name, setName] = useState("");
@@ -13,9 +14,34 @@ const Signin: NextPage = () => {
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [accountID, setAccountID] = useState('');
+    const [isPopup, setIsPopup] = useState(true);
+    const popupData = {
+        title: "Sign in",
+        content: [
+            {
+                type: "input",
+                label: "Name",
+            },
+            {
+                type: "text",
+                label: "Name",
+            }
+        ],
+        button:[
+            { 
+                text: 'OK',
+                isDisabled: false
+            },
+            { 
+                text: 'OK',
+                isDisabled: false
+            }
+        ]
+    }
     useEffect(() => {
         const timeout = setTimeout(()=> {
             setIsLoading(false);
+            // setIsPopup(false);
         },2500)
     })
     async function signin(){
@@ -42,6 +68,16 @@ const Signin: NextPage = () => {
     return(
         <div >
             <Loader  isLoading = {isLoading} />
+            <Popup
+                title={"Sign In"}
+                icon={"icon-signin"}
+                objContent={{}}
+                blnShow={isPopup} 
+                blnConfirmBtn={true} 
+                blnCancelBtn={true}
+                strConfirmBtn={'OK'} 
+                strCancelBtn={'Cancel'}
+            />
             <div className="container">
                 <div className="form bg-glass">
                     {accountID}
