@@ -40,7 +40,8 @@ const Signin: NextPage = () => {
                     style: 'danger',
                 }
                 
-            ]
+            ],
+            footer: ''
         }
     )
     useEffect(() => {
@@ -92,7 +93,8 @@ const Signin: NextPage = () => {
                         style: 'danger',
                     }
                     
-                ]
+                ],
+                footer: ''
             })
         }
         
@@ -124,29 +126,30 @@ const Signin: NextPage = () => {
                     style: 'danger',
                 }
                 
-            ]
+            ],
+            footer: 'aaaaa'
         })
         
     }
     function testPopup2(){
         setIsPopup(true);
         setPopupData({
-            title: "testPopup2",
+            title: "Login",
             content: [
                 {
                     type: "input",
-                    label: "Name",
+                    label: "Username",
                 },
                 {
-                    type: "text",
-                    label: "Name",
+                    type: "input",
+                    label: "Password",
                 }
             ],
             button:[
                 { 
-                    text: 'OK',
+                    text: 'Login',
                     blnDisable: false,
-                    style: 'danger',
+                    style: 'primary',
                 },
                 { 
                     text: 'Cancel',
@@ -154,7 +157,8 @@ const Signin: NextPage = () => {
                     style: 'danger',
                 }
                 
-            ]
+            ],
+            footer: ''
         })
         // console.log()
         // const timeout = setTimeout(()=> {
@@ -202,7 +206,7 @@ const Signin: NextPage = () => {
                     </form>
                     <button onClick={(e)=> signin()}>SIGN IN</button>
                     <button onClick={(e)=> testPopup()}>TEST POPUP</button>
-                    <button onClick={(e)=> testPopup2()}>TEST POPUP2</button>
+                    <button onClick={(e)=> testPopup2()}>Login</button>
 
 
                     </div>

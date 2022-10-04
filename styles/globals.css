@@ -26,8 +26,14 @@ body[theme = "light"]{
 body {
 	--primary-color: gold;
 	height: 100vh;
+  
 }
-
+*{
+  font-family: 'Poppins', sans-serif;
+}
+h1{
+  font-weight: 600;
+}
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -47,11 +53,11 @@ a {
   text-decoration: none;
 }
 .link {
+  font-weight: light;
   color: #0000ff;
 }
 .link:hover {
   text-decoration: underline;
-  
 }
 label{
   color: var(--text-secondary);
@@ -196,6 +202,7 @@ video{
 
 
 input{
+  width: 100%;
   background-color: var(--background-secondary);
   border: 2px solid var(--text-secondary);
   font-size: 16px;
@@ -214,12 +221,9 @@ input:hover{
 }
 
 
-input[type="text"], input[type="password"], input[type="email"] {
+input::placeholder{
   background-color: inherit;
-  font-weight: 600;
-  color: var(--text-secondary);
-  height: 100%;
-  width: 100%;
+  font-style: italic;
 }
 
 input:invalid {
@@ -981,14 +985,29 @@ select {
   border-radius: 5px;
   text-align: center;
 }
+.popup-header{
+  margin-bottom: 30px;
+}
+.popup-body{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .popup-content{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 10px;
 }
 .popup-button {
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 5px;
+}
+.nav-login{
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

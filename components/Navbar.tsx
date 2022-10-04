@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from "next/link";
 import Router from 'next/router';
 import { useEffect, useState } from "react";
+import InputText from './InputText';
 import SearchBox from './SearchBox';
 
 
@@ -74,24 +75,42 @@ const Navbar =()=>{
                             Create
                         </Link>
                     </li >
-                    <li className="nav-item dropdown dropdown-hover">
+                    <li className="nav-item dropdown dropdown-hover ">
                         {
                             userName == "Signin"? <a onClick={(e)=>{signin()}} style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}><a href="#" className="fa fa-1x fa-user-circle"></a>{userName}</a>:
                             <Image src="/favicon.ico" width="50" height="50" />
                         }
                         {
-                            userName == "Signin"? '':
+                            userName == "Signin"? 
+                            <ul className="dropdown-menu dropdown-left">
+                                <div className='nav-login'>
+                                    <div>
+                                        <label>Username</label>
+                                        <input type="text" placeholder="Enter your username..."/>
+                                    </div>
+                                    <div>
+                                        <label>Password</label>
+                                        <input type="password" placeholder="Enter your password..."/>
+                                    </div>
+                                    <a className='link'>forgot password?</a>
+                                    <button className="btn btn-primary">Login</button>
+                                    <div>
+                                        Not a member? <a className='link'>Signup</a>
+                                    </div>
+                                </div>
+                            </ul>
+                            :
                             <ul className="dropdown-menu dropdown-left">
                                 <li>
-                                        <div style={{display: 'flex', flexDirection: 'row'}}>
-                                            <div style={{width: '100px', height: '100px'}}>
-                                                <a href="#" className="fa fa-4x fa-user-circle"></a>
-                                            </div>
-                                            <div style={{marginRight: '10px'}}>
-                                                <a href="#" className=""> Name</a><br/>
-                                                <a className='link'>Manage Account</a>
-                                            </div>
+                                    <div style={{display: 'flex', flexDirection: 'row'}}>
+                                        <div style={{width: '100px', height: '100px'}}>
+                                            <a href="#" className="fa fa-4x fa-user-circle"></a>
                                         </div>
+                                        <div style={{marginRight: '10px'}}>
+                                            <a href="#" className=""> Name</a><br/>
+                                            <a className='link'>Manage Account</a>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li>
                                     <Link href="#wallet">
