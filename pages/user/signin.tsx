@@ -102,12 +102,76 @@ const Signin: NextPage = () => {
         },2500)
         
     }
+    function testPopup(){
+        setIsPopup(true);
+        setPopupData({
+            title: "testPopup",
+            content: [
+                {
+                    type: "text",
+                    label: "Name",
+                }
+            ],
+            button:[
+                { 
+                    text: 'OK',
+                    blnDisable: false,
+                    style: 'primary',
+                },
+                { 
+                    text: 'Cancel',
+                    blnDisable: false,
+                    style: 'danger',
+                }
+                
+            ]
+        })
+        
+    }
+    function testPopup2(){
+        setIsPopup(true);
+        setPopupData({
+            title: "testPopup2",
+            content: [
+                {
+                    type: "input",
+                    label: "Name",
+                },
+                {
+                    type: "text",
+                    label: "Name",
+                }
+            ],
+            button:[
+                { 
+                    text: 'OK',
+                    blnDisable: false,
+                    style: 'danger',
+                },
+                { 
+                    text: 'Cancel',
+                    blnDisable: false,
+                    style: 'danger',
+                }
+                
+            ]
+        })
+        // console.log()
+        // const timeout = setTimeout(()=> {
+        //     setIsPopup(false);
+        //     // setIsPopup(false);
+        // },2500)
+    }
+    const  popupCallback =(childData: boolean) =>{
+        setIsPopup(childData)
+    }
     return(
         <div >
             <Loader  isLoading = {isLoading} />
             <Popup
                 blnShow={isPopup} 
                 data={popupData}
+                parentCallback={popupCallback}
             />
             <div className="container">
                 <div className="form bg-glass">
@@ -137,6 +201,9 @@ const Signin: NextPage = () => {
 
                     </form>
                     <button onClick={(e)=> signin()}>SIGN IN</button>
+                    <button onClick={(e)=> testPopup()}>TEST POPUP</button>
+                    <button onClick={(e)=> testPopup2()}>TEST POPUP2</button>
+
 
                     </div>
                 </div>

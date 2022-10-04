@@ -1,8 +1,10 @@
-export default function Popup(
-    {
-        blnShow,
-        data}
-        :{blnShow : Boolean, data: any}){
+import { useState } from "react"
+
+export default function Popup({ blnShow, data, parentCallback}:{ blnShow : Boolean, data: any, parentCallback: any}){
+    // const [action, setAction] = useState(false)
+    function emitData(action: Boolean){
+        parentCallback(action)
+    }
     return (
         <>
             {blnShow?
@@ -12,7 +14,16 @@ export default function Popup(
                             <h1>{data.title}</h1>
                         </div>
                         <div className="popup-body">
-                            <div className="content"></div>
+                            <div className="popup-content">
+                                {
+                                    data.content.map((item: any, index: Number) => {
+                                        return (
+                                        <>
+                                            {item.type=='input'? <input className=""  />:item.type=='text'? <a>{item.label}</a>:''}
+                                        </>)
+                                    })
+                                }
+                            </div>
                         </div>
                         {
                             data.button.lenght !== 0?
@@ -21,7 +32,7 @@ export default function Popup(
                                     data.button.map((item: any, index: Number) => {
                                         return (
                                         <>
-                                            {item.style=='primary'? <button className="btn-primary" disabled={item.blnDisable} >{item.text}</button>: <button className="btn-danger" disabled={item.blnDisable}>{item.text}</button>}
+                                            {item.style=='primary'? <button className="btn-primary" disabled={item.blnDisable} onClick={(e)=>{emitData(true)}}>{item.text}</button>: <button className="btn-danger" disabled={item.blnDisable} onClick={(e)=>{emitData(false)}}>{item.text}</button>}
                                         </>)
                                     })
                                 }

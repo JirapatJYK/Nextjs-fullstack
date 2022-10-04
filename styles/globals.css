@@ -230,7 +230,7 @@ button{
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
-  padding: 5px;
+  padding: 10px;
   color: #cacaca;
   border-radius: 5px;
 }
@@ -240,10 +240,10 @@ button:hover{
 }
 .btn-primary{
   border: none;
-  background: #00bfff;
+  background: #0066ff;
 }
 .btn-primary:hover{
-  background: #1e90ff;
+  background: #0c60e0;
 }
 .btn-danger{
   border: none;
@@ -975,9 +975,20 @@ select {
   transform: translate(-50%, -50%);
   z-index: 1;
   background-color: var(--background-primary);
-  padding: 20px;
+  padding: 20px 100px;
   max-width: 800px;
   min-width: 300px;
   border-radius: 5px;
   text-align: center;
+}
+.popup-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.popup-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5px;
 }
