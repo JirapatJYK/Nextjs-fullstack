@@ -14,30 +14,35 @@ const Signin: NextPage = () => {
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [accountID, setAccountID] = useState('');
-    const [isPopup, setIsPopup] = useState(true);
-    const popupData = {
-        title: "Sign in",
-        content: [
-            {
-                type: "input",
-                label: "Name",
-            },
-            {
-                type: "text",
-                label: "Name",
-            }
-        ],
-        button:[
-            { 
-                text: 'OK',
-                isDisabled: false
-            },
-            { 
-                text: 'OK',
-                isDisabled: false
-            }
-        ]
-    }
+    const [isPopup, setIsPopup] = useState(false);
+    const [popupData, setPopupData] = useState(
+        {
+            title: "Sign in success",
+            content: [
+                {
+                    type: "input",
+                    label: "Name",
+                },
+                {
+                    type: "text",
+                    label: "Name",
+                }
+            ],
+            button:[
+                { 
+                    text: 'OK',
+                    blnDisable: false,
+                    style: 'primary',
+                },
+                { 
+                    text: 'Cancel',
+                    blnDisable: false,
+                    style: 'danger',
+                }
+                
+            ]
+        }
+    )
     useEffect(() => {
         const timeout = setTimeout(()=> {
             setIsLoading(false);
@@ -59,24 +64,50 @@ const Signin: NextPage = () => {
         })
         const data = await response.json();
         console.log(data);
+        setIsPopup(true);
         if(data.status == 'success'){
             await setAccountID(data.id)
-            await setCookie("accountID", data.id ,{maxAge: 60}) 
+            await setCookie("accountID", data.id ,{maxAge: 60})
+            setPopupData({
+                title: "Sign in success",
+                content: [
+                    {
+                        type: "input",
+                        label: "Name",
+                    },
+                    {
+                        type: "text",
+                        label: "Name",
+                    }
+                ],
+                button:[
+                    { 
+                        text: 'OK',
+                        blnDisable: false,
+                        style: 'primary',
+                    },
+                    { 
+                        text: 'Cancel',
+                        blnDisable: false,
+                        style: 'danger',
+                    }
+                    
+                ]
+            })
         }
+        
+        const timeout = setTimeout(()=> {
+            setIsPopup(false);
+            // setIsPopup(false);
+        },2500)
         
     }
     return(
         <div >
             <Loader  isLoading = {isLoading} />
             <Popup
-                title={"Sign In"}
-                icon={"icon-signin"}
-                objContent={{}}
                 blnShow={isPopup} 
-                blnConfirmBtn={true} 
-                blnCancelBtn={true}
-                strConfirmBtn={'OK'} 
-                strCancelBtn={'Cancel'}
+                data={popupData}
             />
             <div className="container">
                 <div className="form bg-glass">
