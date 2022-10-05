@@ -24,13 +24,14 @@ const Navbar =()=>{
     function showProfile(){
         const e = document.getElementById("nav-dropdown");
         if(e){
+            console.log(e.style.display);
             if(e.style.display == "none"){
                 e.style.display = "block"
             }else e.style.display = "none"
         }
     }
     function collapse(){
-        var x = document.getElementById("myTopnav");
+        const x = document.getElementById("myTopnav");
         if(x){
             if (x.className === "") {
                 x.className += " responsive";
@@ -45,7 +46,7 @@ const Navbar =()=>{
         if(document.body.getAttribute('theme') == 'dark'){
             setBlndarkMode(true);
         }else setBlndarkMode(false);
-
+        
     },[]);
     return(
         <>
@@ -82,11 +83,11 @@ const Navbar =()=>{
                         {
                             userName == "Signin"? 
                             <>
-                                <a onClick={(e)=>{showProfile()}} style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}>
+                                <a onClick={()=>{showProfile()}} style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}>
                                     <a href="#" className="fa fa-1x fa-user-circle"></a>
                                         {userName}
                                 </a>
-                                <ul id='nav-dropdown' className="dropdown-menu dropdown-left">
+                                <ul id='nav-dropdown' style={{display : 'none'}} className="dropdown-menu dropdown-left">
                                     <div className='nav-login'>
                                         <a className="header m-auto">Login</a>
                                         <div>
