@@ -516,7 +516,7 @@ nav .dropdown-menu{
   border-bottom: 5px solid #00bfff;
 }
 .input-container input:focus ~ label,
-.input-container input:valid ~ label{
+.input-container input:not(input[value = ''])  ~ label{
 	top:-18px;
 	font-size:18px;
 }

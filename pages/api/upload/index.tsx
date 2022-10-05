@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
-import formidable from 'formidable-serverless';
+import formidable from 'formidable';
 import { create } from "domain";
 // type Data = {
 //     data: string;

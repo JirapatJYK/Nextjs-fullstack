@@ -99,7 +99,7 @@ const Navbar =()=>{
                                         <div>
                                             Not a member? 
                                             <Link href={'/user/signup'}>
-                                                <a className='link'>Signup</a>
+                                                <a className='link'>  Signup</a>
                                             </Link>
                                         </div>
                                     </div>
