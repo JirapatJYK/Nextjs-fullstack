@@ -77,63 +77,77 @@ const Navbar =()=>{
                     </li >
                     <li className="nav-item dropdown dropdown-hover ">
                         {
-                            userName == "Signin"? <a onClick={(e)=>{signin()}} style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}><a href="#" className="fa fa-1x fa-user-circle"></a>{userName}</a>:
-                            <Image src="/favicon.ico" width="50" height="50" />
-                        }
-                        {
                             userName == "Signin"? 
-                            <ul className="dropdown-menu dropdown-left">
-                                <div className='nav-login'>
-                                    <div>
-                                        <label>Username</label>
-                                        <input type="text" placeholder="Enter your username..."/>
-                                    </div>
-                                    <div>
-                                        <label>Password</label>
-                                        <input type="password" placeholder="Enter your password..."/>
-                                    </div>
-                                    <a className='link'>forgot password?</a>
-                                    <button className="btn btn-primary">Login</button>
-                                    <div>
-                                        Not a member? <a className='link'>Signup</a>
-                                    </div>
-                                </div>
-                            </ul>
-                            :
-                            <ul className="dropdown-menu dropdown-left">
-                                <li>
-                                    <div style={{display: 'flex', flexDirection: 'row'}}>
-                                        <div style={{width: '100px', height: '100px'}}>
-                                            <a href="#" className="fa fa-4x fa-user-circle"></a>
+                            <>
+                                <a onClick={(e)=>{signin()}} style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}>
+                                    <a href="#" className="fa fa-1x fa-user-circle"></a>
+                                        {userName}
+                                </a>
+                                <ul className="dropdown-menu dropdown-left">
+                                    <div className='nav-login'>
+                                        <a className="header m-auto">Login</a>
+                                        <div>
+                                            {/* <label>Username</label> */}
+                                            <input type="text" placeholder="Enter your username..."/>
                                         </div>
-                                        <div style={{marginRight: '10px'}}>
-                                            <a href="#" className=""> Name</a><br/>
-                                            <a className='link'>Manage Account</a>
+                                        <div>
+                                            {/* <label>Password</label> */}
+                                            <input type="password" placeholder="Enter your password..."/>
+                                        </div>
+                                        <a className='link'>forgot password?</a>
+                                        <button className="btn btn-primary">Login</button>
+                                        <div>
+                                            Not a member? 
+                                            <Link href={'/user/signup'}>
+                                                <a className='link'>Signup</a>
+                                            </Link>
                                         </div>
                                     </div>
-                                </li>
-                                <li>
-                                    <Link href="#wallet">
-                                        Wallet
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="#favorite">
-                                        Favoites
+                                </ul>
+                            </>:
+                            <>
+                                <Image src="/favicon.ico" width="50" height="50" />
+                                <ul className="dropdown-menu dropdown-left">
+                                    <li>
+                                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                                            <div>
+                                                {}
+                                                <a href="#" className="fa fa-4x fa-user-circle"></a>
+                                            </div>
+                                            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '10px'}}>
+                                                <a className="dropdown-header">Name </a>
+                                                <Link href={'/user/'+ 'accountID'}>
+                                                    <a className='link'>Manage Account</a>
+                                                </Link>
+                                                
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <Link href="#wallet">
+                                            Wallet
                                         </Link>
-                                </li>
-                                <li>
-                                    <div className="switch">
-                                        <input id="theme-switch" type="checkbox" onChange={()=>{ SetTheme();}} checked={blnDarkMode}></input>
-                                        <label className="slider round" htmlFor="theme-switch"></label>
-                                    </div>
-                                    Dark Mode
-                                </li>
-                                <li>
-                                    <button>Sign out</button>
-                                </li>
-                            </ul>
+                                    </li>
+                                    <li>
+                                        <Link href="#favorite">
+                                            Favoites
+                                            </Link>
+                                    </li>
+                                    <li>
+                                        <div className="switch">
+                                            <input id="theme-switch" type="checkbox" onChange={()=>{ SetTheme();}} checked={blnDarkMode}></input>
+                                            <label className="slider round" htmlFor="theme-switch"></label>
+                                        </div>
+                                        Dark Mode
+                                    </li>
+                                    <li>
+                                        <button className='btn-danger'>Sign out</button>
+                                    </li>
+                                </ul>
+                            </>
+                            
                         }
+                       
                         
                     </li>
                 </ul>
@@ -145,10 +159,22 @@ const Navbar =()=>{
                 </i>
             </nav>
             <ul className='social' >
-                <a href="mailto:jirapat.ja@mail.wu.ac.th" className="fa fa-2x fa-google"></a>
-                <a href="#" className="fa fa-2x fa-facebook"></a>
-                <a href="https://www.linkedin.com/in/jirapat-jaiyakwang-1b6202230/" className="fa fa-2x fa-linkedin"></a>
-                <a href="#" className="fa fa-2x fa-instagram"></a>
+                <Link href="mailto:jirapat.ja@mail.wu.ac.th">
+                    <a className="fa fa-2x fa-google"></a>
+                </Link>
+                <Link href="#">
+                    <a className="fa fa-2x fa-facebook"></a>
+                </Link>
+                <Link href="https://www.linkedin.com/in/jirapat-jaiyakwang-1b6202230/">
+                    <a className="fa fa-2x fa-linkedin"></a>
+                </Link>
+                <Link href="#">
+                    <a className="fa fa-2x fa-instagram"></a>
+                </Link>
+                
+                
+                
+                
             </ul>
         </>
         

@@ -75,9 +75,6 @@ const Home: NextPage = () => {
           </div>
         </section>
         <section >
-          <div className='main'>
-            
-          </div>
           <video controls src='/video0.mp4'/>
         </section>
         <section className='' style={{backgroundColor: ""}}>

@@ -24,8 +24,8 @@ export default function SelectDropdown({header, list}:{header: String, list: any
             <label className="select-header" >
                 {header}
             </label>
-            <select>
-                <option disabled selected> -- select an option -- </option>
+            <select defaultValue='defaultValue'>
+                <option disabled value='defaultValue' > -- select an option -- </option>
                 {
                     list.map(item=>{
                         return (
