@@ -39,12 +39,17 @@ const Home: NextPage = () => {
       <Loader isLoading = {isLoading} />
       <Navbar />
       <main className='container'>
-        <section className='' style={{backgroundImage: "url('/ASUS.jpg')" , backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
+        <section className='' style={{/*backgroundImage: "url('/ASUS.jpg')" ,*/ backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
           <div className="main">
             <div className='row' >
-              <div className='col-5 ' style={{height: '300px',display: 'flex', flexDirection: 'column',justifyContent: 'center'}}>
+              <div className='col-5 ' style={{display: 'flex', flexDirection: 'column',justifyContent: 'center'}}>
                 <div className='title'>
-                  <h1 className=''>LOGO NAME</h1>
+                  <div className='title-bg'>
+                    <div className='text-bg'>
+                      <h1 className='web-name'>LOGO NAME</h1>
+                    </div>
+                    
+                  </div>
                 </div>
                 <div className={styles.grid}>
                   <a href="https://nextjs.org/docs" className={styles.card}>

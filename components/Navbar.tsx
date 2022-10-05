@@ -18,7 +18,7 @@ const Navbar =()=>{
             setCookie("theme", "light")
         }
     }
-    const[userName, setUserName] = useState("Signin");
+    const[username, setUsername] = useState("Signin");
     const[blnDarkMode, setBlndarkMode] = useState(false);
 
     function showProfile(){
@@ -39,7 +39,10 @@ const Navbar =()=>{
                 x.className = "";
             }
         }
-        
+    }
+
+    async function login() {
+        setUsername("User1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
     }
 
     useEffect(()=>{
@@ -81,11 +84,11 @@ const Navbar =()=>{
                     </li >
                     <li className="nav-item dropdown">
                         {
-                            userName == "Signin"? 
+                            username == "Signin"? 
                             <>
                                 <a onClick={()=>{showProfile()}} style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}>
                                     <a href="#" className="fa fa-1x fa-user-circle"></a>
-                                        {userName}
+                                        {username}
                                 </a>
                                 <ul id='nav-dropdown' style={{display : 'none'}} className="dropdown-menu dropdown-left">
                                     <div className='nav-login'>
@@ -99,7 +102,7 @@ const Navbar =()=>{
                                             <input type="password" placeholder="Enter your password..."/>
                                         </div>
                                         <a className='link'>forgot password?</a>
-                                        <button className="btn btn-primary">Login</button>
+                                        <button className="btn btn-primary" onClick={(e)=>{login()}}>Login</button>
                                         <div>
                                             Not a member? 
                                             <Link href={'/user/signup'}>
@@ -110,7 +113,7 @@ const Navbar =()=>{
                                 </ul>
                             </>:
                             <>
-                                <Image src="/favicon.ico" width="50" height="50" />
+                                <Image src="/favicon.ico" width="50" height="50" onClick={()=>{showProfile()}}/>
                                 <ul id='nav-dropdown' className="dropdown-menu dropdown-left">
                                     <li>
                                         <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -119,7 +122,7 @@ const Navbar =()=>{
                                                 <a href="#" className="fa fa-4x fa-user-circle"></a>
                                             </div>
                                             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '10px'}}>
-                                                <a className="dropdown-header">Name </a>
+                                                <a className="dropdown-header">{username}</a>
                                                 <Link href={'/user/'+ 'accountID'}>
                                                     <a className='link'>Manage Account</a>
                                                 </Link>
@@ -145,7 +148,7 @@ const Navbar =()=>{
                                         Dark Mode
                                     </li>
                                     <li>
-                                        <button className='btn-danger'>Sign out</button>
+                                        <button className='btn-danger' onClick={(e)=>{setUsername('Signin')}}>Sign out</button>
                                     </li>
                                 </ul>
                             </>
