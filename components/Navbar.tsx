@@ -21,9 +21,12 @@ const Navbar =()=>{
     const[userName, setUserName] = useState("Signin");
     const[blnDarkMode, setBlndarkMode] = useState(false);
 
-    function signin(){
-        if(userName == "Signin"){
-            Router.push('/user/signin');
+    function showProfile(){
+        const e = document.getElementById("nav-dropdown");
+        if(e){
+            if(e.style.display == "none"){
+                e.style.display = "block"
+            }else e.style.display = "none"
         }
     }
     function collapse(){
@@ -75,15 +78,15 @@ const Navbar =()=>{
                             Create
                         </Link>
                     </li >
-                    <li className="nav-item dropdown dropdown-hover ">
+                    <li className="nav-item dropdown">
                         {
                             userName == "Signin"? 
                             <>
-                                <a onClick={(e)=>{signin()}} style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}>
+                                <a onClick={(e)=>{showProfile()}} style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}>
                                     <a href="#" className="fa fa-1x fa-user-circle"></a>
                                         {userName}
                                 </a>
-                                <ul className="dropdown-menu dropdown-left">
+                                <ul id='nav-dropdown' className="dropdown-menu dropdown-left">
                                     <div className='nav-login'>
                                         <a className="header m-auto">Login</a>
                                         <div>
@@ -107,7 +110,7 @@ const Navbar =()=>{
                             </>:
                             <>
                                 <Image src="/favicon.ico" width="50" height="50" />
-                                <ul className="dropdown-menu dropdown-left">
+                                <ul id='nav-dropdown' className="dropdown-menu dropdown-left">
                                     <li>
                                         <div style={{display: 'flex', flexDirection: 'row'}}>
                                             <div>
@@ -159,8 +162,11 @@ const Navbar =()=>{
                 </i>
             </nav>
             <ul className='social' >
-                <Link href="mailto:jirapat.ja@mail.wu.ac.th">
+                {/* <Link href="mailto:jirapat.ja@mail.wu.ac.th">
                     <a className="fa fa-2x fa-google"></a>
+                </Link> */}
+                <Link href="https://discord.gg/wyjvhxD2">
+                    <a className="fa fa-2x fa-discord"></a>
                 </Link>
                 <Link href="#">
                     <a className="fa fa-2x fa-facebook"></a>
@@ -171,8 +177,6 @@ const Navbar =()=>{
                 <Link href="#">
                     <a className="fa fa-2x fa-instagram"></a>
                 </Link>
-                
-                
                 
                 
             </ul>

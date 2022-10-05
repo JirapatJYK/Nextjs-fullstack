@@ -282,6 +282,7 @@ button:disabled:hover{
   /* padding: 10px; */
   /* display: flex;
   flex-direction: column; */
+  overflow: hidden;
 }
 .main {
   /* background: var(--background-primary-glass); */
@@ -426,9 +427,7 @@ nav .dropdown-menu{
 .dropdown{
   position: relative;
 }
-.dropdown-hover:hover + .dropdown-menu{
-  display: block;
-}
+
 .dropdown-header{
   font-weight: 600;
   font-size: 18px;
@@ -443,7 +442,7 @@ nav .dropdown-menu{
 .dropdown-menu{
   border-radius: 0 0 10px 10px;
   right: 0px;
-  display: block;
+  display: none;
   background-color: var(--background-secondary);
   box-shadow: 0 0 10px var(--background-tertiary);
 }
@@ -928,6 +927,9 @@ body::-webkit-scrollbar-thumb{
 }
 .fa-google {
   background: #dd4b39;
+}
+.fa-discord {
+  background: #f39c12;
 }
 
 .fa-linkedin {
