@@ -84,6 +84,24 @@ h1{
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+@keyframes bacground {
+	0% {
+		background-color: black;
+	}
+  45% {
+    background-color: #16213E;
+	}
+  50% {
+    background-color: #533483;
+	}
+	55% {
+    background-color: #16213E;
+	}
+	100% {
+    background-color: black;
+	}
+}
+
 .title .title-bg:before {
   background-color: #c50000;
   content: '';
@@ -104,6 +122,7 @@ h1{
   inset: 5px;
   border-radius: 5px;
   background-color: #000000;
+  animation: bacground 3s ease infinite;
 }
 .text-bg h1{
   filter: drop-shadow(8px 8px 4px #faea10);
