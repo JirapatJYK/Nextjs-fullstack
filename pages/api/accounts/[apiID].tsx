@@ -1,7 +1,7 @@
 import { MongoServerError, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../../lib/mongodb";
-
+var jwt = require('jsonwebtoken');
 export default async function handler(req: NextApiRequest, res: NextApiResponse){
   const { apiID } = await req.query;
   let results:any = [];
@@ -93,16 +93,18 @@ async function Signin(collection: any, req:any){
   const account:any = await collection.findOne({ name: userName })?? {account: null};
   const result = {
     status: '',
-    id:''
+    token: '',
+    data: {}
   }
   if(account == null)
   result.status = 'account not found';
-
+  
   if(password == account.password){
     console.log(account);
     result.status = 'success';
-    result.id=account._id;
+    result.data=account;
+    result.token=jwt.sign({account}, 'shhhhh');
   }else result.status = 'wrong password';
-
+  console.log(result)
   return result
 }
