@@ -399,7 +399,6 @@ nav  ul{
 nav ul li{
   list-style: none;
   padding: 0 5px ;
-  line-height: 56px;
   cursor: pointer;
 }
 nav ul li:hover{
@@ -536,34 +535,50 @@ nav .dropdown-menu{
 
 .input-container{
   position: relative;
-  margin-bottom:72px;
+  padding: 5px;
+  /* margin-bottom: 20px; */
+  border-bottom: 2px solid #555;
 }
 .input-container label{
   position: absolute;
-  top: 0px;
+  top: 5px;
   left: 0px;
   transition: all 0.5s ease-in-out;
-  font-size:24px;
 }
-.input-container input{
-  font-size:20px;
+.input-container  input{
+  padding: 0;
   border: 0;
-  border-bottom: 5px solid #555;
   background: transparent;
   width: 100%;
-}
-.input-container input:focus{
   border: none;
   outline: none;
-  border-bottom: 5px solid #00bfff;
 }
-.input-container input:focus ~ label,
-.input-container input:not(input[value = ''])  ~ label{
-	top:-18px;
-	font-size:18px;
+.input-container .btn-clear-input{
+  border: none;
+  background: none;
+  padding: 0;
+  text-align: center;
+  height: 25px;
+  width: 25px;
+  border-radius: 50px;
 }
-.input-container input:invalid{
+.btn-clear-input:hover{
+  background-color: #333333;  
+}
+.input-container input:focus .input-container{
+  border-bottom:2px solid deepskyblue;
+
+}
+.input-container span input:focus ~ label,
+.input-container span input:not(input[value = ''])  ~ label{
+	top:-10px;
+}
+.text-invalid{
   border-bottom:2px solid #e74c3c;
+}
+.invalid-message{
+  font-size: 14px;
+  color: #ff0000;
 }
 /* .card {
  overflow: hidden;
@@ -952,7 +967,6 @@ body::-webkit-scrollbar-thumb{
   border-radius: 10px 0 0 10px;
 }
 .social a{
-  transition: .5s;
   margin: auto;
   border-radius: 50%;
   width: 50px;
@@ -963,9 +977,6 @@ body::-webkit-scrollbar-thumb{
   line-height: 50px;
 }
 .social a:hover{
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
   color: #ffffff;
 }
 .fa-google {

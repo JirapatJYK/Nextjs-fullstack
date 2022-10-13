@@ -4,7 +4,6 @@ import { getCookies, deleteCookie, setCookie } from 'cookies-next';
 import { NextPage } from "next";
 import Router from "next/router";
 import { useEffect, useState } from "react";
-import InputText from "../../components/InputText";
 import Loader from "../../components/Loader";
 import Popup from '../../components/Popup';
 

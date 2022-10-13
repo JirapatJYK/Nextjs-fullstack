@@ -1,10 +1,11 @@
 import { getCookie, setCookie } from 'cookies-next';
+import { Sign } from 'crypto';
 import Image from 'next/image';
 import Link from "next/link";
 import Router from 'next/router';
 import { useEffect, useState } from "react";
-import InputText from './InputText';
 import SearchBox from './SearchBox';
+import TextInput from './TextInput';
 
 
 const Navbar =()=>{
@@ -18,9 +19,33 @@ const Navbar =()=>{
             setCookie("theme", "light")
         }
     }
-    const[username, setUsername] = useState("Signin");
+    const[strUsername, setStrUsername] = useState("Signin");
     const[blnDarkMode, setBlndarkMode] = useState(false);
-
+    const[strEmail, setStrEmail] = useState('');
+    const[strPassword, setStrPassword] = useState('');
+    const[listUserInfo, setListUserInfo] = useState({
+        _id: " ",
+        status: 0,
+        name: "",
+        email: " ",
+        wallet: {
+            address: " ",
+            credits: 0,
+            gems: 0,
+        },
+        avatar: " ",
+        frame: " ",
+        banner: " ",
+    });
+    async function getUserInfo(){
+        const response = await fetch('/api/accounts/getAccountOne', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': "listUserInfo.token"
+            },  
+        })
+    }
     function showProfile(){
         const e = document.getElementById("nav-dropdown");
         if(e){
@@ -42,14 +67,33 @@ const Navbar =()=>{
     }
 
     async function login() {
-        setUsername("User1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        console.log("")
+        // setUsername("User1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        const params = await {
+            email: strEmail,
+            password: strPassword
+        }
+        const response = await fetch('/api/accounts/signin', {
+            method: 'POST',
+            body: JSON.stringify({params}),
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': "listUserInfo.token"
+            },  
+        })
+        const responseData = await response.json()
+        console.log(responseData)
+        if (responseData.status == 'success') {
+            setListUserInfo(responseData.userInfo)
+        }
+        await console.log(listUserInfo);
     }
 
     useEffect(()=>{
         if(document.body.getAttribute('theme') == 'dark'){
             setBlndarkMode(true);
         }else setBlndarkMode(false);
-        
+        // getUserInfo()
     },[]);
     return(
         <>
@@ -84,22 +128,23 @@ const Navbar =()=>{
                     </li >
                     <li className="nav-item dropdown">
                         {
-                            username == "Signin"? 
+                            listUserInfo.name == ""? 
                             <>
                                 <a onClick={()=>{showProfile()}} style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}>
                                     <a href="#" className="fa fa-1x fa-user-circle"></a>
-                                        {username}
+                                        Signin
                                 </a>
                                 <ul id='nav-dropdown' style={{display : 'none'}} className="dropdown-menu dropdown-left">
                                     <div className='nav-login'>
                                         <a className="header m-auto">Login</a>
                                         <div>
                                             {/* <label>Username</label> */}
-                                            <input type="text" placeholder="Enter your username..."/>
+                                            <TextInput lableName="Email" request={true} type="email" onInput={(e: string)=>{setStrEmail(e)}}/>
                                         </div>
                                         <div>
                                             {/* <label>Password</label> */}
-                                            <input type="password" placeholder="Enter your password..."/>
+                                            <TextInput lableName="Password" request={true} type="password" onInput={(e: string)=>{setStrPassword(e)}}/>
+                                            {/* <input type="password" placeholder="Enter your password..." onChange={(e)=>{setStrPassword(e.target.value)}}/> */}
                                         </div>
                                         <a className='link'>forgot password?</a>
                                         <button className="btn btn-primary" onClick={(e)=>{login()}}>Login</button>
@@ -122,7 +167,7 @@ const Navbar =()=>{
                                                 <a href="#" className="fa fa-4x fa-user-circle"></a>
                                             </div>
                                             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '10px'}}>
-                                                <a className="dropdown-header">{username}</a>
+                                                <a className="dropdown-header">{listUserInfo.name}</a>
                                                 <Link href={'/user/'+ 'accountID'}>
                                                     <a className='link'>Manage Account</a>
                                                 </Link>
@@ -131,9 +176,12 @@ const Navbar =()=>{
                                         </div>
                                     </li>
                                     <li>
+                                        
                                         <Link href="#wallet">
-                                            Wallet
+                                            Wallet {/* {listUserInfo.wallet.address} */}
                                         </Link>
+                                        <li>credits : {listUserInfo.wallet.credits}</li>
+                                        <li>gems : {listUserInfo.wallet.gems}</li>
                                     </li>
                                     <li>
                                         <Link href="#favorite">
@@ -148,7 +196,7 @@ const Navbar =()=>{
                                         Dark Mode
                                     </li>
                                     <li>
-                                        <button className='btn-danger' onClick={(e)=>{setUsername('Signin')}}>Sign out</button>
+                                        <button className='btn-danger' onClick={(e)=>{setListUserInfo(existingValues => ({ ...existingValues, name: ''}))}}>Sign out</button>
                                     </li>
                                 </ul>
                             </>

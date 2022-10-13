@@ -2,8 +2,8 @@
 import { NextPage } from "next";
 import Router from "next/router";
 import { useEffect, useState } from "react";
-import InputText from "../../components/InputText";
 import Loader from "../../components/Loader";
+import TextInput from "../../components/TextInput";
 
 const Signup: NextPage = () => {
     const [name, setName] = useState("");
@@ -16,6 +16,7 @@ const Signup: NextPage = () => {
             setIsLoading(false);
         },2500)
     })
+    function handler(){}
     async function signup(){
         setIsLoading(true);
         const params = await{
@@ -58,10 +59,11 @@ const Signup: NextPage = () => {
                             <input id="password" type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></input>
                             <label>Password</label>  
                         </div>
-                        <InputText
+                        <TextInput
                             lableName="Password" 
                             request={true} 
                             type={"password"}
+                            onInput={handler}
                         />
                         <div>
                             <input type="checkbox"/><span>I agree to the Terms of Service and Privacy Policy.</span>

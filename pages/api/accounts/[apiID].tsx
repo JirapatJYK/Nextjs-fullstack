@@ -2,10 +2,42 @@ import { MongoServerError, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../../lib/mongodb";
 var jwt = require('jsonwebtoken');
+const accountModel = {
+  _id: " ",
+  status: true, // active, banned
+  profile: {
+      name: " ",
+      email: " ",
+      wallet: {
+          address: " ",
+          credits: 0,
+          gems: 0,
+      },
+      avatar: " ",
+      frame: " ",
+      banner: " ",
+  },
+  basicItems: [
+    {
+      id: " ",
+      amount: " "
+    }
+  ],
+  nftItems: [
+    {
+      id: " ",
+    }
+  ],
+  friend: [
+    {
+      id: " ",
+    }
+  ]
+}
 export default async function handler(req: NextApiRequest, res: NextApiResponse){
   const { apiID } = await req.query;
   let results:any = [];
-  
+  console.log(req.body.params)
   try {
     const { database }: {database: any} = await connectToDatabase()?? {database: null}; //กำหนด ค่าเริ่มต้น
     var collection = await database.collection(process.env.COLLECTION_ACCOUNTS);
@@ -58,6 +90,7 @@ async function createAccountOne(collection: any, req:any){
   }
 }
 async function getAccountOne(collection: any, req:any){
+  console.log(req.header)
   let accountData = {};
   const username = req.body.params
   try {
@@ -88,13 +121,26 @@ async function editAccountOne(collection: any, req:any){
 }
 
 async function Signin(collection: any, req:any){
-  const userName = await req.body.params.userName
+  const email = await req.body.params.email
   const password = await req.body.params.password
-  const account:any = await collection.findOne({ name: userName })?? {account: null};
+  const account:any = await collection.findOne({ email: email })?? {account: null};
   const result = {
     status: '',
     token: '',
-    data: {}
+    userInfo: {
+      _id: " ",
+      status: 0,
+      name: " ",
+      email: " ",
+      wallet: {
+          address: " ",
+          credits: 0,
+          gems: 0,
+      },
+      avatar: " ",
+      frame: " ",
+      banner: " ",
+    }
   }
   if(account == null)
   result.status = 'account not found';
@@ -102,7 +148,20 @@ async function Signin(collection: any, req:any){
   if(password == account.password){
     console.log(account);
     result.status = 'success';
-    result.data=account;
+    result.userInfo={
+      _id: account._id,
+      status: 0,
+      name: account.name,
+      email: account.email,
+      wallet: {
+          address: "0x808DEe546d3b0cA5296C2cF36B8B50d51e9e9563",
+          credits: 0,
+          gems: 0,
+      },
+      avatar: " ",
+      frame: " ",
+      banner: " ",
+    };
     result.token=jwt.sign({account}, 'shhhhh');
   }else result.status = 'wrong password';
   console.log(result)
