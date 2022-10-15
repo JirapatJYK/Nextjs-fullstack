@@ -1,3 +1,4 @@
+import { getCookie } from 'cookies-next'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -25,6 +26,7 @@ const Home: NextPage = () => {
   const [count, setCount] = useState(0);
   useEffect(()=> {
     console.log('Home Component')
+    console.log(getCookie("myToken"))
     const timeout = setTimeout(()=> {
       setIsloading(false);
     },1000)
@@ -59,6 +61,7 @@ const Home: NextPage = () => {
 
                   <a href="https://nextjs.org/learn" className={styles.card}>
                     <h2>Learn &rarr;</h2>
+                    
                     <p>Learn about Next.js in an interactive course with quizzes!</p>
                   </a>
                   {/* <div className='video'> */}
@@ -76,6 +79,8 @@ const Home: NextPage = () => {
             <p className={styles.description}>
               Get started by editing{' '}
               <code className={styles.code}>pages/index.tsx</code>
+              <br/>
+              {getCookie("myToken")}
             </p>
           </div>
         </section>

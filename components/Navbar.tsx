@@ -1,12 +1,12 @@
-import { getCookie, setCookie } from 'cookies-next';
-import { Sign } from 'crypto';
+import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';
 import Image from 'next/image';
 import Link from "next/link";
 import Router from 'next/router';
 import { useEffect, useState } from "react";
 import SearchBox from './SearchBox';
 import TextInput from './TextInput';
-
+import Popup from './Popup';
+import Loader from './Loader';
 
 const Navbar =()=>{
     function SetTheme() {
@@ -37,25 +37,64 @@ const Navbar =()=>{
         frame: " ",
         banner: " ",
     });
+    const[blnPopup, setBlnPopup] = useState(false)
+    const[listPopupData, setListPopupData] = useState({
+            title: "",
+            content: [
+                // {
+                //     type: "input",
+                //     label: "Username",
+                // },
+                // {
+                //     type: "input",
+                //     label: "Password",
+                // }
+            ],
+            button:[
+                // { 
+                //     text: 'Ok',
+                //     blnDisable: false,
+                //     style: 'primary',
+                // },
+                // { 
+                //     text: 'Cancel',
+                //     blnDisable: false,
+                //     style: 'danger',
+                // }
+                
+            ],
+            footer: ''
+        })
+    const[blnLoading, setBlnLoading] = useState(false)
+    const[blnDropdown, setBlnDropdown] = useState(false)
+    const  popupCallback =(childData: boolean) =>{
+        // setBlnPopup(childData)
+        console.log(childData)
+
+    }
+    
     async function getUserInfo(){
+        const myToken = getCookie("myToken")?.toString()
         const response = await fetch('/api/accounts/getAccountOne', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'x-access-token': "listUserInfo.token"
+                'x-access-token': myToken!== undefined ? myToken : ''
             },  
         })
     }
-    function showProfile(){
-        const e = document.getElementById("nav-dropdown");
-        if(e){
-            console.log(e.style.display);
-            if(e.style.display == "none"){
-                e.style.display = "block"
-            }else e.style.display = "none"
-        }
-    }
+    // function showProfile(){
+    //     console.log("showProfile")
+    //     const e = document.getElementById("nav-dropdown");
+    //     if(e){
+    //         console.log(e.style.display);
+    //         if(e.style.display == "none"){
+    //             e.style.display = "block"
+    //         }else e.style.display = "none"
+    //     }
+    // }
     function collapse(){
+        console.log("collapse")
         const x = document.getElementById("myTopnav");
         if(x){
             if (x.className === "") {
@@ -67,8 +106,8 @@ const Navbar =()=>{
     }
 
     async function login() {
+        setBlnLoading(true)
         console.log("")
-        // setUsername("User1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         const params = await {
             email: strEmail,
             password: strPassword
@@ -82,9 +121,20 @@ const Navbar =()=>{
             },  
         })
         const responseData = await response.json()
+        setBlnLoading(false)
         console.log(responseData)
         if (responseData.status == 'success') {
+            setBlnPopup(true)
+            setListPopupData(listPopupData =>({...listPopupData, title: responseData.status}))
+            const timeout = setTimeout(() => {
+                setBlnPopup(false)
+            }, 1000);
+            setCookie("myToken", responseData.token, {maxAge: 300});
             setListUserInfo(responseData.userInfo)
+            console.log(getCookie("myToken"))
+        }else {
+            setBlnPopup(true)
+            setListPopupData(listPopupData =>({...listPopupData, title: responseData.status}))
         }
         await console.log(listUserInfo);
     }
@@ -94,9 +144,13 @@ const Navbar =()=>{
             setBlndarkMode(true);
         }else setBlndarkMode(false);
         // getUserInfo()
+        console.log(hasCookie("myToken"))
     },[]);
     return(
         <>
+            
+            <Loader isLoading={blnLoading} />
+            <Popup blnShow={blnPopup} data={listPopupData} parentCallback={popupCallback}/>
             <nav id='myTopnav'>
                 <ul>
                     
@@ -112,6 +166,7 @@ const Navbar =()=>{
                     <li className="nav-item">
                         <SearchBox/>
                     </li>
+                    
                 </ul>
                 
                 
@@ -126,15 +181,15 @@ const Navbar =()=>{
                             Create
                         </Link>
                     </li >
-                    <li className="nav-item dropdown">
+                    <li className="nav-item">
                         {
-                            listUserInfo.name == ""? 
+                            hasCookie("myToken") == false? 
                             <>
-                                <a onClick={()=>{showProfile()}} style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}>
+                                <a onClick={()=>{setBlnDropdown(!blnDropdown)}} style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}>
                                     <a href="#" className="fa fa-1x fa-user-circle"></a>
-                                        Signin
+                                        Signin 
                                 </a>
-                                <ul id='nav-dropdown' style={{display : 'none'}} className="dropdown-menu dropdown-left">
+                                <ul id='nav-dropdown' style={{display : blnDropdown?'':'none'}} className="dropdown-menu dropdown-left">
                                     <div className='nav-login'>
                                         <a className="header m-auto">Login</a>
                                         <div>
@@ -155,10 +210,11 @@ const Navbar =()=>{
                                             </Link>
                                         </div>
                                     </div>
+                                    
                                 </ul>
                             </>:
                             <>
-                                <Image src="/favicon.ico" width="50" height="50" onClick={()=>{showProfile()}}/>
+                                <Image src="/favicon.ico" width="50" height="50" onClick={()=>{setBlnDropdown(true)}}/>
                                 <ul id='nav-dropdown' className="dropdown-menu dropdown-left">
                                     <li>
                                         <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -168,7 +224,7 @@ const Navbar =()=>{
                                             </div>
                                             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '10px'}}>
                                                 <a className="dropdown-header">{listUserInfo.name}</a>
-                                                <Link href={'/user/'+ 'accountID'}>
+                                                <Link href={'/user/'+ listUserInfo._id}>
                                                     <a className='link'>Manage Account</a>
                                                 </Link>
                                                 
@@ -196,7 +252,7 @@ const Navbar =()=>{
                                         Dark Mode
                                     </li>
                                     <li>
-                                        <button className='btn-danger' onClick={(e)=>{setListUserInfo(existingValues => ({ ...existingValues, name: ''}))}}>Sign out</button>
+                                        <button className='btn-danger' onClick={(e)=>{deleteCookie("myToken")}}>Sign out</button>
                                     </li>
                                 </ul>
                             </>
@@ -232,6 +288,8 @@ const Navbar =()=>{
                 
                 
             </ul>
+            {blnDropdown?<div className="bg-click" onClick={()=>{setBlnDropdown(false)}}></div>: ''}
+            
         </>
         
     )

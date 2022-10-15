@@ -1,5 +1,6 @@
 import { MongoServerError, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
+import { Cookies } from "next/dist/server/web/spec-extension/cookies";
 import { connectToDatabase } from "../../../lib/mongodb";
 var jwt = require('jsonwebtoken');
 const accountModel = {
@@ -33,6 +34,24 @@ const accountModel = {
       id: " ",
     }
   ]
+}
+const result = {
+  status: '',
+  token: '',
+  userInfo: {
+    _id: " ",
+    status: 0,
+    name: " ",
+    email: " ",
+    wallet: {
+        address: " ",
+        credits: 0,
+        gems: 0,
+    },
+    avatar: " ",
+    frame: " ",
+    banner: " ",
+  }
 }
 export default async function handler(req: NextApiRequest, res: NextApiResponse){
   const { apiID } = await req.query;
@@ -91,18 +110,38 @@ async function createAccountOne(collection: any, req:any){
 }
 async function getAccountOne(collection: any, req:any){
   console.log(req.header)
-  let accountData = {};
+  let account:any;
   const username = req.body.params
   try {
-    accountData = await collection.findOne({ "name": username})?? {accountData: []};
+    account = await collection.findOne({ "name": username})?? {accountData: []};
   } catch (error) {
     if (error instanceof MongoServerError) {
       console.log(`Error worth logging: ${error}`); // special case for some reason
     }
     throw error; // still want to crash
   }
-  console.log(accountData)
-  return accountData;
+  if(account == null){
+    result.status = 'account not found';
+  }else{
+    console.log(account);
+    result.status = 'success';
+    result.userInfo={
+      _id: account._id,
+      status: 0,
+      name: account.name,
+      email: account.email,
+      wallet: {
+          address: "0x808DEe546d3b0cA5296C2cF36B8B50d51e9e9563",
+          credits: 0,
+          gems: 0,
+      },
+      avatar: " ",
+      frame: " ",
+      banner: " ",
+    };
+  }
+  console.log(account)
+  return result;
 }
 // PUT
 async function editAccountOne(collection: any, req:any){
@@ -121,27 +160,12 @@ async function editAccountOne(collection: any, req:any){
 }
 
 async function Signin(collection: any, req:any){
+  const cookies = new Cookies(req)
+
   const email = await req.body.params.email
   const password = await req.body.params.password
   const account:any = await collection.findOne({ email: email })?? {account: null};
-  const result = {
-    status: '',
-    token: '',
-    userInfo: {
-      _id: " ",
-      status: 0,
-      name: " ",
-      email: " ",
-      wallet: {
-          address: " ",
-          credits: 0,
-          gems: 0,
-      },
-      avatar: " ",
-      frame: " ",
-      banner: " ",
-    }
-  }
+  
   if(account == null)
   result.status = 'account not found';
   
@@ -163,6 +187,8 @@ async function Signin(collection: any, req:any){
       banner: " ",
     };
     result.token=jwt.sign({account}, 'shhhhh');
+    cookies.set('jwt', result.token, {expires: new Date(0)});
+    console.log(cookies.get('jwt'));
   }else result.status = 'wrong password';
   console.log(result)
   return result
