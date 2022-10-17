@@ -194,17 +194,17 @@ const Navbar =()=>{
                                         <a className="header m-auto">Login</a>
                                         <div>
                                             {/* <label>Username</label> */}
-                                            <TextInput lableName="Email" request={true} type="email" onInput={(e: string)=>{setStrEmail(e)}}/>
+                                            <TextInput lableName="Email" request={true} type="email" onInput={(e: string)=>{setStrEmail(e)}} alertMsg='' alertMsgStatus={false}/>
                                         </div>
                                         <div>
                                             {/* <label>Password</label> */}
-                                            <TextInput lableName="Password" request={true} type="password" onInput={(e: string)=>{setStrPassword(e)}}/>
+                                            <TextInput lableName="Password" request={true} type="password" onInput={(e: string)=>{setStrPassword(e)}} alertMsg='' alertMsgStatus={false}/>
                                             {/* <input type="password" placeholder="Enter your password..." onChange={(e)=>{setStrPassword(e.target.value)}}/> */}
                                         </div>
                                         <a className='link'>forgot password?</a>
                                         <button className="btn btn-primary" onClick={(e)=>{login()}}>Login</button>
                                         <div>
-                                            Not a member? 
+                                            Don't have an account?
                                             <Link href={'/user/signup'}>
                                                 <a className='link'>  Signup</a>
                                             </Link>

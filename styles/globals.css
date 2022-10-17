@@ -243,7 +243,6 @@ video{
 
 
 input{
-  width: 100%;
   background-color: var(--background-secondary);
   border: 2px solid var(--text-secondary);
   font-size: 16px;
@@ -768,9 +767,10 @@ input:checked + .slider:before {
   justify-content: space-between;
   padding: 0 50px;
 }
-.flex{
+.d-flex{
   display: flex;
   overflow: hidden;
+  text-align: start;
 }
 
 aside {
@@ -1081,4 +1081,14 @@ select {
 }
 .m-auto{
   margin: auto;
+}
+
+.m-2{
+  margin: 16px;
+}
+.p-2{
+  padding: 16px;
+}
+.px-2{
+  padding: 16px 0;
 }

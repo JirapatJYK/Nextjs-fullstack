@@ -35,6 +35,7 @@ const accountModel = {
     }
   ]
 }
+let blnDuplicate = false;
 const result = {
   status: '',
   token: '',
@@ -72,6 +73,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ? results = await editAccountOne(collection, req)
       : apiID == 'signin'
       ? results = await Signin(collection, req)
+
+      : apiID == 'check-duplicate-username'
+      ? results = await checkDuplicateUsername(collection, req)
+      : apiID == 'check-duplicate-email'
+      ? results = await checkDuplicateEmail(collection, req)
+      //default
       : res.status(404).send("");
   } catch (error) {
     console.log("api error");
@@ -192,4 +199,16 @@ async function Signin(collection: any, req:any){
   }else result.status = 'wrong password';
   console.log(result)
   return result
+}
+
+async function checkDuplicateUsername(collection: any, req:any){
+  const username = await collection.findOne({ name: req.body.params.username })?? {username: null};
+  result.status = (username != null).toString();
+}
+async function checkDuplicateEmail(collection: any, req:any){
+  console.log(req.body.strEmail)
+  const email = await collection.findOne({ email: req.body.strEmail })?? null;
+  console.log(email)
+  blnDuplicate = email != null;
+  return blnDuplicate
 }
