@@ -2,6 +2,7 @@ import { MongoServerError, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Cookies } from "next/dist/server/web/spec-extension/cookies";
 import { connectToDatabase } from "../../../lib/mongodb";
+const cookies = new Cookies()
 var jwt = require('jsonwebtoken');
 const accountModel = {
   _id: " ",
@@ -116,38 +117,40 @@ async function createAccountOne(collection: any, req:any){
   }
 }
 async function getAccountOne(collection: any, req:any){
-  console.log(req.header)
+  const userToken = req.headers.authorization
+  const _id = jwt.verify(userToken, 'shhhhh')
   let account:any;
-  const username = req.body.params
+  const userId = _id._id
+  console.log("token", _id)
+  console.log("cookies", cookies.get('jwt'));
+
+  console.log("_id", userId)
   try {
-    account = await collection.findOne({ "name": username})?? {accountData: []};
-  } catch (error) {
-    if (error instanceof MongoServerError) {
-      console.log(`Error worth logging: ${error}`); // special case for some reason
+    const account:any = await collection.findOne({ "_id": new ObjectId(userId)})?? {account: null};
+    console.log(account)
+    if(account == null){
+      result.status = 'account not found';
+    }else{
+      console.log(account);
+      result.status = 'success';
+      result.userInfo={
+        _id: account._id,
+        status: 0,
+        name: account.name,
+        email: account.email,
+        wallet: {
+            address: "0x808DEe546d3b0cA5296C2cF36B8B50d51e9e9563",
+            credits: 0,
+            gems: 0,
+        },
+        avatar: " ",
+        frame: " ",
+        banner: " ",
+      };
     }
-    throw error; // still want to crash
+  } catch (error) {
+    console.log(error);
   }
-  if(account == null){
-    result.status = 'account not found';
-  }else{
-    console.log(account);
-    result.status = 'success';
-    result.userInfo={
-      _id: account._id,
-      status: 0,
-      name: account.name,
-      email: account.email,
-      wallet: {
-          address: "0x808DEe546d3b0cA5296C2cF36B8B50d51e9e9563",
-          credits: 0,
-          gems: 0,
-      },
-      avatar: " ",
-      frame: " ",
-      banner: " ",
-    };
-  }
-  console.log(account)
   return result;
 }
 // PUT
@@ -167,8 +170,6 @@ async function editAccountOne(collection: any, req:any){
 }
 
 async function Signin(collection: any, req:any){
-  const cookies = new Cookies(req)
-
   const email = await req.body.params.email
   const password = await req.body.params.password
   const account:any = await collection.findOne({ email: email })?? {account: null};
@@ -193,8 +194,9 @@ async function Signin(collection: any, req:any){
       frame: " ",
       banner: " ",
     };
-    result.token=jwt.sign({account}, 'shhhhh');
-    cookies.set('jwt', result.token, {expires: new Date(0)});
+    const _id = result.userInfo._id
+    result.token=jwt.sign({_id}, 'shhhhh');
+    cookies.set('jwt', result.token, {maxAge: 300});
     console.log(cookies.get('jwt'));
   }else result.status = 'wrong password';
   console.log(result)
