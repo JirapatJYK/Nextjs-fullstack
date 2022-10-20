@@ -267,7 +267,8 @@ const Navbar =()=>{
                     <a className="fa fa-2x fa-google"></a>
                 </Link> */}
                 <Link href="https://discord.gg/wyjvhxD2">
-                    <a className="fa fa-2x fa-discord"></a>
+                    <a className='fa-discord'><Image src='/icon/discord.svg' width={30} height={30} /></a>
+                    
                 </Link>
                 <Link href="#">
                     <a className="fa fa-2x fa-facebook"></a>
