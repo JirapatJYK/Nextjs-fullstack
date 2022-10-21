@@ -41,38 +41,37 @@ const Home: NextPage = () => {
       <Loader isLoading = {isLoading} />
       <Navbar />
       <main className='container'>
-        <section className='' style={{/*backgroundImage: "url('/ASUS.jpg')" ,*/ backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
+        <section className='' style={{/*backgroundImage: "url('/ASUS.jpg')" ,*/ background: 'black', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
           <div className="main">
             <div className='row' >
-              <div className='col-5 ' style={{display: 'flex', flexDirection: 'column',justifyContent: 'center'}}>
-                <div className='title'>
-                  <div className='title-bg'>
-                    <div className='text-bg'>
-                      <h1 className='web-name'>LOGO NAME</h1>
-                    </div>
-                    
+              <div className='col-5 p-2' style={{display: 'flex', flexDirection: 'column',justifyContent: 'center'}}>
+                <div className=''>
+                  <div className='environment'></div>
+                  <h1 className='title glitch layers' data-text='INSTEADIZE'><span>INSTEADIZE</span></h1>
+                </div>
+                <div className='mt-9'>
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur incidunt officiis distinctio magnam, assumenda rem ipsum earum cumque quasi veritatis similique enim, consequuntur eum voluptate ab voluptas! Id, sequi sed!</p>
+                </div>
+                <table className='mt-4 w-100'>
+                  <tbody>
+                    <tr>
+                      <td style={{color: 'white'}}>contract</td>
+                      <td style={{color: 'var(--text-secondary)'}}>asdasdasdasdada</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div className='mt-9'>
+                  <h1 style={{color: 'white'}}>Download now for free</h1>
+                  <div className='d-flex mt-2 '>
+                    <button className='btn-primary d-flex'><a className='fa fa-2x fa-apple'></a><a style={{lineHeight: '28px'}}>ios</a></button>
+                    <button className='btn-primary d-flex'><a className='fa fa-2x fa-android'></a><a style={{lineHeight: '28px'}}>Android</a></button>
+                    <button className='btn-primary d-flex'><a className='fa fa-2x fa-warning'></a><a style={{lineHeight: '28px'}}>Android</a></button>
                   </div>
                 </div>
-                <div className={styles.grid}>
-                  <a href="https://nextjs.org/docs" className={styles.card}>
-                    <h2>Documentation &rarr;</h2>
-                    <p>Find in-depth information about Next.js features and API.</p>
-                  </a>
-
-                  <a href="https://nextjs.org/learn" className={styles.card}>
-                    <h2>Learn &rarr;</h2>
-                    
-                    <p>Learn about Next.js in an interactive course with quizzes!</p>
-                  </a>
-                  {/* <div className='video'> */}
-                  {/* <iframe width={853} height={480} src="https://www.youtube.com/embed/OBqw818mQ1E" title="SiM – The Rumbling (OFFICIAL VIDEO)"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> */}
-                  {/* <iframe width="853" height="480" src="https://www.youtube.com/embed/veBu03A6ptw" title="1. How to develop an NFT Smart Contract (ERC721) with Alchemy - Beginner | Road to Web3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe> */}
-                  {/* </div> */}
-                  
-                </div>
+                
               </div>
               <div className='col-5' style={{backgroundColor: "deepskyblue"}}>
-                <Image src='/vercel.svg' width='300' height='300'/>
+                <Image src='/vercel.svg' width='600' height='600'/>
               </div>
             </div>
             

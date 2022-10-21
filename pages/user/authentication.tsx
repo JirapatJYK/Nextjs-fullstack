@@ -171,8 +171,8 @@ const Authentication: NextPage = () => {
             <div className="">
                 <div id="signin" className="d-flex">
                     <div className="form sign-in-container bg-glass" style={{backgroundColor: "white", height: '100vh'}}>
-                        <div className="" style={{display: 'flex', lineHeight: '50px', margin: '24px 0'}}>
-                           <Image src={'/favicon.ico'} width={'50px'} height={'50px'} /><h2 className="">Create Next App</h2> 
+                        <div className="logo-text d-flex">
+                           <Image src={'/favicon.ico'} width={'50px'} height={'50px'} /><h2 className="">INSTEADIZE</h2> 
                         </div>
                         
                         <h1>Log in to your account</h1>
@@ -204,6 +204,9 @@ const Authentication: NextPage = () => {
                         
                     </div>
                     <div className="form sign-up-container bg-glass" style={{backgroundColor: "white", height: '100vh', justifyContent: 'flex-start'}}>
+                        <div className="logo-text d-flex">
+                           <Image src={'/favicon.ico'} width={'50px'} height={'50px'} /><h2 className="">INSTEADIZE</h2> 
+                        </div>
                         <h1>Create your account</h1>
                         <div className="form-control">
                             <form className="">

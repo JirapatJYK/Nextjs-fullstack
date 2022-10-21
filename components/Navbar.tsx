@@ -147,18 +147,18 @@ const Navbar =()=>{
             <Popup blnShow={blnPopup} data={listPopupData} parentCallback={popupCallback}/>
             <nav id='myTopnav'>
                 <ul>
-                    
                     <li className="nav-item">
                         <Link href="/">
-                            <Image src="/favicon.ico" width="50" height="50" />
+                        <div className="logo-text d-flex">
+                           <Image src={'/favicon.ico'} width={'50px'} height={'50px'} />INSTEADIZE
+                        </div>
                         </Link>
                     </li>
-
                 </ul>
 
                 <ul>
                     <li className="nav-item">
-                        <SearchBox/>
+                        <SearchBox listSearcher={[]} onSearch/>
                     </li>
                     
                 </ul>
@@ -167,12 +167,12 @@ const Navbar =()=>{
                 <ul>
                     <li className="nav-item">
                         <Link href="/explore">
-                            Explore
+                            <a>Explore</a>
                         </Link>
                     </li>    
                     <li className="nav-item">
                         <Link href="/create">
-                            Create
+                            <a>Create</a>
                         </Link>
                     </li >
                     <li className="nav-item">

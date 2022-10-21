@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     if(document.body.getAttribute('theme') != "light" && document.body.getAttribute('theme') != "dark")
     {
       console.log('theme light')
-      document.body.setAttribute('theme', "light");
+      document.body.setAttribute('theme', "dark");
     }
   }, [])
   return <>
