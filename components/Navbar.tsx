@@ -179,7 +179,7 @@ const Navbar =()=>{
                         {
                             hasCookie("myToken") == false? 
                             <>
-                                <Link href={'/user/signup'}>
+                                <Link href={'/user/authentication'}>
                                 <a style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}>
                                     <a href="#" className="fa fa-1x fa-user-circle"></a>
                                         Signin 

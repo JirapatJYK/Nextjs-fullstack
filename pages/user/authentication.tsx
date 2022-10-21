@@ -6,8 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import Loader from "../../components/Loader";
 import Popup from "../../components/Popup";
 import TextInput from "../../components/TextInput";
+import Image from "next/image";
 
-const Signup: NextPage = () => {
+const Authentication: NextPage = () => {
     const [strUsername, setStrUsername] = useState("");
     const [strEmail, setStrEmail] = useState('');
     const [strPassword, setStrPassword] = useState('');
@@ -46,7 +47,7 @@ const Signup: NextPage = () => {
     const popupCallback = async(childData: boolean) =>{
         setBlnPopup(childData)
         if(childData && listPopupData.title == "Forgot your password"){
-            const email = "jirapat.jaiyakwang@gmail.com"
+            const email = "jirapon.ja@mail.wu.ac.th"
             const response = await fetch('/api/support/reset-password', {
                 method: 'POST',
                 headers: {
@@ -167,37 +168,57 @@ const Signup: NextPage = () => {
         <div >
             <Loader  isLoading = {blnLoading} />
             <Popup blnShow={blnPopup} data={listPopupData} parentCallback={popupCallback}/>
-            <div className="container">
-                <div id="signin" className="form sign-in-container">
-                    <h1>Log in to your account</h1>
-                    <div className="form-control">
-                    <form className="">
-                        <TextInput lableName="Email" request={true} type="email" onInput={(e: string)=>setStrEmail(e)} alertMsg='' alertMsgStatus={false}/>
-                        <TextInput lableName="Password" request={true} type="password" onInput={(e: string)=>setStrPassword(e)} alertMsg='' alertMsgStatus={false}/>
-                    </form>
-                    <div className="d-flex px-2">
-                    <a className='link' onClick={e=>{forgotPassword()}}>forgot password?</a>
-                    </div>
-                    <button className="btn-primary" onClick={(e)=> login()}>Login</button> Don't have an account? <a className='link'>  Signup</a>
+            <div className="">
+                <div id="signin" className="d-flex">
+                    <div className="form sign-in-container bg-glass" style={{backgroundColor: "white", height: '100vh'}}>
+                        <div className="" style={{display: 'flex', lineHeight: '50px', margin: '24px 0'}}>
+                           <Image src={'/favicon.ico'} width={'50px'} height={'50px'} /><h2 className="">Create Next App</h2> 
+                        </div>
+                        
+                        <h1>Log in to your account</h1>
+                        <div className="form-control">
+                            <form className="">
+                                <TextInput lableName="Email" request={true} type="email" onInput={(e: string)=>setStrEmail(e)} alertMsg='' alertMsgStatus={false}/>
+                                <TextInput lableName="Password" request={true} type="password" onInput={(e: string)=>setStrPassword(e)} alertMsg='' alertMsgStatus={false}/>
+                            </form>
+                            <div className="d-flex px-2">
+                            <a className='link' onClick={e=>{forgotPassword()}}>forgot password?</a>
+                            </div>
+                            <button className="btn-primary" onClick={(e)=> login()}>Login</button> Don't have an account? <a className='link'>  Signup</a>
 
+                        </div>
                     </div>
+                    <div style={{padding: '48px'}}>
+                        <div className="">
+                           <h1 className="">Create Next App</h1> 
+                        </div>
+                        
+                    </div>
+                    
                 </div>
-                <div id="signup" className="form sign-up-container">
-                    <h1>Create your account</h1>
-                    <div className="form-control">
-                    <form className="">
-                        <TextInput lableName="Username" request={true} type="text" onInput={(e: string)=>setStrUsername(e)} alertMsg='' alertMsgStatus={false}/>
-                        <TextInput lableName="Email" request={true} type="email" onInput={(e: string)=>setStrEmail(e)} alertMsg='' alertMsgStatus={false}/>
-                        <TextInput lableName="Password" request={true} type="password" onInput={(e: string)=>setStrPassword(e)} alertMsg='' alertMsgStatus={false}/>
-                        <TextInput lableName="Confirm password" request={true} type="password" onInput={(e: string)=>{setStrConfirmPassword(e)}} alertMsg='' alertMsgStatus={false}/>
-                        { strPassword !==strConfirmPassword? <div className="invalid-message">Password not match</div>:""}
-                    </form>
-                    <div className="d-flex px-2">
-                        <input id="privacy-checkbox" type="checkbox" style={{width: '25px', height: '25px', marginRight: '10px'}}/>
-                        <label htmlFor="privacy-checkbox">I agree the <a className="link">Privacy Policy</a> and <a className="link">Terms of Service</a>.</label>
+                <div id="signup" className="d-flex">
+                    <div style={{padding: '48px'}}>
+                        <div className="">
+                           <h1 className="">Create Next App</h1> 
+                        </div>
+                        
                     </div>
-                    <button className="btn-primary" onClick={(e)=> signup()}>SIGN UP</button> Have an account? <a className='link'>Log in now</a>
-
+                    <div className="form sign-up-container bg-glass" style={{backgroundColor: "white", height: '100vh', justifyContent: 'flex-start'}}>
+                        <h1>Create your account</h1>
+                        <div className="form-control">
+                            <form className="">
+                                <TextInput lableName="Username" request={true} type="text" onInput={(e: string)=>setStrUsername(e)} alertMsg='' alertMsgStatus={false}/>
+                                <TextInput lableName="Email" request={true} type="email" onInput={(e: string)=>setStrEmail(e)} alertMsg='' alertMsgStatus={false}/>
+                                <TextInput lableName="Password" request={true} type="password" onInput={(e: string)=>setStrPassword(e)} alertMsg='' alertMsgStatus={false}/>
+                                <TextInput lableName="Confirm password" request={true} type="password" onInput={(e: string)=>{setStrConfirmPassword(e)}} alertMsg='' alertMsgStatus={false}/>
+                                { strPassword !==strConfirmPassword? <div className="invalid-message">Password not match</div>:""}
+                            </form>
+                            <div className="d-flex px-2">
+                                <input id="privacy-checkbox" type="checkbox" style={{width: '25px', height: '25px', marginRight: '10px'}}/>
+                                <label htmlFor="privacy-checkbox">I agree the <a className="link">Privacy Policy</a> and <a className="link">Terms of Service</a>.</label>
+                            </div>
+                            <button className="btn-primary" onClick={(e)=> signup()}>SIGN UP</button> Have an account? <a className='link'>Log in now</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -205,4 +226,4 @@ const Signup: NextPage = () => {
     )
 }
 
-export default Signup;
+export default Authentication;

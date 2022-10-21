@@ -326,7 +326,7 @@ button:disabled:hover{
 }
 .main {
   /* background: var(--background-primary-glass); */
-  max-width: 1440px;
+  max-width: 1024px;
   margin: auto;
   min-height: 100vh;
   /* padding: 4rem 0; */
@@ -337,9 +337,11 @@ button:disabled:hover{
   /* align-items: center; */
 }
 
+.m-auto{
+  margin: auto;
+}
 .form{
   /* color: #000000; */
-  margin: auto;
   padding: 40px;
   max-width: 600px;
 }
@@ -360,7 +362,7 @@ span{
 }
 
 .bg-glass{
-  border-radius: 20px;
+  /* border-radius: 20px; */
   padding: 10px;;
   background-color: var(--background-primary-glass);
   box-shadow: var(--box-shadow) 0 0 10px var(--text-secondary);
