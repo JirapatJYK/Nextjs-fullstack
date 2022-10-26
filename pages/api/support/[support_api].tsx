@@ -248,8 +248,8 @@ var result= {
     token: ''
 }
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { apiID } = await req.query;
-    apiID == 'reset-password'
+    const { support_api } = await req.query;
+    support_api == 'reset-password'
       ? result = await resetPassword(req.body.email)
       : ''
       res.status(200).json(result);

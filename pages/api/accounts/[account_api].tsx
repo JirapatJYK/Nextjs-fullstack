@@ -1,88 +1,84 @@
+import { createCipheriv, privateEncrypt, randomBytes, scrypt, scryptSync } from "crypto";
+import { request } from "https";
 import { MongoServerError, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Cookies } from "next/dist/server/web/spec-extension/cookies";
+import { promisify } from "util";
 import { connectToDatabase } from "../../../lib/mongodb";
+import { Account } from "../model/account";
+const bcrypt = require("bcrypt");
 const cookies = new Cookies()
 var jwt = require('jsonwebtoken');
-const accountModel = {
-  _id: " ",
-  status: true, // active, banned
-  profile: {
-      name: " ",
-      email: " ",
-      wallet: {
-          address: " ",
-          credits: 0,
-          gems: 0,
-      },
-      avatar: " ",
-      frame: " ",
-      banner: " ",
-  },
-  basicItems: [
-    {
-      id: " ",
-      amount: " "
-    }
-  ],
-  nftItems: [
-    {
-      id: " ",
-    }
-  ],
-  friend: [
-    {
-      id: " ",
-    }
-  ]
+
+type friendList = {
+  u_id: ObjectId,
+  friendList: Array<ObjectId>
+}
+type account = {
+  u_id: ObjectId,
+  username: String,
+  email: String,
+  avatar: String,
+  frame: String,
+  banner: String,
+  exp: Number,
+  status: Number,
+}
+type signup = {
+  username: String,
+  email: String,
+  password: String
+}
+type authentication ={
+  u_id: ObjectId,
+  recent_login: Date,
+  password: any,
+  otp: String,
+  token: String
+}
+type items = {
+  u_id: ObjectId,
+  items: Array<item>
+}
+type item = {
+  i_id: ObjectId,
+  name: String,
 }
 let blnDuplicate = false;
 const result = {
   status: '',
   token: '',
-  userInfo: {
-    _id: " ",
-    status: 0,
-    name: " ",
-    email: " ",
-    wallet: {
-        address: " ",
-        credits: 0,
-        gems: 0,
-    },
-    avatar: " ",
-    frame: " ",
-    banner: " ",
-  }
+  userInfo: {}
 }
 export default async function handler(req: NextApiRequest, res: NextApiResponse){
-  const { apiID } = await req.query;
+  const { account_api } = await req.query;
   let results:any = [];
-  console.log(req.body.params)
+  const params = req.body.params
   try {
     const { database }: {database: any} = await connectToDatabase()?? {database: null}; //กำหนด ค่าเริ่มต้น
     var collection = await database.collection(process.env.COLLECTION_ACCOUNTS);
-    apiID == 'get-accounts-all'
+    var authentication_collection = await database.collection(process.env.COLLECTION_AUTHENTICATION);
+    account_api == 'get-accounts-all'
       ? results = await getAccountsAll(collection)
-      : apiID == 'delete-accounts-all'
+      : account_api == 'delete-accounts-all'
       ? results = await deleteAccountsAll(collection)
-      : apiID == 'get-account-one'
-      ? results = await getAccountOne(collection, req)
-      : apiID == 'create-account-one'
-      ? results = await createAccountOne(collection, req)
-      : apiID == 'edit-account-one'
-      ? results = await editAccountOne(collection, req)
-      : apiID == 'signin'
-      ? results = await Signin(collection, req)
+      : account_api == 'get-account-one'
+      ? results = await getAccountOne(collection, params)
+      : account_api == 'create-account-one'
+      ? results = await createAccountOne(collection, authentication_collection, params)
+      : account_api == 'edit-account-one'
+      ? results = await editAccountOne(collection, params)
+      : account_api == 'signin'
+      ? results = await Signin(collection, authentication_collection, params)
 
-      : apiID == 'check-duplicate-username'
-      ? results = await checkDuplicateUsername(collection, req)
-      : apiID == 'check-duplicate-email'
-      ? results = await checkDuplicateEmail(collection, req)
+      : account_api == 'check-duplicate-username'
+      ? results = await checkDuplicateUsername(collection, params)
+      : account_api == 'check-duplicate-email'
+      ? results = await checkDuplicateEmail(collection, params)
       //default
       : res.status(404).send("");
   } catch (error) {
-    console.log("api error");
+    console.log(error);
   }
   res.status(200).json(results);
 }
@@ -95,18 +91,35 @@ async function deleteAccountsAll(collection: any){
   return await await collection.deleteMany({})
 }
 // POST
-async function createAccountOne(collection: any, req:any){
-  let accountData = await  req.body.params;
-  const username = req.body.params.name.toUpperCase()
-  console.log(username);
-  console.log(req.body.params)
-  // collection.aggregate([
-  //   { $group : { _id:"$name": username}},
-  //   { "$match": { name: username}}
-  // ])
-  Object.assign(accountData, {_id: ObjectId});
+async function createAccountOne(collection: any, authentication_collection:any, req: signup){
+  console.log('req', req.password)
+  const u_id = await new ObjectId()
+  const accountData:Account =await {
+    _id: u_id,
+    username: req.username,
+    email: req.email,
+    exp: 0,
+    avatar: "/icons/user.png",
+    frame: " ",
+    banner: " ",
+    status: 'active'
+  }
+  const password: any = req.password;
+  const saltOrRounds = 10;
+  const cipher = await bcrypt.hash(password, saltOrRounds);
+  const token = jwt.sign({u_id}, 'shhhhh');
+  console.log(await bcrypt.compare(password+"ddd", cipher))
   try {
     await collection.insertOne(accountData);
+    const auth: authentication = await {
+      u_id: u_id,
+      recent_login: new Date(),
+      password: cipher,
+      otp: "1234",
+      token: token
+    }
+    // await authentication_collection.createIndex( { "otp": 1 }, { expireAfterSeconds: 10 } )
+    await authentication_collection.insertOne(auth);
     return accountData;
     // await collection.insertOne({ _id: 1 }); // duplicate key error
   } catch (error) {
@@ -169,32 +182,21 @@ async function editAccountOne(collection: any, req:any){
   // }
 }
 
-async function Signin(collection: any, req:any){
-  const email = await req.body.params.email
-  const password = await req.body.params.password
+async function Signin(collection: any, authentication_collection:any, req:any){
+  const email = await req.username
+  const password = await req.password
   const account:any = await collection.findOne({ email: email })?? {account: null};
-  
+  console.log(account)
+  const accountAuthen:any = await authentication_collection.findOne({ u_id: account._id })?? {account: null};
+
   if(account == null)
   result.status = 'account not found';
-  
-  if(password == account.password){
+  console.log(accountAuthen)
+  if(await bcrypt.compare(password, accountAuthen.password)){
     console.log(account);
     result.status = 'success';
-    result.userInfo={
-      _id: account._id,
-      status: 0,
-      name: account.name,
-      email: account.email,
-      wallet: {
-          address: "0x808DEe546d3b0cA5296C2cF36B8B50d51e9e9563",
-          credits: 0,
-          gems: 0,
-      },
-      avatar: " ",
-      frame: " ",
-      banner: " ",
-    };
-    const _id = result.userInfo._id
+    result.userInfo=account;
+    const _id = account._id
     result.token=jwt.sign({_id}, 'shhhhh');
     cookies.set('jwt', result.token, {maxAge: 300});
     console.log(cookies.get('jwt'));

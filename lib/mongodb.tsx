@@ -38,3 +38,13 @@ export async function connectToDatabase() {
         console.error(e);
     }
 }
+
+export async function collection() {
+    const { database }: {database: any} = await connectToDatabase()?? {database: null};
+    var account_collection = await database.collection(process.env.COLLECTION_ACCOUNTS);
+    var authentication_collection = await database.collection(process.env.COLLECTION_AUTHENTICATION);
+    var items_collection = await database.collection(process.env.COLLECTION_ITEMS);
+    var uploads_collection = await database.collection(process.env.COLLECTION_UPLOADS);
+
+    return { account_collection, authentication_collection, items_collection, uploads_collection}
+}

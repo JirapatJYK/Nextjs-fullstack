@@ -44,6 +44,11 @@ const Authentication: NextPage = () => {
         ],
         footer: ''
     })
+    const[accountData, setAccountData] = useState(
+        {
+            
+        }
+    )
     const popupCallback = async(childData: boolean) =>{
         setBlnPopup(childData)
         if(childData && listPopupData.title == "Forgot your password"){
@@ -69,22 +74,23 @@ const Authentication: NextPage = () => {
         if(strConfirmPassword == strPassword){
             setBlnLoading(true);
             const params = await{
-                name: strUsername,
+                username: strUsername,
                 email: strEmail,
                 password: strPassword,
             }
 
-            const duplicateEmail = await fetch('/api/accounts/check-duplicate-email', {
-                method: 'POST',
-                body: JSON.stringify({strEmail}),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+            // const duplicateEmail = await fetch('/api/accounts/check-duplicate-email', {
+            //     method: 'POST',
+            //     body: JSON.stringify({strEmail}),
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
                 
-            })
-            const dEmail =  await duplicateEmail.json()
-            console.log(dEmail)
-            if( !dEmail){
+            // })
+            // const dEmail =  await duplicateEmail.json()
+            // console.log(dEmail)
+            // if( !dEmail)
+            {
                 const response = await fetch('/api/accounts/create-account-one', {
                 method: 'POST',
                 body: JSON.stringify({params}),
@@ -106,7 +112,7 @@ const Authentication: NextPage = () => {
         setBlnLoading(true)
         console.log("")
         const params = await {
-            email: strEmail,
+            username: strEmail,
             password: strPassword
         }
         const response = await fetch('/api/accounts/signin', {
@@ -127,6 +133,13 @@ const Authentication: NextPage = () => {
                 setBlnPopup(false)
             }, 1000);
             setCookie("myToken", responseData.token, {maxAge: 300});
+            setCookie("myAvatar", responseData.userInfo.avatar, {maxAge: 300});
+            setCookie("myName", responseData.userInfo.username, {maxAge: 300});
+            setCookie("myWallet", responseData.userInfo.username, {maxAge: 300});
+            setCookie("myCredits", responseData.userInfo.username, {maxAge: 300});
+            setCookie("myGems", responseData.userInfo.username, {maxAge: 300});
+
+
             console.log(getCookie("myToken"))
         }else {
             setBlnPopup(true)
@@ -170,7 +183,7 @@ const Authentication: NextPage = () => {
             <Popup blnShow={blnPopup} data={listPopupData} parentCallback={popupCallback}/>
             <div className="">
                 <div id="signin" className="d-flex">
-                    <div className="form sign-in-container bg-glass" style={{backgroundColor: "white", height: '100vh'}}>
+                    <div className="form sign-in-container bg-glass" style={{backgroundColor: "white", minHeight: '100vh'}}>
                         <div className="logo-text d-flex">
                            <Image src={'/favicon.ico'} width={'50px'} height={'50px'} /><h2 className="">INSTEADIZE</h2> 
                         </div>
@@ -184,7 +197,7 @@ const Authentication: NextPage = () => {
                             <div className="d-flex px-2">
                             <a className='link' onClick={e=>{forgotPassword()}}>forgot password?</a>
                             </div>
-                            <button className="btn-primary" onClick={(e)=> login()}>Login</button> Don't have an account? <a className='link'>  Signup</a>
+                            <button className="btn-primary" onClick={(e)=> login()}>Login</button> Don&apos;t have an account? <a className='link'>  Signup</a>
 
                         </div>
                     </div>
@@ -203,7 +216,7 @@ const Authentication: NextPage = () => {
                         </div>
                         
                     </div>
-                    <div className="form sign-up-container bg-glass" style={{backgroundColor: "white", height: '100vh', justifyContent: 'flex-start'}}>
+                    <div className="form sign-up-container bg-glass" style={{backgroundColor: "white", minHeight: '100vh', justifyContent: 'flex-start'}}>
                         <div className="logo-text d-flex">
                            <Image src={'/favicon.ico'} width={'50px'} height={'50px'} /><h2 className="">INSTEADIZE</h2> 
                         </div>

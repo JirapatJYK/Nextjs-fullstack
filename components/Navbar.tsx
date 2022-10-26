@@ -19,6 +19,7 @@ const Navbar =()=>{
             setCookie("theme", "light")
         }
     }
+    const[srcAvatar, setSrcAvatar] = useState("/favicon.ico")
     const[strUsername, setStrUsername] = useState("Signin");
     const[blnDarkMode, setBlndarkMode] = useState(false);
     const[strEmail, setStrEmail] = useState('');
@@ -136,6 +137,12 @@ const Navbar =()=>{
         }else setBlndarkMode(false);
         // getUserInfo()
         console.log(hasCookie("myToken"))
+        if(hasCookie("myAvatar")){
+            setSrcAvatar(getCookie("myAvatar")?.toString()?? "/favicon.ico")
+        }else setSrcAvatar("/favicon.ico")
+        if(hasCookie("myAvatar")){
+            setStrUsername(getCookie("myName")?.toString()?? "")
+        }else setSrcAvatar("")
         if(hasCookie("myToken")){
             getUserInfo()
         }
@@ -207,16 +214,17 @@ const Navbar =()=>{
                                 </ul> */}
                             </>:
                             <>
-                                <Image src="/favicon.ico" width="50" height="50" onClick={()=>{setBlnDropdown(!blnDropdown)}}/>
+                                <Image src={srcAvatar} width="50" height="50" onClick={()=>{setBlnDropdown(!blnDropdown)}}/>
                                 <ul id='nav-dropdown' style={{display : blnDropdown?'':'none'}} className="dropdown-menu dropdown-left">
                                     <li>
                                         <div style={{display: 'flex', flexDirection: 'row'}}>
                                             <div>
                                                 {}
-                                                <a href="#" className="fa fa-4x fa-user-circle"></a>
+                                                {/* <a href="#" className="fa fa-4x fa-user-circle"></a> */}
+                                                <Image src={ srcAvatar} width="100" height="100" />
                                             </div>
                                             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '10px'}}>
-                                                <a className="dropdown-header">{listUserInfo.name}</a>
+                                                <a className="dropdown-header">{strUsername}</a>
                                                 <Link href={'/user/'+ listUserInfo._id}>
                                                     <a className='link'>Manage Account</a>
                                                 </Link>

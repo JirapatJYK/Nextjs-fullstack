@@ -11,6 +11,7 @@
   "dependencies": {
     "@types/formidable": "^2.0.5",
     "alchemy-sdk": "^2.0.3",
+    "bcrypt": "^5.1.0",
     "cookies-next": "^2.1.1",
     "formidable-serverless": "^1.1.1",
     "fs": "^0.0.1-security",
