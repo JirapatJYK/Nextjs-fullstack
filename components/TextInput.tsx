@@ -47,7 +47,7 @@ export default function TextInput({lableName, request, type, onInput, alertMsg, 
         return true
     }
     return (
-        <div style={{marginBottom: "20px"}}>
+        <div style={{margin: "20px 0"}}>
         <div className={!blnAlertStatus? "input-container text-invalid": "input-container"} >
             <span>
                 <input id="text" type={type} value={text} onChange={(e)=>{validation(e.target.value)}} ></input>

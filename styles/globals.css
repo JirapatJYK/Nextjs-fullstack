@@ -1,5 +1,6 @@
-body[theme = "dark"]{
-  /* color-scheme: dark; */
+body {
+	--primary-color: gold;
+	height: 100vh;
   --text-primary: #fff;
   --text-secondary: #cdcdcd;
   --background-primary: #000000;
@@ -10,24 +11,6 @@ body[theme = "dark"]{
   --background-tertiary: #5e5e5e;
 
   --box-shadow: inset;
-}
-body[theme = "light"]{
-  /* color-scheme: light; */
-  --text-primary: #000000;
-  --text-secondary: #5e5e5e;
-  --background-primary: #ffffff;
-  --background-primary-glass: rgba(255,255,255,0.8);
-  --background-secondary: #eeeeee;
-  --background-tertiary: #dddddd;
-
-  --box-shadow: ;
-  background: linear-gradient(-45deg, #dddddd, #eeeeee, #FAD02C, #FAD02C);
-	background-size: 400vw 500vh;
-	animation: gradient 15s ease infinite;
-}
-body {
-	--primary-color: gold;
-	height: 100vh;
 }
 *{
   margin: 0;
@@ -449,6 +432,10 @@ nav .dropdown-menu{
   overflow: hidden;
   text-overflow: ellipsis; 
 }
+.cut-text a{
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
 .dropdown-menu{
   font-size: 16px;
   font-weight: normal;
@@ -519,6 +506,7 @@ section{
   position: relative;
   padding: 5px;
   /* margin-bottom: 20px; */
+  background-color: #000000;
   border-bottom: 2px solid #555;
 }
 .input-container label{
@@ -528,12 +516,17 @@ section{
   transition: all 0.5s ease-in-out;
 }
 .input-container  input{
+  font-size: 20px;
+  line-height: 20px;
   padding: 0;
   border: 0;
   background: transparent;
   width: 100%;
   border: none;
   outline: none;
+}
+input:-internal-autofill-selected{
+  background: transparent;
 }
 .input-container .btn-clear-input{
   border: none;
@@ -553,7 +546,7 @@ section{
 }
 .input-container span input:focus ~ label,
 .input-container span input:not(input[value = ''])  ~ label{
-	top:-10px;
+	top:-20px;
 }
 .text-invalid{
   border-bottom:2px solid #e74c3c;
@@ -758,10 +751,10 @@ input:checked + .slider:before {
 }
 
 aside {
-  float: left;
+  justify-self: start;
   color: var(--text-secondary);
   text-align: start;
-  width: 200px;
+  width: 400px;
   position: relative;
   /* background-color: var(--background-primary); */
   height: 100vh;
@@ -1099,4 +1092,29 @@ select {
 }
 .px-2{
   padding: 16px 0;
+}
+
+form fieldset{
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 300px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+form legend {
+  font-size: 20px;
+  font-weight: bold;
+  /* text-align: left; */
+}
+
+.parallelogram {
+	transform: skew(-5deg);
+	background: rgba(0, 0, 99, 0.5);
+  background: linear-gradient(180deg, rgba(0, 0, 99, 1) 0%, rgba(0, 0, 99, 0.5) 50%, rgba(0,212,255,0) 100%);
+  box-shadow: var(--box-shadow) 0 0 10px #ffffff;
+  backdrop-filter: blur(5px);
+  border: 2px solid #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  overflow: hidden;
 }

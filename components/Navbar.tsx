@@ -9,36 +9,22 @@ import Popup from './Popup';
 import Loader from './Loader';
 
 const Navbar =()=>{
-    function SetTheme() {
-        const themeSwitch :any = document.getElementById('theme-switch');
-        if(themeSwitch.checked){ 
-            document.body.setAttribute('theme', "dark");
-            setCookie("theme", "dark")
-        }else { 
-            document.body.setAttribute('theme', "light");
-            setCookie("theme", "light")
-        }
-    }
-    const[srcAvatar, setSrcAvatar] = useState("/favicon.ico")
-    const[strUsername, setStrUsername] = useState("Signin");
-    const[blnDarkMode, setBlndarkMode] = useState(false);
-    const[strEmail, setStrEmail] = useState('');
-    const[strPassword, setStrPassword] = useState('');
     const[listUserInfo, setListUserInfo] = useState({
         _id: " ",
-        status: 0,
-        name: "",
+        status: "",
+        username: "",
         email: " ",
-        wallet: {
-            address: " ",
-            credits: 0,
-            gems: 0,
-        },
-        avatar: " ",
+        exp: 0,
+        avatar: "/favicon.ico",
         frame: " ",
         banner: " ",
     });
-    const[blnPopup, setBlnPopup] = useState(false)
+    const[walletInfo, setWalletInfo] = useState({
+        wallet_address: "",
+        credits: 0,
+        gems: 0
+    });
+    const[blnPopup, setBlnPopup] = useState(false);
     const[listPopupData, setListPopupData] = useState({
             title: "",
             content: [
@@ -80,10 +66,14 @@ const Navbar =()=>{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': myToken!== undefined ? myToken : ''
+                'authorization': myToken!== undefined ? myToken : ''
             },  
         })
-        console.log(response.json())
+        const data = await response.json()
+        console.log(data.data.wallet);
+        await setListUserInfo(data.data.baseInfo);
+        await setWalletInfo(data.data.wallet);
+        await console.log(walletInfo);
     }
     function collapse(){
         console.log("collapse")
@@ -132,19 +122,10 @@ const Navbar =()=>{
     // }
 
     useEffect(()=>{
-        if(document.body.getAttribute('theme') == 'dark'){
-            setBlndarkMode(true);
-        }else setBlndarkMode(false);
         // getUserInfo()
         console.log(hasCookie("myToken"))
-        if(hasCookie("myAvatar")){
-            setSrcAvatar(getCookie("myAvatar")?.toString()?? "/favicon.ico")
-        }else setSrcAvatar("/favicon.ico")
-        if(hasCookie("myAvatar")){
-            setStrUsername(getCookie("myName")?.toString()?? "")
-        }else setSrcAvatar("")
         if(hasCookie("myToken")){
-            getUserInfo()
+            getUserInfo();
         }
     },[]);
     return(
@@ -163,12 +144,12 @@ const Navbar =()=>{
                     </li>
                 </ul>
 
-                <ul>
+                {/* <ul>
                     <li className="nav-item">
                         <SearchBox listSearcher={[]} onSearch/>
                     </li>
                     
-                </ul>
+                </ul> */}
                 
                 
                 <ul>
@@ -192,53 +173,39 @@ const Navbar =()=>{
                                         Signin 
                                 </a>
                                 </Link>
-                                {/* <ul id='nav-dropdown' style={{display : blnDropdown?'':'none'}} className="dropdown-menu dropdown-left">
-                                    <div className='nav-login'>
-                                        <a className="header m-auto">Login</a>
-                                        <div>
-                                            <TextInput lableName="Email" request={true} type="email" onInput={(e: string)=>{setStrEmail(e)}} alertMsg='' alertMsgStatus={false}/>
-                                        </div>
-                                        <div>
-                                            <TextInput lableName="Password" request={true} type="password" onInput={(e: string)=>{setStrPassword(e)}} alertMsg='' alertMsgStatus={false}/>
-                                        </div>
-                                        <a className='link'>forgot password?</a>
-                                        <button className="btn btn-primary" onClick={(e)=>{login()}}>Login</button>
-                                        <div>
-                                            Don't have an account?
-                                            <Link href={'/user/signup'}>
-                                                <a className='link'>  Signup</a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                    
-                                </ul> */}
                             </>:
                             <>
-                                <Image src={srcAvatar} width="50" height="50" onClick={()=>{setBlnDropdown(!blnDropdown)}}/>
+                                <Image src={listUserInfo.avatar} width="50" height="50" onClick={()=>{setBlnDropdown(!blnDropdown)}}/>
                                 <ul id='nav-dropdown' style={{display : blnDropdown?'':'none'}} className="dropdown-menu dropdown-left">
                                     <li>
                                         <div style={{display: 'flex', flexDirection: 'row'}}>
                                             <div>
                                                 {}
                                                 {/* <a href="#" className="fa fa-4x fa-user-circle"></a> */}
-                                                <Image src={ srcAvatar} width="100" height="100" />
+                                                <Image src={listUserInfo.avatar} width="100" height="100" />
                                             </div>
                                             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '10px'}}>
-                                                <a className="dropdown-header">{strUsername}</a>
-                                                <Link href={'/user/'+ listUserInfo._id}>
-                                                    <a className='link'>Manage Account</a>
-                                                </Link>
-                                                
+                                                <a className="dropdown-header">{listUserInfo.username}</a>
+                                                <label htmlFor='exp'>exp: {listUserInfo.exp}</label>
+                                                <progress id="exp-progress" value={listUserInfo.exp} max="100"></progress>
                                             </div>
+                                            
                                         </div>
+                                        <div style={{display: 'flex', flexDirection: 'column', fontSize: '14px'}}>
+                                            <a>UID : {listUserInfo._id}</a>
+                                            <Link href={'/user/'+ listUserInfo._id}>
+                                                <a className='link'>Manage Account </a>
+                                            </Link>
+                                        </div>
+                                        
                                     </li>
                                     <li>
                                         
                                         <Link href="#wallet">
-                                            Wallet {/* {listUserInfo.wallet.address} */}
+                                            <a>Wallet : {walletInfo.wallet_address}</a>
                                         </Link>
-                                        <li>credits : {listUserInfo.wallet.credits}</li>
-                                        <li>gems : {listUserInfo.wallet.gems}</li>
+                                        <li>credits : {walletInfo.credits}</li>
+                                        <li>gems : {walletInfo.gems}</li>
                                     </li>
                                     <li>
                                         <Link href="#favorite">
@@ -246,14 +213,7 @@ const Navbar =()=>{
                                             </Link>
                                     </li>
                                     <li>
-                                        <div className="switch">
-                                            <input id="theme-switch" type="checkbox" onChange={()=>{ SetTheme();}} checked={blnDarkMode}></input>
-                                            <label className="slider round" htmlFor="theme-switch"></label>
-                                        </div>
-                                        Dark Mode
-                                    </li>
-                                    <li>
-                                        <button className='btn-danger' onClick={(e)=>{deleteCookie("myToken")}}>Sign out</button>
+                                        <button className='btn-danger' onClick={(e)=>{deleteCookie("myToken"); Router.push('/')}}>Sign out</button>
                                     </li>
                                 </ul>
                             </>
@@ -270,10 +230,7 @@ const Navbar =()=>{
                     <div className="bar3"></div>
                 </i>
             </nav>
-            <ul className='social' >
-                {/* <Link href="mailto:jirapat.ja@mail.wu.ac.th">
-                    <a className="fa fa-2x fa-google"></a>
-                </Link> */}
+            <ul className='social'>
                 <Link href="https://discord.gg/wyjvhxD2">
                     <a className='fa-discord'><Image src='/icon/discord.svg' width={30} height={30} /></a>
                     
@@ -287,8 +244,6 @@ const Navbar =()=>{
                 <Link href="#">
                     <a className="fa fa-2x fa-instagram"></a>
                 </Link>
-                
-                
             </ul>
             {blnDropdown?<div className="bg-click" onClick={()=>{setBlnDropdown(false)}}></div>: ''}
             

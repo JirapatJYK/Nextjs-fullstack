@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 import Popup from "../../components/Popup";
 import TextInput from "../../components/TextInput";
 import Image from "next/image";
+import SmallBackground1 from "../../components/SmallBackground1";
 
 const Authentication: NextPage = () => {
     const [strUsername, setStrUsername] = useState("");
@@ -132,14 +133,14 @@ const Authentication: NextPage = () => {
             const timeout = setTimeout(() => {
                 setBlnPopup(false)
             }, 1000);
-            setCookie("myToken", responseData.token, {maxAge: 300});
-            setCookie("myAvatar", responseData.userInfo.avatar, {maxAge: 300});
-            setCookie("myName", responseData.userInfo.username, {maxAge: 300});
-            setCookie("myWallet", responseData.userInfo.username, {maxAge: 300});
-            setCookie("myCredits", responseData.userInfo.username, {maxAge: 300});
-            setCookie("myGems", responseData.userInfo.username, {maxAge: 300});
+            setCookie("myToken", responseData.token);
+            setCookie("myAvatar", responseData.data.avatar, {maxAge: 300});
+            setCookie("myName", responseData.data.username, {maxAge: 300});
+            setCookie("myWallet", responseData.data.username, {maxAge: 300});
+            setCookie("myCredits", responseData.data.username, {maxAge: 300});
+            setCookie("myGems", responseData.data.username, {maxAge: 300});
 
-
+            Router.push('/');
             console.log(getCookie("myToken"))
         }else {
             setBlnPopup(true)
@@ -205,7 +206,7 @@ const Authentication: NextPage = () => {
                         <div className="">
                            <h1 className="">Create Next App</h1> 
                         </div>
-                        
+                        <SmallBackground1/>
                     </div>
                     
                 </div>

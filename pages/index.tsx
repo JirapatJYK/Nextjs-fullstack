@@ -52,11 +52,11 @@ const Home: NextPage = () => {
                 <div className='mt-9'>
                   <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur incidunt officiis distinctio magnam, assumenda rem ipsum earum cumque quasi veritatis similique enim, consequuntur eum voluptate ab voluptas! Id, sequi sed!</p>
                 </div>
-                <table className='mt-4 w-100'>
+                <table className='mt-4 w-80'>
                   <tbody>
                     <tr>
                       <td style={{color: 'white'}}>contract</td>
-                      <td style={{color: 'var(--text-secondary)'}}>asdasdasdasdada</td>
+                      <td style={{color: 'var(--text-secondary)'}}>0xf70F246D961246c9B48dc0D8Cd621986B6919E2C</td>
                     </tr>
                   </tbody>
                 </table>

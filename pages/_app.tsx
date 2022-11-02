@@ -5,13 +5,6 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(()=>{
-    if(document.body.getAttribute('theme') != "light" && document.body.getAttribute('theme') != "dark")
-    {
-      console.log('theme light')
-      document.body.setAttribute('theme', "dark");
-    }
-  }, [])
   return <>
     <Head>
       <title>Create Next App</title>

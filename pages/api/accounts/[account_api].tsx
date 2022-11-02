@@ -3,6 +3,7 @@ import { request } from "https";
 import { MongoServerError, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Cookies } from "next/dist/server/web/spec-extension/cookies";
+import { type } from "os";
 import { promisify } from "util";
 import { connectToDatabase } from "../../../lib/mongodb";
 import { Account } from "../model/account";
@@ -36,6 +37,15 @@ type authentication ={
   otp: String,
   token: String
 }
+type walletCollection = {
+  _id: ObjectId,
+  u_id: ObjectId,
+  wallet: {
+    wallet_address: String,
+    credits: Number,
+    gems: Number
+  }
+}
 type items = {
   u_id: ObjectId,
   items: Array<item>
@@ -48,7 +58,7 @@ let blnDuplicate = false;
 const result = {
   status: '',
   token: '',
-  userInfo: {}
+  data: {}
 }
 export default async function handler(req: NextApiRequest, res: NextApiResponse){
   const { account_api } = await req.query;
@@ -58,14 +68,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { database }: {database: any} = await connectToDatabase()?? {database: null}; //กำหนด ค่าเริ่มต้น
     var collection = await database.collection(process.env.COLLECTION_ACCOUNTS);
     var authentication_collection = await database.collection(process.env.COLLECTION_AUTHENTICATION);
+    var friends_collection = await database.collection(process.env.COLLECTION_FRIENDS);
+    var wallet_collection = await database.collection(process.env.COLLECTION_WALLET);
     account_api == 'get-accounts-all'
       ? results = await getAccountsAll(collection)
       : account_api == 'delete-accounts-all'
       ? results = await deleteAccountsAll(collection)
       : account_api == 'get-account-one'
-      ? results = await getAccountOne(collection, params)
+      ? results = await getAccountOne(collection, wallet_collection, req)
       : account_api == 'create-account-one'
-      ? results = await createAccountOne(collection, authentication_collection, params)
+      ? results = await createAccountOne(collection, authentication_collection, wallet_collection, params)
       : account_api == 'edit-account-one'
       ? results = await editAccountOne(collection, params)
       : account_api == 'signin'
@@ -91,7 +103,7 @@ async function deleteAccountsAll(collection: any){
   return await await collection.deleteMany({})
 }
 // POST
-async function createAccountOne(collection: any, authentication_collection:any, req: signup){
+async function createAccountOne(collection: any, authentication_collection:any, wallet_collection:any, req: signup){
   console.log('req', req.password)
   const u_id = await new ObjectId()
   const accountData:Account =await {
@@ -118,8 +130,17 @@ async function createAccountOne(collection: any, authentication_collection:any, 
       otp: "1234",
       token: token
     }
+    const wallet = await {
+      u_id: u_id,
+      wallet: {
+        wallet_address: "",
+        credits: 0,
+        gems: 0
+      }
+    }
     // await authentication_collection.createIndex( { "otp": 1 }, { expireAfterSeconds: 10 } )
     await authentication_collection.insertOne(auth);
+    await wallet_collection.insertOne(wallet);
     return accountData;
     // await collection.insertOne({ _id: 1 }); // duplicate key error
   } catch (error) {
@@ -129,7 +150,8 @@ async function createAccountOne(collection: any, authentication_collection:any, 
     throw error; // still want to crash
   }
 }
-async function getAccountOne(collection: any, req:any){
+async function getAccountOne(collection: any, wallet_collection: any, req:any){
+  console.log(req.headers.authorization)
   const userToken = req.headers.authorization
   const _id = jwt.verify(userToken, 'shhhhh')
   let account:any;
@@ -139,27 +161,19 @@ async function getAccountOne(collection: any, req:any){
 
   console.log("_id", userId)
   try {
-    const account:any = await collection.findOne({ "_id": new ObjectId(userId)})?? {account: null};
-    console.log(account)
-    if(account == null){
+    const baseInfo:any = await collection.findOne({ "_id": new ObjectId(userId)})?? {account: null};
+    const walletInfo:walletCollection = await wallet_collection.findOne({ "u_id": new ObjectId(userId)})?? {wallet: null};
+    let data = {};
+    console.log(walletInfo.wallet)
+    if(baseInfo == null){
       result.status = 'account not found';
     }else{
-      console.log(account);
+      console.log(baseInfo);
       result.status = 'success';
-      result.userInfo={
-        _id: account._id,
-        status: 0,
-        name: account.name,
-        email: account.email,
-        wallet: {
-            address: "0x808DEe546d3b0cA5296C2cF36B8B50d51e9e9563",
-            credits: 0,
-            gems: 0,
-        },
-        avatar: " ",
-        frame: " ",
-        banner: " ",
-      };
+      data={
+        baseInfo, wallet: {...walletInfo.wallet}
+      }
+      result.data=data;
     }
   } catch (error) {
     console.log(error);
@@ -183,6 +197,7 @@ async function editAccountOne(collection: any, req:any){
 }
 
 async function Signin(collection: any, authentication_collection:any, req:any){
+  console.log(req)
   const email = await req.username
   const password = await req.password
   const account:any = await collection.findOne({ email: email })?? {account: null};
@@ -195,7 +210,7 @@ async function Signin(collection: any, authentication_collection:any, req:any){
   if(await bcrypt.compare(password, accountAuthen.password)){
     console.log(account);
     result.status = 'success';
-    result.userInfo=account;
+    result.data=account;
     const _id = account._id
     result.token=jwt.sign({_id}, 'shhhhh');
     cookies.set('jwt', result.token, {maxAge: 300});
