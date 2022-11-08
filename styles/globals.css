@@ -832,7 +832,28 @@ aside .inputprice{
     width: 400px;
   }
 }
-
+.tab{
+  background-color: #636363;
+  /* border: #00bfff 2px solid; */
+  display: flex;
+}
+.tab button{
+  border: none;
+  border-bottom: 4px solid #ffffff;
+  color: #000000;
+  border-radius: 0%;
+  min-width: 100px;
+}
+.tab button:hover{
+  color: var(--primary-color);
+  background: #fff;
+  border-bottom: var(--primary-color) 4px solid;
+}
+.tab-container{
+  width: 100%;
+  border: 2px solid var(--primary-color);
+  min-height: 300px;
+}
 
 table, th, td {
   /* border: 1px solid black; */
@@ -1110,7 +1131,7 @@ form legend {
 .parallelogram {
 	transform: skew(-5deg);
 	background: rgba(0, 0, 99, 0.5);
-  background: linear-gradient(180deg, rgba(0, 0, 99, 1) 0%, rgba(0, 0, 99, 0.5) 50%, rgba(0,212,255,0) 100%);
+  background: linear-gradient(180deg, rgb(0, 0, 48) 0%, rgba(0, 0, 99, 0.5) 50%, rgba(0,212,255,0) 100%);
   box-shadow: var(--box-shadow) 0 0 10px #ffffff;
   backdrop-filter: blur(5px);
   border: 2px solid #ffffff;

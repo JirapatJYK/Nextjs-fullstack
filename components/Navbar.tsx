@@ -163,7 +163,7 @@ const Navbar =()=>{
                             <a>Create</a>
                         </Link>
                     </li >
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         {
                             hasCookie("myToken") == false? 
                             <>
@@ -180,8 +180,7 @@ const Navbar =()=>{
                                     <li>
                                         <div style={{display: 'flex', flexDirection: 'row'}}>
                                             <div>
-                                                {}
-                                                {/* <a href="#" className="fa fa-4x fa-user-circle"></a> */}
+                                               
                                                 <Image src={listUserInfo.avatar} width="100" height="100" />
                                             </div>
                                             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '10px'}}>
@@ -221,7 +220,7 @@ const Navbar =()=>{
                         }
                        
                         
-                    </li>
+                    </li> */}
                 </ul>
                 
                 <i className='icon' onClick={()=>{collapse()}}>

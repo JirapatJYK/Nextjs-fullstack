@@ -1,6 +1,6 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react"
 // validation / btn clear input
-export default function TextInput({lableName, request, type, onInput, alertMsg, alertMsgStatus}:{lableName: String, request: Boolean, type: any, onInput: any, alertMsg: String, alertMsgStatus: Boolean}){
+export default function TextInput({lableName, request, value, type, onInput, alertMsg, alertMsgStatus}:{lableName: String, request: Boolean, value: any , type: any, onInput: any, alertMsg: String, alertMsgStatus: Boolean}){
     const[text, setText] = useState("");
     const[blnAlertStatus, setBlnAlertStatus] = useState(true);
     const[alertMessage, setAlertMessage] = useState("alert");
@@ -16,7 +16,12 @@ export default function TextInput({lableName, request, type, onInput, alertMsg, 
         }
         // setBlnValid(alertRequest())
     })
-    
+    useEffect(()=> {
+        // const timeout = setTimeout(()=>{
+            setText(value);
+        // },2500)
+        
+    },[])
     function validation(inputText: string){
         setText(inputText)
         // if (this.validate == "InitialEN") {

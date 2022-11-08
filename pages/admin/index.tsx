@@ -1,52 +1,98 @@
+import Router from "next/router";
 import { useEffect, useState } from "react"
 import DataTable from "../../components/DataTable";
 import Navbar from "../../components/Navbar";
+import Popup from "../../components/Popup";
+import TabNavigation from "../../components/TabNavigation";
 
-export default function AccountData(){
-    const [accountData, setAccountData] = useState([]);
-    const [tableField, setTableField] = useState(["_id", "name", "email", "password"]);
+export default function AdminHome() {
+    const [popupData, setPopupData] = useState({
+        title: "",
+        content: [
+            {}
+            // {
+            //     type: "input",
+            //     label: "Username",
+            // },
+            // {
+            //     type: "input",
+            //     label: "Password",
+            // }
+        ],
+        button: [
+            {}
+            // { 
+            //     text: 'Ok',
+            //     blnDisable: false,
+            //     style: 'primary',
+            // },
+            // { 
+            //     text: 'Cancel',
+            //     blnDisable: false,
+            //     style: 'danger',
+            // }
 
-    const getUserData = async() => {
-        // try {
-        //     const response = await fetch('/api/account/get-accounts-all');
-        //     const data = await response.json()
-        //     await setAccountData(data);
-        //     await console.log("response");
-        //     await console.log(response);
-        //     await console.log("data");
-        //     await console.log(data);
-
-        // } catch (error) {
-        //     console.log("error");
-        //     console.log(error);
-        //     console.log("error");
-
-        // }
-        await fetch('/api/accounts/get-accounts-all')
-        .then(async (response) => {
-            const data = await response.json();
-            await setAccountData(data);
-            await console.log("response");
-            await console.log(response);
-            await console.log("data");
-            await console.log(data);
-        }).catch((error) => {
-            console.log("error");
-            console.error(error);
-            console.log("error");
-        })
-        
-        await console.log(accountData);
-        
+        ],
+        footer: ''
+    })
+    const [blnPopup, setBlnPopup] = useState(false);
+    const [listTabs, setListTabs] = useState(
+        [
+            {
+                strName: "Dashboard",
+            },
+            {
+                strName: "Items"
+            },
+            {
+                strName: "Players"
+            },
+            {
+                strName: "Transactions"
+            }
+        ]
+    )
+    const [intCurrentTab, setIntCurrentTab] = useState(0);
+    const checkUserrue = () => {
+        return true;
     }
-    useEffect(()=> {
-        getUserData()
-    },[])
-    return(
+    useEffect(() => {
+        if (!checkUserrue()) {
+            Router.push('./authentication')
+        }
+    }, [])
+    function selectedTab(childData: any) {
+        // alert("Selected tab: " + childData);
+        setIntCurrentTab(childData);
+    }
+    return (
         <div>
-            <Navbar/>
+            {/* <Navbar /> */}
+            <Popup blnShow={blnPopup} data={popupData} parentCallback />
             <div className="container">
-                <DataTable  tableHead={tableField} tableBody={accountData} />
+                <div className="main">
+                    <TabNavigation tabsName={listTabs} onSelectedTab={selectedTab} />
+                    <div className="tab-container">
+                        {intCurrentTab == 0 ?
+                            <div style={{ color: 'red' }}>
+                                <h1>PLAYERS ONLINE</h1>
+                                <div className="chart-card">
+                                    <div className="chart-header"></div>
+                                    <div className="chart-parameter"></div>
+                                    <div className="chart-body">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            : intCurrentTab == 1 ?
+                                <h1>Items Management</h1>
+
+                                : intCurrentTab == 2 ?
+                                <h1>Players Management</h1>
+                                :   <h1>Transaction view</h1>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     )

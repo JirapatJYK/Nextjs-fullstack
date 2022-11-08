@@ -1,7 +1,7 @@
 const SmallBackground1 = () => {
     return (
         <svg width="800px" height="800px" viewBox="0 0 800 800" version="1.1" xmlns="http://www.w3.org/2000/svg" >
-            <g id="paths" className="path" stroke="#FFAE0C" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"  stroke-opacity="1" stroke-dasharray="30,150" stroke-dashoffset="2000">
+            <g id="paths" className="path" stroke="#FFAE0C" strokeWidth="2" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round"  strokeOpacity="1" strokeDasharray="30,150" strokeDashoffset="2000">
                 <g id="left" transform="translate(461.000000, 416.000000)">
                     <polyline points="18 0 27 0 55 28 95 28 115 48 127 48"></polyline>
                     <polyline points="18 23 27 23 47 43 86 43 107 64 127 64"></polyline>
@@ -17,7 +17,7 @@ const SmallBackground1 = () => {
                     <polyline points="48 56 48 48 44 44 44 23 32 11 32 0"></polyline>
                 </g>
             </g>
-            <g id="paths-2" className="path-2" stroke="#FFAE0C" stroke-width="3" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"  stroke-opacity="1" stroke-dasharray="50,150" stroke-dashoffset="2000">
+            <g id="paths-2" className="path-2" stroke="#FFAE0C" strokeWidth="3" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round"  strokeOpacity="1" strokeDasharray="50,150" strokeDashoffset="2000">
                 <g id="right" transform="translate(620.000000, 427.000000)">
                     <polyline points="16 69 28 69 44 85 52 85 56 81 68 81"></polyline>
                     <polyline points="16 61 100 61 104 65 111 65"></polyline>
@@ -28,7 +28,7 @@ const SmallBackground1 = () => {
                     <polyline points="0 28 0 16 16 0 22 0"></polyline>
                 </g>
             </g>
-            <g id="paths-bg" stroke="#FFAE0C" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+            <g id="paths-bg" stroke="#FFAE0C" strokeWidth="1.5" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
                 <g id="left" transform="translate(461.000000, 416.000000)">
                     <polyline points="18 0 27 0 55 28 95 28 115 48 127 48"></polyline>
                     <polyline points="18 23 27 23 47 43 86 43 107 64 127 64"></polyline>

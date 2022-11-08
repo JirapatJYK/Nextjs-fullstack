@@ -25,6 +25,7 @@ export default function UserID() {
         credits: 0,
         gems: 0
     });
+    const[loading, setLoading]= useState(true);
     useEffect(() => {
         console.log(accountId)
         // if(id!=undefined)
@@ -43,27 +44,30 @@ export default function UserID() {
             },
         })
         const data = await response.json()
-        console.log(data);
+        console.log(data.status);
+        
         await setListUserInfo(data.data.baseInfo);
         await setWalletInfo(data.data.wallet);
+        await setLoading(data.status!='success');
     }
     return (
         <>
             <Navbar />
-            <div className="container" style={{ height: '100vh' }}>
+            {
+                loading==false?<div className="container" style={{ height: '100vh' }} >
 
                 <div className="main" style={{ color: '#eeeeee', display: 'flex', gap: '50px', justifyContent: 'center', marginTop: '20px' }}>
                     <aside className='parallelogram'>
-                        <div style={{ transform: 'skew(5deg)', backgroundImage: 'url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/9a08f27c-30ec-4158-8613-4da1bf857d91/dayafxh-e78593cc-fc0b-408b-88ab-3cdad774cbb8.png)'}}>
+                        <div style={{ transform: 'skew(5deg)', backgroundImage: 'url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/9a08f27c-30ec-4158-8613-4da1bf857d91/dayafxh-e78593cc-fc0b-408b-88ab-3cdad774cbb8.png)' }}>
 
-                            
+
                             <Image src={listUserInfo.avatar} width="200px" height="200px" onClick={() => { console.log("change avatar") }} />
                         </div>
-                        <div style={{ maxWidth: "400px", padding: '10px', overflow: 'hidden'}}>
+                        <div style={{ maxWidth: "400px", padding: '10px', overflow: 'hidden' }}>
                             <h1>{listUserInfo.username}</h1>
                             <fieldset >
                                 <legend><h2>Wallet</h2></legend>
-                                <ul style={{ margin: '0 auto', width: '380px', overflow: 'hidden', padding: '10px'}}>
+                                <ul style={{ margin: '0 auto', width: '380px', overflow: 'hidden', padding: '10px' }}>
                                     <li><a>{walletInfo.wallet_address}</a></li>
                                     <li>Credits: {walletInfo.credits}</li>
                                     <li>Gems: {walletInfo.gems}</li>
@@ -73,16 +77,17 @@ export default function UserID() {
                         </div>
 
                     </aside>
-                    <div  className='parallelogram' >
+                    <div className='parallelogram' >
                         <h1>ACCOUNT ID {id}</h1>
                         <pre>{listUserInfo.username}</pre>
-                        <form style={{ maxWidth: '1024px' }}>
+                        {/* <form style={{ maxWidth: '1024px' }}> */}
                             <fieldset>
                                 <legend>Personal Information</legend>
                                 <div style={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
                                     <TextInput
                                         lableName={"Username"}
                                         request={true}
+                                        value={listUserInfo.username}
                                         type={'text'}
                                         onInput={() => { }}
                                         alertMsg={''}
@@ -91,6 +96,7 @@ export default function UserID() {
                                     <TextInput
                                         lableName={"E-mail Address"}
                                         request={true}
+                                        value={listUserInfo.email}
                                         type={'email'}
                                         onInput={() => { }}
                                         alertMsg={''}
@@ -106,6 +112,7 @@ export default function UserID() {
                                     <TextInput
                                         lableName={"Username"}
                                         request={true}
+                                        value={listUserInfo.username}
                                         type={'text'}
                                         onInput={() => { }}
                                         alertMsg={''}
@@ -114,6 +121,7 @@ export default function UserID() {
                                     <TextInput
                                         lableName={"E-mail Address"}
                                         request={true}
+                                        value={listUserInfo.username}
                                         type={'email'}
                                         onInput={() => { }}
                                         alertMsg={''}
@@ -122,14 +130,14 @@ export default function UserID() {
                                 </div>
 
                             </fieldset>
-                        </form>
+                        {/* </form> */}
                     </div>
 
 
                 </div>
 
-            </div>
-            <Background/>
+            </div>:""}
+            <Background />
         </>
 
     )
