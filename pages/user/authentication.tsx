@@ -16,6 +16,25 @@ const Authentication: NextPage = () => {
     const [strConfirmPassword, setStrConfirmPassword] = useState('');
     const [blnLoading, setBlnLoading] = useState(true);
     const[blnPopup, setBlnPopup] = useState(false)
+    const[trigger, setTrigger] = useState(false);
+    const[emailProps, setEmailProps] = useState({
+        required: true,
+        labelName: "Email",
+        value: "",
+        type: "email",
+        onInput: setStrEmail,
+        validate: "InitialEN",
+        trigger: false,
+    })
+    const[passwordProps, setPasswordProps] = useState({
+        required: true,
+        labelName: "Password",
+        value: "",
+        type: "password",
+        onInput: setStrEmail,
+        validate: "",
+        trigger: false,
+    })
     const[listPopupData, setListPopupData] = useState({
         title: "",
         content: [
@@ -69,9 +88,11 @@ const Authentication: NextPage = () => {
             setBlnLoading(false);
         },2500)
         console.log(getCookie("myToken"))
+        console.log(strEmail);
     })
 
     async function signup(){
+        setTrigger(true);
         if(strConfirmPassword == strPassword){
             setBlnLoading(true);
             const params = await{
@@ -110,6 +131,8 @@ const Authentication: NextPage = () => {
         }else ('password not match')    
     }
     async function login() {
+        setEmailProps({...emailProps, trigger: true});
+
         setBlnLoading(true)
         console.log("")
         const params = await {
@@ -192,8 +215,11 @@ const Authentication: NextPage = () => {
                         <h1>Log in to your account</h1>
                         <div className="form-control">
                             <form className="">
-                                <TextInput lableName="Email" request={true} value='' type="email" onInput={(e: string)=>setStrEmail(e)} alertMsg='' alertMsgStatus={false}/>
-                                <TextInput lableName="Password" request={true} value='' type="password" onInput={(e: string)=>setStrPassword(e)} alertMsg='' alertMsgStatus={false}/>
+                                <pre>{JSON.stringify(emailProps)}</pre>
+                                <TextInput {...emailProps}/>
+                                <TextInput {...passwordProps}/>
+                                {/* <TextInput lableName="Email" request={true} value='' type="email" onInput={(e: string)=>setStrEmail(e)} alertMsg='' alertMsgStatus={false}/>
+                                <TextInput lableName="Password" request={true} value='' type="password" onInput={(e: string)=>setStrPassword(e)} alertMsg='' alertMsgStatus={false}/> */}
                             </form>
                             <div className="d-flex px-2">
                             <a className='link' onClick={e=>{forgotPassword()}}>forgot password?</a>
@@ -224,10 +250,10 @@ const Authentication: NextPage = () => {
                         <h1>Create your account</h1>
                         <div className="form-control">
                             <form className="">
-                                <TextInput lableName="Username" request={true} value='' type="text" onInput={(e: string)=>setStrUsername(e)} alertMsg='' alertMsgStatus={false}/>
+                                {/* <TextInput lableName="Username" request={true} value='' type="text" onInput={(e: string)=>setStrUsername(e)} alertMsg='' alertMsgStatus={false}/>
                                 <TextInput lableName="Email" request={true} value='' type="email" onInput={(e: string)=>setStrEmail(e)} alertMsg='' alertMsgStatus={false}/>
                                 <TextInput lableName="Password" request={true} value='' type="password" onInput={(e: string)=>setStrPassword(e)} alertMsg='' alertMsgStatus={false}/>
-                                <TextInput lableName="Confirm password" request={true} value='' type="password" onInput={(e: string)=>{setStrConfirmPassword(e)}} alertMsg='' alertMsgStatus={false}/>
+                                <TextInput lableName="Confirm password" request={true} value='' type="password" onInput={(e: string)=>{setStrConfirmPassword(e)}} alertMsg='' alertMsgStatus={false}/> */}
                                 { strPassword !==strConfirmPassword? <div className="invalid-message">Password not match</div>:""}
                             </form>
                             <div className="d-flex px-2">

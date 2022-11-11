@@ -504,26 +504,27 @@ section{
 
 .input-container{
   position: relative;
-  padding: 5px;
+  padding: 12px 14px;
+
   /* margin-bottom: 20px; */
   background-color: #000000;
   border-bottom: 2px solid #555;
+  border-radius: 5px;
 }
 .input-container label{
   position: absolute;
-  top: 5px;
-  left: 0px;
+  top: 22px;
   transition: all 0.5s ease-in-out;
 }
 .input-container  input{
   font-size: 20px;
   line-height: 20px;
-  padding: 0;
   border: 0;
-  background: transparent;
+  background: none;
   width: 100%;
   border: none;
   outline: none;
+  z-index: 1;
 }
 input:-internal-autofill-selected{
   background: transparent;
@@ -547,6 +548,7 @@ input:-internal-autofill-selected{
 .input-container span input:focus ~ label,
 .input-container span input:not(input[value = ''])  ~ label{
 	top:-20px;
+  color: #000000;
 }
 .text-invalid{
   border-bottom:2px solid #e74c3c;
