@@ -13,7 +13,7 @@ const Authentication: NextPage = () => {
     const [strUsername, setStrUsername] = useState("");
     const [strEmail, setStrEmail] = useState('');
     const [strPassword, setStrPassword] = useState('');
-    const [strConfirmPassword, setStrConfirmPassword] = useState('');
+    const [strPassword1, setStrPassword1] = useState('');
     const [blnLoading, setBlnLoading] = useState(true);
     const [blnPopup, setBlnPopup] = useState(false)
     const [listPopupData, setListPopupData] = useState({
@@ -50,6 +50,42 @@ const Authentication: NextPage = () => {
 
         }
     )
+    const[usernameProps, setUsernameProps] = useState({
+        required: true,
+        labelName: "Create new password",
+        value: "",
+        type: "text",
+        onInput: setStrUsername,
+        validate: "",
+        trigger: false,
+    });
+    const[emailProps, setEmailProps] = useState({
+        required: true,
+        labelName: "Create new password",
+        value: "",
+        type: "email",
+        onInput: strEmail,
+        validate: "Email",
+        trigger: false,
+    });
+    const[passwordProps, setPasswordProps] = useState({
+        required: true,
+        labelName: "Create new password",
+        value: "",
+        type: "password",
+        onInput: setStrPassword,
+        validate: "Password",
+        trigger: false,
+    })
+    const[password1Props, setPassword1Props] = useState({
+        required: true,
+        labelName: "Confirm your password",
+        value: "",
+        type: "password",
+        onInput: setStrPassword1,
+        validate: "Password",
+        trigger: false,
+    })
     const popupCallback = async (childData: boolean) => {
         setBlnPopup(childData)
         if (childData && listPopupData.title == "Forgot your password") {
@@ -72,7 +108,7 @@ const Authentication: NextPage = () => {
     })
 
     async function signup() {
-        if (strConfirmPassword == strPassword) {
+        if (strPassword === strPassword1) {
             setBlnLoading(true);
             const params = await {
                 username: strUsername,
@@ -193,8 +229,8 @@ const Authentication: NextPage = () => {
                         <h1>Log in to your account</h1>
                         <div className="form-control">
                             <form className="">
-                                <TextInput lableName="Email" request={true} value='' type="email" onInput={(e: string) => setStrEmail(e)} alertMsg='' alertMsgStatus={false} />
-                                <TextInput lableName="Password" request={true} value='' type="password" onInput={(e: string) => setStrPassword(e)} alertMsg='' alertMsgStatus={false} />
+                                <TextInput {...usernameProps} />
+                                <TextInput {...passwordProps} />
                             </form>
                             <div className="d-flex px-2">
                                 <a className='link' onClick={e => { forgotPassword() }}>forgot password?</a>
@@ -225,11 +261,11 @@ const Authentication: NextPage = () => {
                         <h1>Create your account</h1>
                         <div className="form-control">
                             <form className="">
-                                <TextInput lableName="Username" request={true} value='' type="text" onInput={(e: string) => setStrUsername(e)} alertMsg='' alertMsgStatus={false} />
-                                <TextInput lableName="Email" request={true} value='' type="email" onInput={(e: string) => setStrEmail(e)} alertMsg='' alertMsgStatus={false} />
-                                <TextInput lableName="Password" request={true} value='' type="password" onInput={(e: string) => setStrPassword(e)} alertMsg='' alertMsgStatus={false} />
-                                <TextInput lableName="Confirm password" request={true} value='' type="password" onInput={(e: string) => { setStrConfirmPassword(e) }} alertMsg='' alertMsgStatus={false} />
-                                {strPassword !== strConfirmPassword ? <div className="invalid-message">Password not match</div> : ""}
+                                <TextInput {...usernameProps} />
+                                <TextInput {...emailProps} />
+                                <TextInput {...passwordProps}/>
+                                <TextInput {...password1Props} />
+                                {strPassword !== strPassword1 ? <div className="invalid-message">Password not match</div> : ""}
                             </form>
                             <div className="d-flex px-2">
                                 <input id="privacy-checkbox" type="checkbox" style={{ width: '25px', height: '25px', marginRight: '10px' }} />
