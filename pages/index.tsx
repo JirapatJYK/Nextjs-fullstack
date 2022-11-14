@@ -24,6 +24,24 @@ const Home: NextPage = () => {
   )
   const [isLoading, setIsloading] = useState(true);
   const [count, setCount] = useState(0);
+  const[dropdownList, setDropdownList] = useState({
+    header: "Gender",
+    onSelected: onSelected,
+    list: [
+      {
+        name : "Male",
+        id : "0",
+        
+      },
+      {
+        name : "Female",
+        id : "1",
+      },
+    ]
+  });
+  function onSelected(selected: number){
+    console.log(selected);
+  }
   useEffect(()=> {
     console.log('Home Component')
     console.log(getCookie("myToken"))
@@ -70,8 +88,8 @@ const Home: NextPage = () => {
                 </div>
                 
               </div>
-              <div className='col-5' style={{backgroundColor: "deepskyblue"}}>
-                <Image src='/vercel.svg' width='600' height='600'/>
+              <div className='hero' style={{backgroundColor: "deepskyblue", position: 'unset'}}>
+                <Image src='/vercel.svg' layout='fill' className='hero'/>
               </div>
             </div>
             
@@ -126,7 +144,7 @@ const Home: NextPage = () => {
         </section>
         <section>
           <div className='main'>
-            <SelectDropdown header={"Select 0"} list={list}/>
+            <SelectDropdown {...dropdownList}/>
           </div>
         </section>
       </main>

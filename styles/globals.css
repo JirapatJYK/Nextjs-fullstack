@@ -138,7 +138,21 @@ body {
 .timeline-content:hover{
   cursor: default
 }
-@media screen and (max-width: 900px){
+
+.hero{
+  position: relative;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+/* 1024(resize image), 786(resize font & image) 425(collumn)*/
+@media screen and (max-width: 1024) {
+  .hero{
+    width: 300px;
+    height: 300px;
+  }
+}
+@media screen and (max-width: 786px){
   .timeline ul{
     width: 550px;
   }
@@ -208,8 +222,6 @@ button{
   font-size: 14px;
   font-weight: bold;
   padding: 10px;
-  color: #cacaca;
-  border-radius: 5px;
 }
 button:hover{
   color: #ffffff;
@@ -837,14 +849,14 @@ aside .inputprice{
   /* border: #00bfff 2px solid; */
   display: flex;
 }
-.tab button{
+.tab-button{
   border: none;
   border-bottom: 4px solid #ffffff;
   color: #000000;
   border-radius: 0%;
   min-width: 100px;
 }
-.tab button:hover{
+.tab-button:hover{
   color: var(--primary-color);
   background: #fff;
   border-bottom: var(--primary-color) 4px solid;
@@ -1024,18 +1036,16 @@ select {
   font-size: 24px;
   outline: none;
   padding: 5px;
-  background: transparent;
+  background: black;
+  color: white;
   border: none;
 }
 
 .select-item{
   /* border-radius: 0px; */
   background: transparent;
-  color: var(--text-secondary);
+  color: white;
   padding: 5px;
-}
-.select-item{
-  color: var(--text-primary);
 }
 
 .popup {
@@ -1138,4 +1148,8 @@ form legend {
   padding: 20px;
   border-radius: 5px;
   overflow: hidden;
+}
+
+.active-btn{
+  border-bottom: 4px solid var(--primary-color);
 }

@@ -1,36 +1,34 @@
 import { useState } from "react"
-import { json } from "stream/consumers"
-
-export default function SelectDropdown({header, list}:{header: String, list: any[]}){
-    const [selected, setSelect] = useState(0)
-    const [selectList, setSelectList] = useState(
-        [
-            {
-                id: 0,
-                value: "selected"
-            },
-        ]
-    )
-
-    // function addList(){
-    //     setSelectList(list)
-    //     const e = document.getElementsByTagName("select")[0]
-    //     e.style.display = "block"
-    // }
+type dropdownList = {
+    header: string,
+    onSelected?: any,
+    list: {
+        name : string,
+        id : string,
+        
+    }[]
+}
+export default function SelectDropdown(props: dropdownList){
+    const [selected, setSelect] = useState("")
+    function Selecte(selectedId: string){
+        console.log(selectedId);
+        setSelect(selectedId);
+        props.onSelected(selectedId);
+    }
     return (
         <>
-        {JSON.stringify(list)}
+        {JSON.stringify(props.list)}
         <div className="select-dropdown">
             <label className="select-header" >
-                {header}
+                {props.header}
             </label>
-            <select defaultValue='defaultValue'>
-                <option disabled value='defaultValue' > -- select an option -- </option>
+            <select defaultValue='defaultValue' onChange={(e)=>{Selecte(props.list[e.target.selectedIndex -1].id)}}>
+                <option disabled value='defaultValue' > -- select an {props.header} -- </option>
                 {
-                    list.map(item=>{
+                    props.list.map(item=>{
                         return (
-                            <option className="select-item" key={item.id} onClick={()=>{setSelect(item.id)}}>
-                                {item.value}
+                            <option className="select-item" key={item.id} >
+                                {item.name}
                             </option>
                         )
                     })

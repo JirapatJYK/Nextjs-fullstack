@@ -153,7 +153,7 @@ const Navbar =()=>{
                 
                 
                 <ul>
-                    <li className="nav-item">
+                    <li className="nav-item ">
                         <Link href="/explore">
                             <a>Explore</a>
                         </Link>
@@ -163,15 +163,15 @@ const Navbar =()=>{
                             <a>Create</a>
                         </Link>
                     </li >
-                    {/* <li className="nav-item">
+                    <li className="nav-item">
                         {
                             hasCookie("myToken") == false? 
                             <>
                                 <Link href={'/user/authentication'}>
-                                <a style={{border: '2px solid var(--primary-color)', padding: '2px', color: 'var(--primary-color)'}}>
+                                <div style={{color: 'var(--primary-color)'}}>
                                     <a href="#" className="fa fa-1x fa-user-circle"></a>
-                                        Signin 
-                                </a>
+                                        <a>Signin </a>
+                                </div>
                                 </Link>
                             </>:
                             <>
@@ -220,7 +220,7 @@ const Navbar =()=>{
                         }
                        
                         
-                    </li> */}
+                    </li>
                 </ul>
                 
                 <i className='icon' onClick={()=>{collapse()}}>

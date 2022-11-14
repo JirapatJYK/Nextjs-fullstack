@@ -33,7 +33,7 @@
 
 /* Text */
 .title{
-  font-size: clamp(40px, 10vw, 100px);
+  font-size: clamp(40px, 5vw, 100px);
   font-weight: 600;
   line-height: 1;
   display: inline-block;
