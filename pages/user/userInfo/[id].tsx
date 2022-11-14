@@ -2,9 +2,9 @@ import { getCookie } from "cookies-next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useReducer, useState } from "react";
-import Background from "../../components/Background";
-import Navbar from "../../components/Navbar";
-import TextInput from "../../components/TextInput";
+import Background from "../../../components/Background";
+import Navbar from "../../../components/Navbar";
+import TextInput from "../../../components/TextInput";
 
 export default function UserID() {
     const router = useRouter()
@@ -26,6 +26,26 @@ export default function UserID() {
         gems: 0
     });
     const[loading, setLoading]= useState(true);
+    const[strUsername, setStrUsername]= useState('');
+    const[usernameProps, setUsernameProps] = useState({
+        required: true,
+        labelName: "Your name",
+        value: listUserInfo.username,
+        type: "text",
+        onInput: setStrUsername,
+        validate: "",
+        trigger: false,
+    });
+    const[strEmail, setStrEmail]= useState('');
+    const[emailProps, setEmailProps] = useState({
+        required: true,
+        labelName: "Your email",
+        value: listUserInfo.email,
+        type: "text",
+        onInput: setStrEmail,
+        validate: "",
+        trigger: false,
+    })
     useEffect(() => {
         console.log(accountId)
         // if(id!=undefined)
@@ -84,24 +104,8 @@ export default function UserID() {
                             <fieldset>
                                 <legend>Personal Information</legend>
                                 <div style={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
-                                    <TextInput
-                                        lableName={"Username"}
-                                        request={true}
-                                        value={listUserInfo.username}
-                                        type={'text'}
-                                        onInput={() => { }}
-                                        alertMsg={''}
-                                        alertMsgStatus={false}
-                                    />
-                                    <TextInput
-                                        lableName={"E-mail Address"}
-                                        request={true}
-                                        value={listUserInfo.email}
-                                        type={'email'}
-                                        onInput={() => { }}
-                                        alertMsg={''}
-                                        alertMsgStatus={false}
-                                    />
+                                    <TextInput {...usernameProps} />
+                                    <TextInput {...emailProps} />
                                 </div>
 
                             </fieldset>
@@ -109,24 +113,8 @@ export default function UserID() {
                                 <legend>Wallet Information</legend>
                                 <a>Wallet {"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}</a>
                                 <div style={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
-                                    <TextInput
-                                        lableName={"Username"}
-                                        request={true}
-                                        value={listUserInfo.username}
-                                        type={'text'}
-                                        onInput={() => { }}
-                                        alertMsg={''}
-                                        alertMsgStatus={false}
-                                    />
-                                    <TextInput
-                                        lableName={"E-mail Address"}
-                                        request={true}
-                                        value={listUserInfo.username}
-                                        type={'email'}
-                                        onInput={() => { }}
-                                        alertMsg={''}
-                                        alertMsgStatus={false}
-                                    />
+                                    <TextInput {...usernameProps} />
+                                    <TextInput {...emailProps} />
                                 </div>
 
                             </fieldset>
