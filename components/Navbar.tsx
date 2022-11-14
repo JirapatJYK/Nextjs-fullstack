@@ -5,7 +5,6 @@ import Router from 'next/router';
 import { useEffect, useState } from "react";
 import SearchBox from './SearchBox';
 import TextInput from './TextInput';
-import Popup from './Popup';
 import Loader from './Loader';
 
 const Navbar =()=>{
@@ -24,34 +23,7 @@ const Navbar =()=>{
         credits: 0,
         gems: 0
     });
-    const[blnPopup, setBlnPopup] = useState(false);
-    const[listPopupData, setListPopupData] = useState({
-            title: "",
-            content: [
-                // {
-                //     type: "input",
-                //     label: "Username",
-                // },
-                // {
-                //     type: "input",
-                //     label: "Password",
-                // }
-            ],
-            button:[
-                // { 
-                //     text: 'Ok',
-                //     blnDisable: false,
-                //     style: 'primary',
-                // },
-                // { 
-                //     text: 'Cancel',
-                //     blnDisable: false,
-                //     style: 'danger',
-                // }
-                
-            ],
-            footer: ''
-        })
+    
     const[blnLoading, setBlnLoading] = useState(false)
     const[blnDropdown, setBlnDropdown] = useState(false)
     const  popupCallback =(childData: boolean) =>{
@@ -132,7 +104,6 @@ const Navbar =()=>{
         <>
             
             <Loader isLoading={blnLoading} />
-            <Popup blnShow={blnPopup} data={listPopupData} parentCallback={popupCallback}/>
             <nav id='myTopnav'>
                 <ul>
                     <li className="nav-item">

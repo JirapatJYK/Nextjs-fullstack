@@ -218,7 +218,6 @@ const Authentication: NextPage = () => {
     return (
         <div >
             <Loader isLoading={blnLoading} />
-            <Popup blnShow={blnPopup} data={listPopupData} parentCallback={popupCallback} />
             <div className="">
                 <div id="signin" className="d-flex">
                     <div className="form sign-in-container bg-glass" style={{ backgroundColor: "white", minHeight: '100vh' }}>

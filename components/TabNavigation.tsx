@@ -9,7 +9,7 @@ export default function TabNavigation({tabsName, onSelectedTab}:{tabsName: any[]
     return (
         <div className="tab">
             {tabsName.map((tab, index)=> {
-                return <button className={selectedTab==index?"tab-button active-btn":'tab-button'} onClick={e=>emitData(index)}>{tab["strName"]}</button>
+                return <button key={index} className={selectedTab==index?"tab-button active-btn":'tab-button'} onClick={e=>emitData(index)}>{tab["strName"]}</button>
             })}
         </div>
     )

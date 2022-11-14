@@ -1,8 +1,12 @@
 import { getCookie } from "cookies-next";
+import { useRouter } from "next/router";
 import { useState } from "react"
 import TextInput from "../../../components/TextInput";
 
 export default function ResetPassword(){
+    const router = useRouter();
+    const { token } = router.query;
+
     const[strPassword, setStrPassword]= useState('');
     const[strPassword1, setStrPassword1]= useState('');
     const[passwordProp, setPasswordProps] = useState({
@@ -24,22 +28,21 @@ export default function ResetPassword(){
         trigger: false,
     })
     async function save(){
-        const myToken = getCookie("myToken")?.toString()
         if(strPassword === strPassword1){
-            const response = await fetch('/api/accounts/edit-account-one', {
+            const response = await fetch('/api/support/resetpassword', {
                 method: 'POST',
                 body: strPassword1,
                 headers: {
                     'Content-Type': 'application/json',
-                    'authorization': myToken!== undefined ? myToken : ''
+                    'authorization': token as string
                 },
-                    
-                })
+            })
         }
     }
     return(
         <>
             <div id="signup" className="form sign-up-container">
+                <a>{typeof token}: {token}</a>
                 <h1>Reset your account</h1>
                 <div className="form-control">
                 <form className="">

@@ -1,37 +1,52 @@
 import { useState } from "react"
+import TextInput from "./TextInput";
 
-export default function Popup({ blnShow, data, parentCallback}:{ blnShow : Boolean, data: any, parentCallback: any}){
+type Props = {
+    isShow: boolean,
+    title: string,
+    content: {
+        type: string,
+        itemProps: {}
+    }[],
+    button?: {
+        label: string,
+        isDisabled: boolean,
+        style: string
+        action?: any,
+    }[],
+}
+export default function Popup(props:Props){
     // const [action, setAction] = useState(false)
-    function emitData(action: Boolean){
-        parentCallback(action)
-    }
+    // function emitData(action: Boolean){
+    //     props.confirm(action)
+    // }
     return (
         <>
-            {blnShow?
+            {props.isShow?
                 <div className="loader-bg">
                     <div className="popup">
                         <div className="popup-header">
-                            <h1>{data.title}</h1>
+                            <h1>{props.title}</h1>
                         </div>
                         <div className="popup-body">
                             <div className="popup-content">
                                 {
-                                    data.content.map((item: any, index: Number) => {
+                                    props.content.map((item: any, index: Number) => {
                                         return (
                                         <>
-                                            {item.type=='input'? <><label>{item.label}</label>{item.label== 'Password'?<input type='password' className="" placeholder={item.label+'...'}/>:<input className=""  placeholder={item.label+'...'}/>}</>:item.type=='text'? <a>{item.label}</a>:''}
+                                            {item.type=='input'? <TextInput {...item.itemProps}/>:item.type=='text'? <a>{item.itemProps.label}</a>:''}
                                         </>)
                                     })
                                 }
                             </div>
                             {
-                                data.button.lenght !== 0?
+                                props.button?.length !== 0?
                                 <div className="popup-button">
                                     {
-                                        data.button.map((item: any, index: Number) => {
+                                        props.button?.map((item: any, index: Number) => {
                                             return (
                                             <>
-                                                {item.style=='primary'? <button className="btn-primary" disabled={item.blnDisable} onClick={(e)=>{emitData(true)}}>{item.text}</button>: <button className="btn-danger" disabled={item.blnDisable} onClick={(e)=>{emitData(false)}}>{item.text}</button>}
+                                                {item.style=='primary'? <button className="btn-primary" disabled={item.isDisabled} onClick={(e)=>{item.action()}}>{item.label}</button>: <button className="btn-danger" disabled={item.isDisabled} onClick={(e)=>{item.action(false)}}>{item.label}</button>}
                                             </>)
                                         })
                                     }
@@ -39,10 +54,10 @@ export default function Popup({ blnShow, data, parentCallback}:{ blnShow : Boole
                             }
                         </div>
                         
-                        {
-                            data.footer != undefined?<div className="popup-footer">{data.footer}</div>:''
+                        {/* {
+                            props.footer != undefined?<div className="popup-footer">{props.footer}</div>:''
                         }  
-                        
+                         */}
                     </div>
                 </div>: ''
             }

@@ -35,61 +35,81 @@ const Authentication: NextPage = () => {
         validate: "",
         trigger: false,
     })
+    const emailForReset = useRef('');
+    function setEmail(email: string) {
+        emailForReset.current = email;
+    }
     const[listPopupData, setListPopupData] = useState({
-        title: "",
+        isShow: blnPopup,
+        title: "string",
         content: [
-            {}
-            // {
-            //     type: "input",
-            //     label: "Username",
-            // },
-            // {
-            //     type: "input",
-            //     label: "Password",
-            // }
+            {
+                type: "text",
+                itemProps: {
+                    label: "string",
+                }
+            },
+            {
+                type: "input",
+                itemProps: {
+                    required: true,
+                    labelName: "Email",
+                    value: "",
+                    type: "email",
+                    onInput: setEmail,
+                    validate: "",
+                    trigger: false,
+                }
+            }
         ],
-        button:[
-            {}
-            // { 
-            //     text: 'Ok',
-            //     blnDisable: false,
-            //     style: 'primary',
-            // },
-            // { 
-            //     text: 'Cancel',
-            //     blnDisable: false,
-            //     style: 'danger',
-            // }
-            
+        button: [
+            {
+                label: "Confirm",
+                isDisabled: false,
+                style: "primary",
+                action: sendForgotPassword,
+            },
+            {
+                label: "Cancel",
+                isDisabled: false,
+                style: "danger",
+                action: closePopup,
+            }
         ],
-        footer: ''
     })
+    // useEffect(()=>{
+    //     sendForgotPassword();
+    // }, [emailForReset])
+    function closePopup(close: boolean){
+        console.log(close);
+        setListPopupData(listPopupData =>({...listPopupData, isShow: close}));
+
+    }
     const[accountData, setAccountData] = useState(
         {
             
         }
     )
-    const popupCallback = async(childData: boolean) =>{
-        setBlnPopup(childData)
-        if(childData && listPopupData.title == "Forgot your password"){
-            const email = "jirapon.ja@mail.wu.ac.th"
-            const response = await fetch('/api/support/reset-password', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({email}),
-            })
-            console.log(response.json())
-        }
+
+
+    async function sendForgotPassword() {
+        const email = emailForReset.current;
+        console.log(email)
+        const response = await fetch('/api/support/reset-password', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({email}),
+        })
+        console.log(await response.json())
+        
     }
     useEffect(() => {
         const timeout = setTimeout(()=> {
             setBlnLoading(false);
         },2500)
-        console.log(getCookie("myToken"))
-        console.log(strEmail);
-    })
+    },[])
 
     async function signup(){
         setTrigger(true);
@@ -174,37 +194,13 @@ const Authentication: NextPage = () => {
         }
     }
     async function forgotPassword() {
-        setListPopupData(listPopupData =>({...listPopupData, 
-            title: "Forgot your password",
-            content: [
-                {
-                    type: "input",
-                    label: "Enter your email address",
-                },
-                // {
-                //     type: "input",
-                //     label: "Password",
-                // }
-            ],
-            button:[
-                { 
-                    text: 'Reset Password',
-                    blnDisable: false,
-                    style: 'primary',
-                },
-                { 
-                    text: 'Cancel',
-                    blnDisable: false,
-                    style: 'danger',
-                },
-            ]
-        }))
-        setBlnPopup(true)
+        
+        setListPopupData(listPopupData =>({...listPopupData, isShow: true}))
     }
     return(
         <div >
             <Loader  isLoading = {blnLoading} />
-            <Popup blnShow={blnPopup} data={listPopupData} parentCallback={popupCallback}/>
+            <Popup {...listPopupData}/>
             <div className="">
                 <div id="signin" className="d-flex">
                     <div className="form sign-in-container bg-glass" style={{backgroundColor: "white", minHeight: '100vh'}}>
@@ -230,7 +226,7 @@ const Authentication: NextPage = () => {
                     </div>
                     <div style={{padding: '48px'}}>
                         <div className="">
-                           <h1 className="">Create Next App</h1> 
+                           <h1 className="">{emailForReset.current }Create Next App</h1> 
                         </div>
                         <SmallBackground1/>
                     </div>

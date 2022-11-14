@@ -47,7 +47,7 @@ export default function AccountData(){
     return(
         <div>
             <Navbar/>
-            <Popup blnShow={blnPopup} data={popupData} parentCallback/>
+            {/* <Popup blnShow={blnPopup} data={popupData} parentCallback/> */}
             <div className="container">
                 
             </div>

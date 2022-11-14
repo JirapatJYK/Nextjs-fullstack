@@ -171,11 +171,11 @@ const Signin: NextPage = () => {
     return(
         <div >
             <Loader  isLoading = {isLoading} />
-            <Popup
+            {/* <Popup
                 blnShow={isPopup} 
                 data={popupData}
                 parentCallback={popupCallback}
-            />
+            /> */}
             <div className="container">
                 <div className="form bg-glass">
                     {accountID}

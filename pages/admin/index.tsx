@@ -68,7 +68,7 @@ export default function AdminHome() {
     return (
         <div>
             {/* <Navbar /> */}
-            <Popup blnShow={blnPopup} data={popupData} parentCallback />
+            {/* <Popup blnShow={blnPopup} data={popupData} parentCallback /> */}
             <div className="container">
                 <div className="main">
                     <TabNavigation tabsName={listTabs} onSelectedTab={selectedTab} />
