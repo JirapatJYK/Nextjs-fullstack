@@ -1,45 +1,18 @@
-import { readFile } from "fs/promises";
-import { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "../../../lib/mongodb";
-var jwt = require('jsonwebtoken');
-
-var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  secure: true,
-  auth: {
-    user: 'w3ttew@gmail.com',//process.env.SUPPORT_MAIL,
-    pass: 'smahmwrkenolanaz'//process.env.SUPPORT_MAIL_PASSWORD
+<!DOCTYPE html>
+<html>
+<style>
+  /* body {text-align: center;} */
+  p {
+    text-align: center;
   }
-});
+</style>
 
-var result= {
-    status: '',
-    token: ''
-}
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { support_api } = await req.query;
-    console.log(req.body.email)
-    support_api == 'reset-password'
-      ? result = await resetPassword(req.body.email)
-      : ''
-      res.status(200).json(result);
-}
-async function getAccountByEmail(email: string){
-  const { database }: {database: any} = await connectToDatabase()?? {database: null}; //กำหนด ค่าเริ่มต้น
-  var collection = await database.collection(process.env.COLLECTION_ACCOUNTS);
-  const account = await collection.findOne({ "email": email})?? {account: null};
-  return account
-}
-async function resetPassword(email: string){
-  const account = await getAccountByEmail(email);
-  const token = await jwt.sign({email}, 'shhhhh');
-  console.log(token);
-  var mailOptions = {
-    from: 'w3ttew@gmail.com',//process.env.SUPPORT_MAIL,
-    to: email,
-    subject: 'Insteadize Password Change Request',
-    html: `<table width="100%" style="background-color:#151515;min-width:600px" {bgcolor="#f1f1f1" }>
+<head>
+  <title></title>
+</head>
+
+<body>
+  <table width="100%" style="background-color:#151515;min-width:600px" {bgcolor="#f1f1f1" }>
     <tbody>
       <tr>
         <td {align="center" } valign="top" width="100%" style="min-width:600px; ">
@@ -152,7 +125,7 @@ async function resetPassword(email: string){
                   style="font-family:arial,helvetica,sans-serif;font-size:14px;color:#cdcdcd;line-height:19px;line-height:134%;letter-spacing:.5px">
 
 
-                  Hi ${account.name}
+                  สวัสดี Jirapat
 
                   <br><br>
 
@@ -320,17 +293,7 @@ async function resetPassword(email: string){
         </td>
       </tr>
     </tbody>
-  </table>`,
-  };
-    transporter.sendMail(mailOptions, function(error: any, info: any){
-      if (error) {
-        console.log(error);
-        result.status = "Can't Send"
-      } else {
-        console.log('Email sent: ' + info.response);
-        result.status = "send"
-        result.token = jwt.sign( email , 'shhhhh')
-      }
-    });
-    return result
-}
+  </table>
+</body>
+
+</html>

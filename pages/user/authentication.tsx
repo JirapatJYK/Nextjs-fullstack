@@ -15,6 +15,8 @@ const Authentication: NextPage = () => {
     const [strPassword, setStrPassword] = useState('');
     const [strConfirmPassword, setStrConfirmPassword] = useState('');
     const [blnLoading, setBlnLoading] = useState(true);
+    const [animate, setAnimate] = useState('');
+
     const[blnPopup, setBlnPopup] = useState(false)
     const[trigger, setTrigger] = useState(false);
     const[emailProps, setEmailProps] = useState({
@@ -40,13 +42,14 @@ const Authentication: NextPage = () => {
         emailForReset.current = email;
     }
     const[listPopupData, setListPopupData] = useState({
+        animate: animate,
         isShow: blnPopup,
-        title: "string",
+        title: "Forgot Password?",
         content: [
             {
                 type: "text",
                 itemProps: {
-                    label: "string",
+                    label: "Enter your email address",
                 }
             },
             {
@@ -93,6 +96,7 @@ const Authentication: NextPage = () => {
 
 
     async function sendForgotPassword() {
+        setBlnLoading(true);
         const email = emailForReset.current;
         console.log(email)
         const response = await fetch('/api/support/reset-password', {
@@ -102,6 +106,8 @@ const Authentication: NextPage = () => {
             },
             body: JSON.stringify({email}),
         })
+        setBlnLoading(false);
+        setAnimate('success');
         console.log(await response.json())
         
     }
@@ -199,7 +205,7 @@ const Authentication: NextPage = () => {
     }
     return(
         <div >
-            <Loader  isLoading = {blnLoading} />
+            <Loader  isLoading = {blnLoading}/>
             <Popup {...listPopupData}/>
             <div className="">
                 <div id="signin" className="d-flex">

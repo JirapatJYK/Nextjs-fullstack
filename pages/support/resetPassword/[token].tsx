@@ -42,7 +42,6 @@ export default function ResetPassword(){
     return(
         <>
             <div id="signup" className="form sign-up-container">
-                <a>{typeof token}: {token}</a>
                 <h1>Reset your account</h1>
                 <div className="form-control">
                 <form className="">
