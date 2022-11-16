@@ -1,0 +1,17 @@
+.sign-in-container{
+    
+}
+.sign-up-container{
+    position: absolute;
+    right: 0;
+}
+@media screen and (max-width: 425px){
+  .sign-in-container, svg{
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 768px){
+    .sign-in-container, .sign-up-container{
+        width: 400px;
+    }
+}

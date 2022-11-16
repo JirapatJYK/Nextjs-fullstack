@@ -1,6 +1,6 @@
 const SmallBackground1 = () => {
     return (
-        <svg width="800px" height="800px" viewBox="0 0 800 800" version="1.1" xmlns="http://www.w3.org/2000/svg" >
+        <svg viewBox="0 0 800 800" version="1.1" xmlns="http://www.w3.org/2000/svg" >
             <g id="paths" className="path" stroke="#FFAE0C" strokeWidth="2" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round"  strokeOpacity="1" strokeDasharray="30,150" strokeDashoffset="2000">
                 <g id="left" transform="translate(461.000000, 416.000000)">
                     <polyline points="18 0 27 0 55 28 95 28 115 48 127 48"></polyline>

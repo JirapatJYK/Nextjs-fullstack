@@ -1,5 +1,8 @@
 import '../styles/globals.css'
 import '../styles/animation.css'
+import '../styles/form.css'
+import '../styles/chart.css'
+
 import type { AppProps } from 'next/app'
 import { useEffect } from 'react'
 import Head from 'next/head'

@@ -10,15 +10,28 @@ import Image from "next/image";
 import SmallBackground1 from "../../components/SmallBackground1";
 
 const Authentication: NextPage = () => {
-    const [strUsername, setStrUsername] = useState("");
-    const [strEmail, setStrEmail] = useState('');
-    const [strPassword, setStrPassword] = useState('');
+    
+    
+    
     const [strConfirmPassword, setStrConfirmPassword] = useState('');
     const [blnLoading, setBlnLoading] = useState(true);
     const [animate, setAnimate] = useState('');
 
     const[blnPopup, setBlnPopup] = useState(false)
     const[trigger, setTrigger] = useState(false);
+
+
+    const [strUsername, setStrUsername] = useState("");
+    const[usernameProps, setUsernameProps] = useState({
+        required: true,
+        labelName: "Username",
+        value: "",
+        type: "text",
+        onInput: setStrUsername,
+        validate: "InitialEN",
+        trigger: false,
+    })
+    const [strEmail, setStrEmail] = useState('');
     const[emailProps, setEmailProps] = useState({
         required: true,
         labelName: "Email",
@@ -28,15 +41,27 @@ const Authentication: NextPage = () => {
         validate: "InitialEN",
         trigger: false,
     })
+    const [strPassword, setStrPassword] = useState('');
     const[passwordProps, setPasswordProps] = useState({
         required: true,
-        labelName: "Password",
+        labelName: "Create your password",
         value: "",
         type: "password",
-        onInput: setStrEmail,
+        onInput: setStrPassword,
         validate: "",
         trigger: false,
     })
+    const [strPassword1, setStrPassword1] = useState('');
+    const[password1Props, setPassword1Props] = useState({
+        required: true,
+        labelName: "Confirm your password",
+        value: "",
+        type: "password",
+        onInput: setStrPassword1,
+        validate: "",
+        trigger: false,
+    })
+
     const emailForReset = useRef('');
     function setEmail(email: string) {
         emailForReset.current = email;
@@ -80,9 +105,7 @@ const Authentication: NextPage = () => {
             }
         ],
     })
-    // useEffect(()=>{
-    //     sendForgotPassword();
-    // }, [emailForReset])
+
     function closePopup(close: boolean){
         console.log(close);
         setListPopupData(listPopupData =>({...listPopupData, isShow: close}));
@@ -208,20 +231,18 @@ const Authentication: NextPage = () => {
             <Loader  isLoading = {blnLoading}/>
             <Popup {...listPopupData}/>
             <div className="">
-                <div id="signin" className="d-flex">
-                    <div className="form sign-in-container bg-glass" style={{backgroundColor: "white", minHeight: '100vh'}}>
+                <div id="signin" className="">
+                    <div className="form sign-in-container bg-glass" style={{backgroundColor: "#ffffff", minHeight: '100vh', minWidth: '320px'}}>
                         <div className="logo-text d-flex">
                            <Image src={'/favicon.ico'} width={'50px'} height={'50px'} /><h2 className="">INSTEADIZE</h2> 
                         </div>
                         
-                        <h1>Log in to your account</h1>
                         <div className="form-control">
+                            <h2 style={{color: "#000"}}>Log in to your account</h2>
                             <form className="">
-                                <pre>{JSON.stringify(emailProps)}</pre>
+                                {/* <pre>{JSON.stringify(emailProps)}</pre> */}
                                 <TextInput {...emailProps}/>
                                 <TextInput {...passwordProps}/>
-                                {/* <TextInput lableName="Email" request={true} value='' type="email" onInput={(e: string)=>setStrEmail(e)} alertMsg='' alertMsgStatus={false}/>
-                                <TextInput lableName="Password" request={true} value='' type="password" onInput={(e: string)=>setStrPassword(e)} alertMsg='' alertMsgStatus={false}/> */}
                             </form>
                             <div className="d-flex px-2">
                             <a className='link' onClick={e=>{forgotPassword()}}>forgot password?</a>
@@ -230,32 +251,37 @@ const Authentication: NextPage = () => {
 
                         </div>
                     </div>
-                    <div style={{padding: '48px'}}>
-                        <div className="">
+                    <div style={{zIndex: -1}}>
+                        {/* <div className="">
                            <h1 className="">{emailForReset.current }Create Next App</h1> 
-                        </div>
+                        </div> */}
                         <SmallBackground1/>
                     </div>
                     
                 </div>
-                <div id="signup" className="d-flex">
-                    <div style={{padding: '48px'}}>
-                        <div className="">
+                <div id="signup" className="">
+                    <div >
+                        {/* <div className="">
                            <h1 className="">Create Next App</h1> 
-                        </div>
-                        
+                        </div> */}
+                        <SmallBackground1/>
                     </div>
                     <div className="form sign-up-container bg-glass" style={{backgroundColor: "white", minHeight: '100vh', justifyContent: 'flex-start'}}>
                         <div className="logo-text d-flex">
                            <Image src={'/favicon.ico'} width={'50px'} height={'50px'} /><h2 className="">INSTEADIZE</h2> 
                         </div>
-                        <h1>Create your account</h1>
+                        
                         <div className="form-control">
+                            <h2 style={{color: "#000"}}>Create your account</h2>
                             <form className="">
                                 {/* <TextInput lableName="Username" request={true} value='' type="text" onInput={(e: string)=>setStrUsername(e)} alertMsg='' alertMsgStatus={false}/>
                                 <TextInput lableName="Email" request={true} value='' type="email" onInput={(e: string)=>setStrEmail(e)} alertMsg='' alertMsgStatus={false}/>
                                 <TextInput lableName="Password" request={true} value='' type="password" onInput={(e: string)=>setStrPassword(e)} alertMsg='' alertMsgStatus={false}/>
                                 <TextInput lableName="Confirm password" request={true} value='' type="password" onInput={(e: string)=>{setStrConfirmPassword(e)}} alertMsg='' alertMsgStatus={false}/> */}
+                                <TextInput {...usernameProps}/>
+                                <TextInput {...emailProps}/>
+                                <TextInput {...passwordProps}/>
+                                <TextInput {...password1Props}/>
                                 { strPassword !==strConfirmPassword? <div className="invalid-message">Password not match</div>:""}
                             </form>
                             <div className="d-flex px-2">

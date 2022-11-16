@@ -495,8 +495,13 @@
   animation: paths 5s step-end infinite, opacity 5s step-end infinite,
     font 7s step-end infinite, movement 8s step-end infinite;
 }
-
+/* @media screen and (max-width: 320px){
+  svg{
+    display: none;
+  }
+} */
 svg {
+  z-index: -1;
   position: absolute;
   top: 50%;
   left: 50%;

@@ -1,0 +1,12 @@
+.chart-container{
+    
+}
+.bar{
+    display: grid;
+    grid-column-gap: 20px;
+}
+.chart-value{
+    background-color: aqua;
+    height: 100px;
+    width: 100px;
+}

@@ -1,11 +1,33 @@
 import Router from "next/router";
 import { useEffect, useState } from "react"
+import Chart from "../../components/Chart";
 import DataTable from "../../components/DataTable";
 import Navbar from "../../components/Navbar";
 import Popup from "../../components/Popup";
 import TabNavigation from "../../components/TabNavigation";
 
 export default function AdminHome() {
+    const[ chartProps, setChartProps] = useState({
+        title: "Chart title",
+        type: 'bar',
+        data: {
+            labels: [
+                "1","2","1","2"
+            ],
+            datasets: [
+                {
+                    label: "string",
+                    data: [
+                        1,2,3
+                    ],
+                    color: "red",
+                }
+            ]
+        },
+        option: {
+            title: "Chart title"
+        }
+    })
     const [popupData, setPopupData] = useState({
         title: "",
         content: [
@@ -76,13 +98,7 @@ export default function AdminHome() {
                         {intCurrentTab == 0 ?
                             <div style={{ color: 'red' }}>
                                 <h1>PLAYERS ONLINE</h1>
-                                <div className="chart-card">
-                                    <div className="chart-header"></div>
-                                    <div className="chart-parameter"></div>
-                                    <div className="chart-body">
-                                        
-                                    </div>
-                                </div>
+                                <Chart {...chartProps}/>
                             </div>
                             : intCurrentTab == 1 ?
                                 <h1>Items Management</h1>
