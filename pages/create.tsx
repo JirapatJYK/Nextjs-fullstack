@@ -4,6 +4,7 @@ import { NextPage } from "next";
 import Image from "next/image";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
+import TextInput from "../components/TextInput";
 
 const Create:NextPage =()=>{
     const [media, setMedia] = useState('');
@@ -132,6 +133,43 @@ const Create:NextPage =()=>{
         }
         
     }
+
+    const[nameProps, setNameProps] = useState({
+        required: true,
+        labelName: "Name",
+        value: "",
+        type: 'text',
+        onInput: setName,
+        validate: "",
+        // trigger?: Boolean,
+    })
+    const[descriptionProps, setDescriptionProps] = useState({
+        required: true,
+        labelName: "Description",
+        value: "",
+        type: 'text',
+        onInput: setDescription,
+        validate: "",
+        // trigger?: Boolean,
+    })
+    const[externalProps, setExternalPropsProps] = useState({
+        required: true,
+        labelName: "External link",
+        value: "",
+        type: 'text',
+        onInput: setExternal,
+        validate: "",
+        // trigger?: Boolean,
+    })
+    const[backgroundProps, setBackgroundProps] = useState({
+        required: true,
+        labelName: "Background",
+        value: "",
+        type: 'text',
+        onInput: setBackground,
+        validate: "",
+        // trigger?: Boolean,
+    })
     return(
         <>
             <Navbar/>
@@ -146,9 +184,13 @@ const Create:NextPage =()=>{
                                     <form>
                                         <input type="file" onChange={(e)=>setFile(e)} />
                                         <div>{audioBackground()}</div>
-                                        <input type="text" placeholder="Name" name="name" onChange={(e)=>setName(e.target.value)}></input>
+                                        <TextInput {...nameProps}/>
+                                        <TextInput {...descriptionProps}/>
+                                        <TextInput {...externalProps}/>
+                                        <TextInput {...backgroundProps}/>
+                                        {/* <input type="text" placeholder="Name" name="name" onChange={(e)=>setName(e.target.value)}></input>
                                         <input type="text" placeholder="description" name="description" onChange={(e)=>setDescription(e.target.value)}></input>
-                                        <input type="text" placeholder="External Link" name="external" onChange={(e)=>setExternal(e.target.value)}></input>
+                                        <input type="text" placeholder="External Link" name="external" onChange={(e)=>setExternal(e.target.value)}></input> */}
                                         <input type="color" placeholder="Background" name="background" onChange={(e)=>{ setBgtype("background");setBackground(e.target.value)}}></input>
                                     </form>
                                     <button onClick={(e)=>{creatItem()}}>Create Item</button>

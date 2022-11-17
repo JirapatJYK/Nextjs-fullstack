@@ -7,9 +7,9 @@
     width: 120px;
     height: 120px;
     margin: -76px 0 0 -76px;
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid #3498db;
+    border: 16px solid var(--primary-color);
+    /* border-radius: 50%; */
+    /* border-top: 16px solid var(--primary-color); */
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 }
@@ -34,10 +34,11 @@
 /* Text */
 .title{
   font-size: clamp(40px, 5vw, 100px);
-  font-weight: 600;
+  /* font-weight: 700; */
+  font-style: italic;
   line-height: 1;
   display: inline-block;
-  color: #fff;
+  color: var(--primary-color);
   z-index: 2;
   letter-spacing: 10px;
   /* border: 2px solid #0000ff ; */

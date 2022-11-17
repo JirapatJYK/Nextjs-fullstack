@@ -2,6 +2,8 @@ import '../styles/globals.css'
 import '../styles/animation.css'
 import '../styles/form.css'
 import '../styles/chart.css'
+import '../styles/input.css'
+import '../styles/button.css'
 
 import type { AppProps } from 'next/app'
 import { useEffect } from 'react'
@@ -19,6 +21,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     <link rel="preconnect" href="https://fonts.gstatic.com"></link>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+    <link rel="preconnect" href="https://fonts.gstatic.com"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,700;1,400;1,700&family=Share+Tech&display=swap" rel="stylesheet"></link>
   </>
 }
 

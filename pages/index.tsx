@@ -88,8 +88,8 @@ const Home: NextPage = () => {
                 </div>
                 
               </div>
-              <div className='hero' style={{backgroundColor: "deepskyblue", position: 'unset'}}>
-                <Image src='/vercel.svg' layout='fill' className='hero'/>
+              <div className='col-5 hero' style={{backgroundColor: "deepskyblue", position: 'relative', padding:'10px'}}>
+                <Image src='/vercel.svg' layout='fill'/>
               </div>
             </div>
             

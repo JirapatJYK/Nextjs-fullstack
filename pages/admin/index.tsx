@@ -18,7 +18,7 @@ export default function AdminHome() {
                 {
                     label: "string",
                     data: [
-                        1,2,3
+                        0.1,0.2,0.3
                     ],
                     color: "red",
                 }

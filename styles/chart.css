@@ -3,10 +3,10 @@
 }
 .bar{
     display: grid;
-    grid-column-gap: 20px;
+    gap: 20px;
+    /* grid-template-rows: auto auto auto auto; */
+    background-color: #e5e5e5;
 }
 .chart-value{
-    background-color: aqua;
-    height: 100px;
-    width: 100px;
+        
 }
