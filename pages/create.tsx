@@ -20,24 +20,6 @@ const Create:NextPage =()=>{
     const[src, setSrc] = useState('');
     const[bgType, setBgtype] = useState('');
 
-    function setAudioBg(e:any){
-        const image = e.target.files[0];
-        // setSrcBg(URL.createObjectURL(image))
-        if(image){
-            setBgtype("backgroundImage")
-            setBackground(`url(${URL.createObjectURL(image)})`)
-        }
-        
-    }
-    function setFile(e:any){
-        const file = e.target.files[0];
-        if(file != null){
-            setSrc(URL.createObjectURL(file))
-            setMedia(file);
-            console.log("have file" , media);  
-            setType(file.type.split("/")[0]);
-        }else console.log("file not found");
-    }
     function creatItem(){
         uploadFile();
 
@@ -89,52 +71,6 @@ const Create:NextPage =()=>{
         })
     }
 
-
-
-    function previewRender(){
-        if(type === "image"){
-            return (
-                <div>
-                {/* <div className="card"> */}
-                    {/* <div className='card-content' > */}
-                        <Image src={src} id="blah" width="320px" height="320px"  style={{background: `${background}`}}></Image>
-                    {/* </div> */}
-                </div>
-            )
-        }else if(type === "video"){
-            return (
-                <video width="320"  controls src={src}/>
-            )
-        }else if(type === "audio"){
-            if(bgType == "backgroundImage"){
-                return(
-                    <div>
-                        <audio controls src={src} style={{width: "320px", height: "240px", backgroundImage: `${background}`, backgroundRepeat: "no-repeat", backgroundPosition: "center"}}/>
-                    </div>
-                )
-            }else {
-                return(
-                    <div>
-                        <audio controls src={src} style={{width: "320px", height: "240px", background: `${background}`}}/>
-                    </div>
-                )
-                
-            }
-            
-        }
-
-    }
-
-    function audioBackground(){
-        if(type === "audio"){
-            
-            return(
-                <input type="file" accept="image" onChange={(e)=>setAudioBg(e)} />
-            )
-        }
-        
-    }
-
     const[nameProps, setNameProps] = useState({
         required: true,
         labelName: "Name",
@@ -172,6 +108,7 @@ const Create:NextPage =()=>{
         // trigger?: Boolean,
     })
     const[dropzone, setDropzone] = useState({
+        background: background,
         onInput: console.log
     })
     return(
@@ -185,8 +122,6 @@ const Create:NextPage =()=>{
                             
                                 <div className="form-control">
                                     <form>
-                                        <input type="file" onChange={(e)=>setFile(e)} />
-                                        <div>{audioBackground()}</div>
                                         <TextInput {...nameProps}/>
                                         <TextInput {...descriptionProps}/>
                                         <TextInput {...externalProps}/>
@@ -202,9 +137,8 @@ const Create:NextPage =()=>{
                     </div>
                     <div className="col-5">
                         <div className="form">
-                            <Dropzone {...dropzone} />
-                            <div style={{border: '2px solid #fff', minHeight: '300px', padding: '20px', borderRadius: '5px'}}>
-                                {previewRender()}
+                            <div style={{marginTop: '40px'}}>
+                                <Dropzone {...dropzone} />
                             </div>
                         </div>
                         <div>
