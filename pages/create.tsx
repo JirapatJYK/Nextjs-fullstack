@@ -3,6 +3,7 @@ import { request } from "http";
 import { NextPage } from "next";
 import Image from "next/image";
 import { useState } from "react";
+import Dropzone from "../components/Dropzone";
 import Navbar from "../components/Navbar";
 import TextInput from "../components/TextInput";
 
@@ -170,6 +171,9 @@ const Create:NextPage =()=>{
         validate: "",
         // trigger?: Boolean,
     })
+    const[dropzone, setDropzone] = useState({
+        onInput: console.log
+    })
     return(
         <>
             <Navbar/>
@@ -179,7 +183,6 @@ const Create:NextPage =()=>{
                     <div className="col-5">
                         <div className="form">
                             
-                            <div>
                                 <div className="form-control">
                                     <form>
                                         <input type="file" onChange={(e)=>setFile(e)} />
@@ -195,12 +198,14 @@ const Create:NextPage =()=>{
                                     </form>
                                     <button onClick={(e)=>{creatItem()}}>Create Item</button>
                                 </div>
-                            </div>
                         </div>
                     </div>
                     <div className="col-5">
-                        <div>
-                            {previewRender()}
+                        <div className="form">
+                            <Dropzone {...dropzone} />
+                            <div style={{border: '2px solid #fff', minHeight: '300px', padding: '20px', borderRadius: '5px'}}>
+                                {previewRender()}
+                            </div>
                         </div>
                         <div>
                             {name}

@@ -1,5 +1,7 @@
 .sign-in-container, .sign-up-container{
   width: 600px;
+  min-height: 100vh;
+  background-color: #fff;
 }
 .sign-up-container{
     position: absolute;

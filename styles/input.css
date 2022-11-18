@@ -1,3 +1,6 @@
+input:is(:hover, :focus){
+    border-color: var(--primary-color);
+}
 .input-container{
     position: relative;
     padding: 12px 14px;
@@ -152,4 +155,37 @@ input:checked + .slider:before {
 }
 .select-dropdown:has(select:hover, select:focus){
     border-color: var(--primary-color);
+}
+
+.dropzone-container{
+    border: 2px dashed #fff;
+    border-radius: 5px;
+    min-height: 300px;
+    position: relative;
+}
+.dropzone-container:hover, .dropzone-container:has(input:focus){
+    border-color: var(--primary-color);
+}
+input[type=file]{
+    border: none;
+}
+.dropzone-container input[type=file]{
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+.clear-dropzone{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+    color: #cdcdcd;
+}
+.clear-dropzone:hover{
+    color: var(--primary-color);
+    background-color: #555;
+    cursor: pointer;
 }

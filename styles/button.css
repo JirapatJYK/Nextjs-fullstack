@@ -11,6 +11,8 @@
     box-shadow: 0px 0px 5px var(--primary-color-1);
 }
 
+
+
 button{
     cursor: pointer;
     font-size: 14px;
@@ -20,7 +22,18 @@ button{
     border: none;
     min-width: 100px;
 }
-  .btn-primary{
+.cyber-btn::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  bottom: -14px;
+  left: -13px;
+  background-color: var(--yellow-color);
+  border-top: 2px solid var(--black-color);
+  transform: rotate(45deg);
+}
+.btn-primary{
     border: none;
     background: #0066ff;
   }

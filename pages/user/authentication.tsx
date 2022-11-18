@@ -232,7 +232,7 @@ const Authentication: NextPage = () => {
             <Popup {...listPopupData}/>
             <div className="">
                 <div id="signin" className="">
-                    <div className="form sign-in-container" style={{backgroundColor: "#ffffff", minHeight: '100vh', minWidth: '320px'}}>
+                    <div className="form sign-in-container" >
                         <div className="logo-text d-flex">
                            <Image src={'/favicon.ico'} width={'50px'} height={'50px'} /><h2 className="">INSTEADIZE</h2> 
                         </div>
@@ -247,7 +247,7 @@ const Authentication: NextPage = () => {
                             <div className="d-flex px-2">
                             <a className='link' onClick={e=>{forgotPassword()}}>forgot password?</a>
                             </div>
-                            <button className="bg-primary" onClick={(e)=> login()}>Login</button> Don&apos;t have an account? <a className='link'>  Signup</a>
+                            <button className="cyber-btn bg-primary" onClick={(e)=> login()}>Login</button> Don&apos;t have an account? <a className='link'>  Signup</a>
 
                         </div>
                     </div>
@@ -266,7 +266,7 @@ const Authentication: NextPage = () => {
                         </div> */}
                         <SmallBackground1/>
                     </div>
-                    <div className="form sign-up-container" style={{backgroundColor: "white", minHeight: '100vh', justifyContent: 'flex-start'}}>
+                    <div className="form sign-up-container">
                         <div className="logo-text d-flex">
                            <Image src={'/favicon.ico'} width={'50px'} height={'50px'} /><h2 className="">INSTEADIZE</h2> 
                         </div>
@@ -288,7 +288,7 @@ const Authentication: NextPage = () => {
                                 <input id="privacy-checkbox" type="checkbox" style={{width: '25px', height: '25px', marginRight: '10px'}}/>
                                 <label htmlFor="privacy-checkbox">I agree the <a className="link">Privacy Policy</a> and <a className="link">Terms of Service</a>.</label>
                             </div>
-                            <button className="bg-primary" onClick={(e)=> signup()}>SIGN UP</button> Have an account? <a className='link'>Log in now</a>
+                            <button className=" bg-primary" onClick={(e)=> signup()}>SIGN UP</button> Have an account? <a className='link'>Log in now</a>
                         </div>
                     </div>
                 </div>
