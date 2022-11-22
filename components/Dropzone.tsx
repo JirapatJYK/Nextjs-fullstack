@@ -9,9 +9,9 @@ export default function Dropzone(props: Props){
     // const[dropEvent, setDropEvent] = useState();
     function drop(e: any){
         console.log(e.target.files[0]);
-        var input = document.getElementById("dropzone");
-        console.log(input.value);
-        if(input.value!=''){
+        var input = (document.getElementById("dropzone") as HTMLInputElement);
+        console.log(input?.value);
+        if(input?.value !=''){
             clearInput();
         }else{
           e.stopPropagation();  
@@ -27,7 +27,7 @@ export default function Dropzone(props: Props){
     function clearInput(){
         
             console.log("ssss");
-            var input = document.getElementById("dropzone");
+            var input = (document.getElementById("dropzone") as HTMLInputElement);
             console.log(input?.value);
 
             // input.value = null;

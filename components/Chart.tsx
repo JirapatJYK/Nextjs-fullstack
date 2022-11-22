@@ -21,7 +21,7 @@ export default function Chart(props: Props){
                 {
                     props.data.datasets.map((data)=>{
                         return data.data.map((value)=>{
-                            return <div  className="chart-value">
+                            return <div key={value}  className="chart-value">
                                 <label htmlFor="progress" style={{color: 'black'}}>{data.label}</label>
                                 <progress id="progress" max={data.label.length} value={(value*100)/data.label.length}></progress>
                             </div>

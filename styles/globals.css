@@ -191,27 +191,10 @@ video{
 }
 
 
-input{
-  background-color: var(--background-secondary);
-  border: 2px solid var(--text-secondary);
-  font-size: 16px;
-  padding: 10px;
-  /* border-radius: 10px; */
-  color: var(--text-secondary);
-  outline: none;
-}
 
 
 
 
-input::placeholder{
-  background-color: inherit;
-  font-style: italic;
-}
-
-input:invalid {
-  border: red solid 3px;
-}
 
 
 * {
@@ -966,4 +949,4 @@ form legend {
 
 .active-btn{
   border-bottom: 4px solid var(--primary-color);
-}
+} 

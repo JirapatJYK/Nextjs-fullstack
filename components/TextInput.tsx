@@ -68,11 +68,11 @@ export default function TextInput(props: Props){
                 textValidation = /^[A-Za-z]\w{7,14}$/
                 alertMessage = `${props.labelName} must contain at least 6 characters, including UPPER/lowercase and numbers`;
             break;
-            case "InitialEN":
+            case "Username":
                 textValidation = /^[A-Za-z]\w{7,14}$/
-                alertMessage = `${props.labelName} must be`;
+                alertMessage = `${props.labelName} must be English 2 char< name <20 `;
             break;
-            default: 
+            default:
                 textValidation= ''
                 alertMessage = '';
             break;
