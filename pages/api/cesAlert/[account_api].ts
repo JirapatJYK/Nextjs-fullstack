@@ -35,15 +35,20 @@ type friendList = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { account_api } = await req.query;
   let results: any = [];
-  const params = req.body.params
+  console.log(req.body);
+  const params = req.body
   try {
     const { database }: { database: any } = await connectToDatabase() ?? { database: null }; //กำหนด ค่าเริ่มต้น
     var collection = await database.collection('cesalert');
 
     account_api == 'get-alert-all'
       ? results = await getAlertsAll(collection)
-            : account_api == 'edit-alert-one'
-              ? results = await editAlertOne(collection, params)
+            : account_api == 'bookmark-alert-one'
+              ? results = await bookmarkAlertOne(collection, params)
+              : account_api == 'favorite-alert-one'
+              ? results = await favoriteAlertOne(collection, params)
+              : account_api == 'read-alert-one'
+              ? results = await readAlertOne(collection, params)
                     //default
                     : res.status(404).send("");
   } catch (error) {
@@ -59,17 +64,45 @@ async function getAlertsAll(collection: any) {
 // POST
 
 // PUT
-async function editAlertOne(collection: any, req: any) {
-  let topicId = await req.body.params;
-  // Object.assign(accountID, {_id: ObjectId});
-  // try {
-  //   await collection.insertOne(accountData);
-  //   return accountData;
-  //   // await collection.insertOne({ _id: 1 }); // duplicate key error
-  // } catch (error) {
-  //   if (error instanceof MongoServerError) {
-  //     console.log(`Error worth logging: ${error}`); // special case for some reason
-  //   }
-  //   throw error; // still want to crash
-  // }
+async function bookmarkAlertOne(collection: any, params: any) {
+  console.log(params);
+  const topicId: string = await params.topicId;
+  const bookmark: string = await params.bookmark;
+  let updateResult: any;
+  console.log(bookmark=='true');
+  try{
+    updateResult = await collection.updateOne({ intTopicID: topicId }, { $set: { 'blnBookmarked': (bookmark=='true') } });
+  }catch (err){
+    console.log(err);
+  }
+  console.log(updateResult);
+  return updateResult;
+}
+async function favoriteAlertOne(collection: any, params: any) {
+  console.log(params);
+  const topicId: string = await params.topicId;
+  const favorite: string = await params.favorite;
+  let updateResult: any;
+  console.log(favorite=='true');
+  try{
+    updateResult = await collection.updateOne({ intTopicID: topicId }, { $set: { 'blnFavorited': (favorite=='true') } });
+  }catch (err){
+    console.log(err);
+  }
+  console.log(updateResult);
+  return updateResult;
+}
+async function readAlertOne(collection: any, params: any) {
+  console.log(params);
+  const topicId: string = await params.topicId;
+  const read: string = await params.read;
+  let updateResult: any;
+  console.log(read=='true');
+  try{
+    updateResult = await collection.updateOne({ intTopicID: topicId }, { $set: { 'blnRead': true } });
+  }catch (err){
+    console.log(err);
+  }
+  console.log(updateResult);
+  return updateResult;
 }

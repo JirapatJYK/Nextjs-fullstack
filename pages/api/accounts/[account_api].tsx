@@ -1,10 +1,7 @@
-import { createCipheriv, privateEncrypt, randomBytes, scrypt, scryptSync } from "crypto";
-import { request } from "https";
+
 import { MongoServerError, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Cookies } from "next/dist/server/web/spec-extension/cookies";
-import { type } from "os";
-import { promisify } from "util";
 import { connectToDatabase } from "../../../lib/mongodb";
 import { Account } from "../model/account";
 const bcrypt = require("bcrypt");
@@ -95,7 +92,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           : account_api == 'create-account-one'
             ? results = await createAccountOne(collection, authentication_collection, wallet_collection, params)
             : account_api == 'edit-account-one'
-              ? results = await editAccountOne(collection, params)
+              ? results = await editAccountOne(collection, req)
               : account_api == 'signin'
                 ? results = await Signin(collection, authentication_collection, params)
 
@@ -137,7 +134,7 @@ async function createAccountOne(collection: any, authentication_collection: any,
   const encryptedPassword = await bcrypt.hash(password, saltOrRounds);
   const token = jwt.sign(
     { u_id },
-    'shhhhh',
+    process.env.TOKEN_KEY,
     { expireIn: "2h" }
   );
   console.log(await bcrypt.compare(password + "ddd", encryptedPassword))
@@ -173,7 +170,7 @@ async function createAccountOne(collection: any, authentication_collection: any,
 async function getAccountOne(collection: any, wallet_collection: any, req: any) {
   console.log(req.headers.authorization)
   const userToken = req.headers.authorization
-  const _id = jwt.verify(userToken, 'shhhhh')
+  const _id = jwt.verify(userToken, process.env.TOKEN_KEY,)
   let account: any;
   const userId = _id._id
   console.log("token", _id)
@@ -202,18 +199,22 @@ async function getAccountOne(collection: any, wallet_collection: any, req: any) 
 }
 // PUT
 async function editAccountOne(collection: any, req: any) {
-  let accountID = await req.body.params;
-  // Object.assign(accountID, {_id: ObjectId});
-  // try {
-  //   await collection.insertOne(accountData);
-  //   return accountData;
-  //   // await collection.insertOne({ _id: 1 }); // duplicate key error
-  // } catch (error) {
-  //   if (error instanceof MongoServerError) {
-  //     console.log(`Error worth logging: ${error}`); // special case for some reason
-  //   }
-  //   throw error; // still want to crash
-  // }
+  // header for get u_id
+  console.log(req.headers.authorization)
+  const userToken = req.headers.authorization
+  const u_id = jwt.verify(userToken, process.env.TOKEN_KEY,)
+  const data = await req.body.params;
+  console.log(data);
+  
+  let updateResult: any;
+
+  try{
+    updateResult = await collection.updateOne({ u_id: u_id }, { $set: { data } });
+  }catch (err){
+    console.log(err);
+  }
+  console.log(updateResult);
+  return updateResult;
 }
 
 async function Signin(collection: any, authentication_collection: any, req: any) {
