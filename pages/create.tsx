@@ -22,9 +22,8 @@ const Create:NextPage =()=>{
 
     function creatItem(){
         uploadFile();
-
     }
-    function uploadFile(){
+    function uploadFile(): void{
         const formData = new FormData();
         formData.append("file", media)
         formData.append("creater", creater)
@@ -109,8 +108,12 @@ const Create:NextPage =()=>{
     })
     const[dropzone, setDropzone] = useState({
         background: background,
-        onInput: console.log
+        onInput: onInputDropzone
     })
+    function onInputDropzone(file: any){
+        console.log(file);
+        setMedia(file);
+    }
     return(
         <>
             <Navbar/>
@@ -126,9 +129,6 @@ const Create:NextPage =()=>{
                                         <TextInput {...descriptionProps}/>
                                         <TextInput {...externalProps}/>
                                         <TextInput {...backgroundProps}/>
-                                        {/* <input type="text" placeholder="Name" name="name" onChange={(e)=>setName(e.target.value)}></input>
-                                        <input type="text" placeholder="description" name="description" onChange={(e)=>setDescription(e.target.value)}></input>
-                                        <input type="text" placeholder="External Link" name="external" onChange={(e)=>setExternal(e.target.value)}></input> */}
                                         <input type="color" placeholder="Background" name="background" onChange={(e)=>{ setBgtype("background");setBackground(e.target.value)}}></input>
                                     </form>
                                     <button onClick={(e)=>{creatItem()}}>Create Item</button>

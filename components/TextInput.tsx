@@ -16,7 +16,7 @@ export default function TextInput(props: Props){
 
     // const[required, setRequired] = useState("");
     useEffect(()=> {
-        let e = document.getElementById('text')
+        let e = document.getElementById(props.labelName)
         if(props.required){
             e?.setAttribute("required", "true")
         }
@@ -98,7 +98,7 @@ export default function TextInput(props: Props){
         <div style={{margin: "20px 0"}}>
         <div className={blnAlertStatus? "input-container text-invalid": "input-container"} >
             <span>
-                <input id="text" type={props.type} value={text} onChange={(e)=>{validation(e.target.value)}} ></input>
+                <input id={props.labelName}type={props.type} value={text} onChange={(e)=>{validation(e.target.value)}} ></input>
                 {text!=''? <button className="btn-clear-input" onClick={(e)=>{clearInput(e)}}>X</button>: ''}
                 {/* <div className='clear-btn'></div> */}
                 <label htmlFor="text">{props.labelName}</label>  

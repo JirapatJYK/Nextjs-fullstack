@@ -17,6 +17,7 @@ input:is(:hover, :focus){
     transition: all 0.5s ease-in-out;
 }
 .input-container  input{
+    color: #cdcdcd;
     font-size: 20px;
     line-height: 20px;
     border: 0;

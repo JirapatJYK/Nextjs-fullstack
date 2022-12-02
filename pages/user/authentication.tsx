@@ -193,11 +193,13 @@ const Authentication: NextPage = () => {
             body: JSON.stringify({params}),
             headers: {
                 'Content-Type': 'application/json',
-                'x-access-token': "listUserInfo.token"
             },  
         })
+        console.log(response)
+
+        if (response!= null)setBlnLoading(false)
         const responseData = await response.json()
-        setBlnLoading(false)
+        
         console.log(responseData)
         if (responseData.status == 'success') {
             setBlnPopup(true)
@@ -259,11 +261,8 @@ const Authentication: NextPage = () => {
                     </div>
                     
                 </div>
-                <div id="signup" className="">
+                {/* <div id="signup" className="">
                     <div style={{zIndex: -1}}>
-                        {/* <div className="">
-                           <h1 className="">Create Next App</h1> 
-                        </div> */}
                         <SmallBackground1/>
                     </div>
                     <div className="form sign-up-container">
@@ -274,10 +273,6 @@ const Authentication: NextPage = () => {
                         <div className="form-control">
                             <h2 style={{color: "#000"}}>Create your account</h2>
                             <form className="light-form">
-                                {/* <TextInput lableName="Username" request={true} value='' type="text" onInput={(e: string)=>setStrUsername(e)} alertMsg='' alertMsgStatus={false}/>
-                                <TextInput lableName="Email" request={true} value='' type="email" onInput={(e: string)=>setStrEmail(e)} alertMsg='' alertMsgStatus={false}/>
-                                <TextInput lableName="Password" request={true} value='' type="password" onInput={(e: string)=>setStrPassword(e)} alertMsg='' alertMsgStatus={false}/>
-                                <TextInput lableName="Confirm password" request={true} value='' type="password" onInput={(e: string)=>{setStrConfirmPassword(e)}} alertMsg='' alertMsgStatus={false}/> */}
                                 <TextInput {...usernameProps}/>
                                 <TextInput {...emailProps}/>
                                 <TextInput {...passwordProps}/>
@@ -291,7 +286,7 @@ const Authentication: NextPage = () => {
                             <button className=" bg-primary" onClick={(e)=> signup()}>SIGN UP</button> Have an account? <a className='link'>Log in now</a>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )

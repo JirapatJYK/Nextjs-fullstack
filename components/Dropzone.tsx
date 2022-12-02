@@ -53,7 +53,9 @@ export default function Dropzone(props: Props){
         if(file != null){
             setSrc(URL.createObjectURL(file))
             setType(file.type.split("/")[0]);
+            props.onInput(e.target.files[0]);
         }else console.log("file not found");
+        
     }
     useEffect(()=>{
         window.addEventListener("dragover",function(e){

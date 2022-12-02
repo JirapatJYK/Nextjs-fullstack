@@ -233,9 +233,11 @@ async function Signin(collection: any, authentication_collection: any, req: any)
     result.status = 'success';
     result.data = account;
     const _id = account._id
-    result.token = jwt.sign({ _id, password }, process.env.TOKEN_KEY, {expiresIn: "1h"});
-    console.log(cookies.get('jwt'));
-  } else result.status = 'wrong password';
+    result.token = jwt.sign({ _id, password }, 'jyk123456'/*process.env.TOKEN_KEY*/, {expiresIn: "1h"});
+  } else {
+    console.log('wrong password');
+    result.status = 'wrong password';
+  }
   console.log(result)
   return result
 }

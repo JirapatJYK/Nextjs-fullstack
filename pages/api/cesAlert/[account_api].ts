@@ -66,8 +66,8 @@ async function getAlertsAll(collection: any) {
 // PUT
 async function bookmarkAlertOne(collection: any, params: any) {
   console.log(params);
-  const topicId: string = await params.topicId;
-  const bookmark: string = await params.bookmark;
+  const topicId: string = await params.intTopicID;
+  const bookmark: string = await params.blnBookmarked;
   let updateResult: any;
   console.log(bookmark=='true');
   try{
