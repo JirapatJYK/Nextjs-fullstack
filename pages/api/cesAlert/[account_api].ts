@@ -80,8 +80,8 @@ async function bookmarkAlertOne(collection: any, params: any) {
 }
 async function favoriteAlertOne(collection: any, params: any) {
   console.log(params);
-  const topicId: string = await params.topicId;
-  const favorite: string = await params.favorite;
+  const topicId: string = await params.intTopicID;
+  const favorite: string = await params.blnFavorited;
   let updateResult: any;
   console.log(favorite=='true');
   try{

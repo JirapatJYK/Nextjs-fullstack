@@ -58,6 +58,17 @@ const Navbar =()=>{
             }
         }
     }
+    function socialCollapse(){
+        console.log("collapse")
+        const x = document.getElementById("mySocial");
+        if(x){
+            if (x.className === "social") {
+                x.className += " show-icon";
+            } else {
+                x.className = "social";
+            }
+        }
+    }
 
     // async function login() {
     //     setBlnLoading(true)
@@ -200,10 +211,11 @@ const Navbar =()=>{
                     <div className="bar3"></div>
                 </i>
             </nav>
-            <ul className='social'>
+            <ul className='social' id='mySocial'>
+                
+                {/* <a className="fa fa-2x fa-facebook"></a> */}
                 <Link href="https://discord.gg/wyjvhxD2">
-                    <a className='fa-discord'><Image src='/icon/discord.svg' width={30} height={30} /></a>
-                    
+                    <a className='fa fa-discord'><Image src='/icon/discord.svg' width={30} height={30} /></a>
                 </Link>
                 <Link href="#">
                     <a className="fa fa-2x fa-facebook"></a>
@@ -214,6 +226,7 @@ const Navbar =()=>{
                 <Link href="#">
                     <a className="fa fa-2x fa-instagram"></a>
                 </Link>
+                <a className="fa fa-2x fa-send" onClick={()=>{socialCollapse()}}></a>
             </ul>
             {blnDropdown?<div className="bg-click" onClick={()=>{setBlnDropdown(false)}}></div>: ''}
             

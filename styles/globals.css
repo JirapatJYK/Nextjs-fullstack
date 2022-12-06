@@ -220,6 +220,9 @@ video{
   flex-direction: column; */
   overflow: hidden;
 }
+.container section:nth-child(odd){
+  background: #000;
+}
 .main {
   /* background: var(--background-primary-glass); */
   max-width: 1440px;
@@ -478,8 +481,15 @@ section{
 
   background-color: #04AA6D;
 }
+.w-80{
+  width: 80%;
+}
 .w-100{
   width: 100%;
+  max-width: 100%;
+}
+.table {
+  table-layout: fixed;
 }
 .card:hover .card-info{
   opacity: 1;
@@ -490,9 +500,14 @@ section{
   transition: 5s;
 
 }
-/* .card:hover .card-content::before{
-  transform: translateX(-16px);
-} */
+
+
+/* text-overflow */
+.text-ellipsis{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .switch{
   width: 200px;
   position: relative;
@@ -774,18 +789,63 @@ body::-webkit-scrollbar-thumb{
   background-color: var(--background-primary-glass);
   border-radius: 10px 0 0 10px;
 }
+
 .social a{
   margin: auto;
-  border-radius: 50%;
+  border-radius: 25%;
   width: 50px;
   height: 50px;
-  color: #cacaca;
+  color: var(--primary-color);
   cursor: pointer;
   text-align: center;
   line-height: 50px;
 }
+
 .social a:hover{
-  color: #ffffff;
+  color: var(--primary-color);
+}
+.show-icon .fa{
+  transition: all 0.3s ease-in-out;
+    display: block;
+}
+.show-icon .fa:first-child{
+  display: block;
+  transform: rotate(0deg) translate(0, -150px) rotate(0deg);
+}
+.show-icon .fa:nth-child(2){
+  display: block;
+  transform: rotate(60deg) translate(-150px) rotate(-60deg);
+}
+.show-icon .fa:nth-child(3){
+  display: block;
+  transform: rotate(30deg) translate(-150px) rotate(-30deg);
+}
+.show-icon .fa:nth-child(4){
+  display: block;
+  transform: rotate(0deg) translate(-150px, 0px) rotate(0deg);
+}
+@media screen and (max-width: 768px){
+  .social {
+    width: 200px;
+    height: 200px;
+    background: none;
+    top: 88%;
+  }
+  
+  .social a{
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .social a:last-child{
+    display: block;
+  }
+  
+}
+.fa-send {
+  border: 2px solid var(--primary-color);
+  background: #000;
 }
 .fa{
   font-family: 'Chakra Petch', sans-serif;

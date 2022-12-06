@@ -7,6 +7,7 @@ import { useEffect, useState, useCallback } from 'react'
 import Loader from '../components/Loader'
 import Navbar from '../components/Navbar'
 import SelectDropdown from '../components/SelectDropdown'
+import Timeline from '../components/Timeline'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -59,10 +60,10 @@ const Home: NextPage = () => {
       <Loader isLoading = {isLoading} />
       <Navbar />
       <main className='container'>
-        <section className='' style={{/*backgroundImage: "url('/ASUS.jpg')" ,*/ background: 'black', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
+        <section className=''>
           <div className="main">
             <div className='row' >
-              <div className='col-5 p-2' style={{display: 'flex', flexDirection: 'column',justifyContent: 'center'}}>
+              <div className='col-5 p-2' style={{display: 'flex', flexDirection: 'column',justifyContent: 'center', overflow: 'hidden'}}>
                 <div className=''>
                   <div className='environment'></div>
                   <h1 className='title glitch layers' data-text='INSTEADIZE'><span>INSTEADIZE</span></h1>
@@ -70,14 +71,19 @@ const Home: NextPage = () => {
                 <div className='mt-9'>
                   <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur incidunt officiis distinctio magnam, assumenda rem ipsum earum cumque quasi veritatis similique enim, consequuntur eum voluptate ab voluptas! Id, sequi sed!</p>
                 </div>
-                <table className='mt-4 w-80'>
+                <span className='m-auto mt-4 w-100' style={{maxWidth: '520px', border: '1px solid #fff'}}><a style={{padding: '8px'}} className='text-ellipsis'>contract | 0xf70F246D961246c9B48dc0D8Cd621986B6919E2C</a></span>
+                {/* <table className='mt-4 w-100'>
                   <tbody>
                     <tr>
-                      <td style={{color: 'white'}}>contract</td>
-                      <td style={{color: 'var(--text-secondary)'}}>0xf70F246D961246c9B48dc0D8Cd621986B6919E2C</td>
+                      <td style={{color: 'white', width: '80px'}}>contract</td>
+                      <td className='w-100'>
+                        <span className='text-ellipsis'>
+                          0xf70F246D961246c9B48dc0D8Cd621986B6919E2C
+                        </span>
+                      </td>
                     </tr>
                   </tbody>
-                </table>
+                </table> */}
                 <div className='mt-9'>
                   <h1 style={{color: 'white'}}>Download now for free</h1>
                   <div className='d-flex mt-2 '>
@@ -104,43 +110,8 @@ const Home: NextPage = () => {
         <section >
           <video controls src='/video0.mp4'/>
         </section>
-        <section className='' style={{backgroundColor: ""}}>
-          <div className="timeline">
-            <ul>
-              <li>
-                <div className='timeline-content'>
-                  <h2>2022</h2>
-                  <p>
-                    Story 
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div className='timeline-content'>
-                  <h2>2023</h2>
-                  <p>
-                    Learn about Next.js in an interactive course with quizzes! 
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div className='timeline-content'>
-                  <h2>2024</h2>
-                  <p>
-                    Learn about Next.js in an interactive course with quizzes! 
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div className='timeline-content'>
-                  <h2>2025</h2>
-                  <p>
-                    Learn about Next.js in an interactive course with quizzes! 
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
+        <section className=''>
+          <Timeline/>
         </section>
         <section>
           <div className='main'>
