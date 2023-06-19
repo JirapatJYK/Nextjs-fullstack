@@ -11,14 +11,14 @@ import data from "../data//metadata/database.json";
 import Navbar from "../components/Navbar";
 import Pagination from "../components/Pagination";
 const sideMenu = [
-    {   
-        groupName: "Group1", 
-        list:[
+    {
+        groupName: "Group1",
+        list: [
             {
                 name: "menu0",
                 url: "#menu0",
                 type: "dropdown",
-               
+
             },
             {
                 name: "menu1",
@@ -27,9 +27,9 @@ const sideMenu = [
             }
         ],
     },
-    {    
-        groupName: "Group2", 
-        list:[
+    {
+        groupName: "Group2",
+        list: [
             {
                 name: "menu0",
                 url: "#menu0",
@@ -43,50 +43,50 @@ const sideMenu = [
         ],
     }
 ]
-const Explore: NextPage =()=>{
-  const [isLoading, setIsloading] = useState(true);
-    
-  function collapse(id: string){
-    const dropdown = document.getElementById(id) ;
-    if(dropdown){
-        // const Style = dropdown.style.display;
-        if(dropdown.style.display == "block"){
-            dropdown.style.display = "none";
-        }else
-        dropdown.style.display = "block";
+const Explore: NextPage = () => {
+    const [isLoading, setIsloading] = useState(true);
+
+    function collapse(id: string) {
+        const dropdown = document.getElementById(id);
+        if (dropdown) {
+            // const Style = dropdown.style.display;
+            if (dropdown.style.display == "block") {
+                dropdown.style.display = "none";
+            } else
+                dropdown.style.display = "block";
+        }
+        // dropdown.styles
+        console.log(id);
     }
-    // dropdown.styles
-    console.log(id);
-  }
-  useEffect(()=> {
-    console.log('Home Component')
-    const timeout = setTimeout(()=> {
-      setIsloading(false);
-    },2500)
-  })
-    return(
+    useEffect(() => {
+        console.log('Home Component')
+        const timeout = setTimeout(() => {
+            setIsloading(false);
+        }, 2500)
+    })
+    return (
         <>
-            <Loader  isLoading = {isLoading} />
-            <Navbar/>
-            <div className="container flex" style={{height: '100vh'}}>
+            <Loader isLoading={isLoading} />
+            <Navbar />
+            <div className="container d-flex" style={{ height: '100vh' }}>
                 <aside >
-                    <h1 style={{backgroundColor: 'blue'}}>Sidebar</h1>
-                    <ul style={{maxHeight: '90vh'}} className="scroll-view">
+                    <h1>Sidebar</h1>
+                    <ul style={{}} className="scroll-view">
                         <li className="dropdown" >
-                            <span className="btn" onClick={() => collapse("status")}>
-                                <h2 >Status</h2> 
+                            <span className="btn-list btn-glitch" onClick={() => collapse("status")}>
+                                <h2 >Status</h2>
                             </span>
-                            <ul id="status" className="dropdown-menu">
-                                <li></li>
+                            <ul id="status" className="">
+                                <li>1</li>
                             </ul>
                         </li>
                         <li className="dropdown" >
                             <span className="btn" onClick={() => collapse("price")}>
                                 <h2>Price</h2>
                             </span>
-                            <ul id="price" className="dropdown-menu">
+                            <ul id="price" className="">
                                 <li>
-                                    <span><input className="inputprice" type="number" placeholder="min"/> - <input className="inputprice" type="number" placeholder="max"/></span>
+                                    <span><input className="inputprice" type="number" placeholder="min" /> - <input className="inputprice" type="number" placeholder="max" /></span>
                                     <div><button className="field-btn">Apply</button></div>
                                 </li>
                             </ul>
@@ -95,7 +95,7 @@ const Explore: NextPage =()=>{
                             <span className="btn" onClick={() => collapse("quantity")}>
                                 <h2>Quantity</h2>
                             </span>
-                            <ul id="quantity" className="dropdown-menu">
+                            <ul id="quantity" className="">
                                 <li>1</li>
                                 <li>2</li>
                                 <li>3</li>
@@ -109,19 +109,21 @@ const Explore: NextPage =()=>{
                             <span className="btn" onClick={() => collapse("collections")}>
                                 <h2>Collections</h2>
                             </span>
-                            <ul id="collections" className="dropdown-menu">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
+                            <ul id="collections" className="">
+                                <li>1</li>
+                                <li>2</li>
+                                <li>3</li>
+                                <li>4</li>
+                                <li>5</li>
+                                <li>6</li>
 
                             </ul>
                         </li>
                         <li className="dropdown">
-                            <h2>Category</h2>
-                            <ul className="dropdown-menu">
+                            <span className="btn" onClick={() => collapse("category")}>
+                                <h2 >Category</h2>
+                            </span>
+                            <ul id="category" className="">
                                 <li>Images</li>
                                 <li>Audio</li>
                                 <li>Videos</li>
@@ -200,19 +202,19 @@ const Explore: NextPage =()=>{
                         sdsdsdd
                     </SidebarFooter>
                 </Sidebar> */}
-                <div className="main-content " style={{border: "2px solid black"}}>
-                    <div className="explore scroll-view">
+                <div className="" style={{ border: "2px solid black" }}>
+                    <div className="">
 
                         {/* <MediaCard metadata={metadata} />
                         <MediaCard metadata={metadata1} /> */}
-                        {data.map(data =>{
-                            return( 
+                        {data.map(data => {
+                            return (
                                 <div key={data.name} >
-                                    <MediaCard metadata={data}/>
+                                    <MediaCard metadata={data} />
                                 </div>
                             )
-                        } )}
-                        
+                        })}
+
                     </div>
                     <Pagination />
                 </div>

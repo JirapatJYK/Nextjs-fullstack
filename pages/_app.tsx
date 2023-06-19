@@ -1,9 +1,4 @@
-import '../styles/globals.css'
-import '../styles/animation.css'
-import '../styles/form.css'
-import '../styles/chart.css'
-import '../styles/input.css'
-import '../styles/button.css'
+import "../styles/main.css";
 
 import type { AppProps } from 'next/app'
 import { useEffect } from 'react'

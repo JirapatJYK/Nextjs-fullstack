@@ -233,7 +233,9 @@ async function Signin(collection: any, authentication_collection: any, req: any)
     result.status = 'success';
     result.data = account;
     const _id = account._id
-    result.token = jwt.sign({ _id, password }, 'jyk123456'/*process.env.TOKEN_KEY*/, {expiresIn: "1h"});
+    const token = jwt.sign({ _id, password }, process.env.TOKEN_KEY, {expiresIn: "1h"});
+    await authentication_collection.updateOne({ u_id: account._id }, { $set: { token: token} });
+    result.token = token;
   } else {
     console.log('wrong password');
     result.status = 'wrong password';

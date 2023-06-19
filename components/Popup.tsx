@@ -21,10 +21,11 @@ export default function Popup(props:Props){
     // function emitData(action: Boolean){
     //     props.confirm(action)
     // }
+    console.log("popup")
     return (
         <>
             {props.isShow?
-                <div className="loader-bg">
+                <div style={{backgroundColor: "black", width:"100vw", height:"100vh"}}>
                     <div className="popup">
                         {
                             props.animate=='success' ?

@@ -1,0 +1,19 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+nav button{
+    background: transparent;
+    border: none;
+    color: #d1d1d1;
+    font-weight: bold;
+}
+nav button:hover {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+}
+section .container{
+    margin: 0px 40px;
+    overflow: hidden;
+}
